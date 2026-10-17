@@ -33,12 +33,42 @@
     });
   }
 
+  /* ---------- about page: open the envelope ---------- */
+  var env = document.getElementById("envelope");
+  if (env) {
+    var wrap = document.getElementById("letter-wrap");
+    var hint = document.getElementById("letter-hint");
+    env.addEventListener("click", function () {
+      var open = !env.classList.contains("open");
+      env.classList.toggle("open", open);
+      wrap.classList.toggle("open", open);
+      env.setAttribute("aria-expanded", open ? "true" : "false");
+      if (hint) hint.textContent = open ? "Click the envelope to close it" : "Click the envelope to open it";
+      if (open) setTimeout(function () {
+        var top = wrap.getBoundingClientRect().top + window.scrollY - 120;
+        if (lenis) lenis.scrollTo(top); else window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
+      }, 650);
+    });
+  }
+
+  /* ---------- team page: flip business cards ---------- */
+  document.querySelectorAll(".bcard").forEach(function (card) {
+    card.addEventListener("click", function () {
+      var f = card.classList.toggle("flipped");
+      card.setAttribute("aria-pressed", f ? "true" : "false");
+    });
+  });
+
   /* ---------- reveal sections as they scroll in ---------- */
   if (!reduce && "IntersectionObserver" in window) {
-    var items = document.querySelectorAll(".section-head, .card, .case, .member, .steps li, .timeline li, .stat, .two-col > *, .form, .cta");
+    var items = document.querySelectorAll(".section-head, .split-head, .card, .case, .order, .comment, .bcard, .brief, .steps li, .timeline li, .res-list li, .two-col > *, .form, .postcard, .cta");
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+        if (en.isIntersecting) {
+          var t = en.target; t.classList.add("in"); io.unobserve(t);
+          // hand the element back to its normal hover styles once it has arrived
+          setTimeout(function () { t.classList.remove("reveal", "in"); t.style.transitionDelay = ""; }, 1200);
+        }
       });
     }, { rootMargin: "0px 0px -8% 0px" });
     items.forEach(function (el, i) {

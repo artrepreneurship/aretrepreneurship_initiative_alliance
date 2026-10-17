@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Events | Artrepreneurship Initiative Alliance</title>
+  <meta name="description" content="Workshops, community events and programs from the Artrepreneurship Initiative Alliance.">
+  <meta property="og:title" content="Events | Artrepreneurship Initiative Alliance">
+  <meta property="og:description" content="Workshops, community events and programs from the Artrepreneurship Initiative Alliance.">
+  <meta property="og:image" content="assets/logo-color.png">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* show the loading screen once per visit, skip it for reduced-motion users */
+    (function () {
+      var d = document.documentElement; d.classList.add("js");
+      var seen = false; try { seen = sessionStorage.getItem("aia-loaded") === "1"; } catch (e) {}
+      if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("is-loading");
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <!-- ===== LOADING SCREEN ===== -->
+  <div class="loader" aria-hidden="true">
+    <svg class="loader-logo" viewBox="560 220 900 1195">
+      <circle class="l-dot" cx="1008" cy="373" r="146" fill="#70c1ff"/>
+      <path class="l-a" d="M885 564H1132L1447 1402H1213L1008 820L804 1402H570Z" fill="#ed6a5a"/>
+      <path class="l-tri" d="M1008 996L1152 1406H865Z" fill="#ffc847"/>
+    </svg>
+    <p class="loader-word">art<b>.</b> business<b>.</b> youth<b>.</b></p>
+  </div>
+
+  <!-- ===== NAV (same on every page) ===== -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand" aria-label="AIA home">
+        <img src="assets/logo.svg" alt="" width="28" height="37">
+        <span>AIA</span>
+      </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+      <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
+      <nav class="nav-links" aria-label="Main">
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <a href="events.html" aria-current="page">Events</a>
+        <a href="impact.html">Impact</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact</a>
+        <a href="request.html" class="btn">Request a design</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Events</p>
+        <h1>Workshops, pop-ups &amp; programs</h1>
+        <p class="lead">Where AIA members and our community get together to learn, make things and give back.</p>
+      </div>
+    </section>
+
+    <!-- ===== EVENT MENU ===== -->
+    <section class="section section-sand">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Event menu</p>
+          <h2>What we run</h2>
+        </div>
+        <div class="event-types">
+          <article class="card"><div class="mark mark-circle" aria-hidden="true"></div><h3>Workshops &amp; webinars</h3><p>In-person workshops and virtual webinars on entrepreneurship, financial literacy and creative skills.</p><ul><li>Entrepreneurship</li><li>Financial literacy</li><li>Design skills</li></ul></article>
+          <article class="card"><div class="mark mark-a" aria-hidden="true"></div><h3>Community events</h3><p>Service events where members put their skills to work for the community.</p><ul><li>Card-making</li><li>Pop-up stands</li><li>Fundraisers</li></ul></article>
+          <article class="card" id="programs"><div class="mark mark-tri" aria-hidden="true"></div><h3>Bergen County Youth Poet Laureate</h3><p>Founded in 2025 by co-founder Emily Tong, a local chapter of the National Youth Poet Laureate Program, an initiative of Urban Word.</p><div class="btn-row"><a href="https://forms.gle/xuF1nJcjqCzPzevo6" class="btn" target="_blank" rel="noopener">Apply</a><a href="https://www.youthlaureate.org" class="btn btn-ghost" target="_blank" rel="noopener">National program</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ALL EVENTS =====
+         To add an event, copy one Ellipsis block in the EVENTS list below.
+         Dates are YYYY-MM-DD. Events sort into Upcoming / Past automatically. -->
+    <section class="section">
+      <div class="wrap">
+        <div class="split-head">
+          <div>
+            <p class="eyebrow">All events</p>
+            <h2>On the calendar</h2>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Filter events">
+            <button role="tab" aria-selected="true" data-filter="upcoming">Upcoming</button>
+            <button role="tab" aria-selected="false" data-filter="past">Past</button>
+            <button role="tab" aria-selected="false" data-filter="all">All</button>
+          </div>
+        </div>
+        <div class="event-list" id="event-list" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <script>
+      var EVENTS = [
+        {
+          title: "AIA Youth Workshop",
+          date: "2025-06-17",
+          time: "[Add time]",
+          place: "Hackensack, NJ",
+          type: "Workshop",
+          host: "AIA",
+          desc: "[Add a short description of what attendees learned or made]"
+        }
+      ];
+
+      (function () {
+        var list = document.getElementById("event-list");
+        var months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+        var today = new Date(); today.setHours(0, 0, 0, 0);
+        function parse(d) { var p = d.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+        function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+        function fill(s) { s = esc(s); return /^\[.*\]$/.test(s) ? '<span class="fill">' + s + "</span>" : s; }
+        function render(filter) {
+          var items = EVENTS.map(function (e) { var d = parse(e.date); return Object.assign({ d: d, past: d < today }, e); })
+            .filter(function (e) { return filter === "all" || (filter === "past" ? e.past : !e.past); })
+            .sort(function (a, b) { return filter === "upcoming" ? a.d - b.d : b.d - a.d; });
+          if (!items.length) {
+            list.innerHTML = '<div class="empty">' + (filter === "upcoming"
+              ? 'No upcoming events posted yet. Follow us on <a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a> to hear about the next one first.'
+              : "No events here yet.") + "</div>";
+            return;
+          }
+          list.innerHTML = items.map(function (e) {
+            return '<article class="event' + (e.past ? " past" : "") + '">' +
+              '<div class="cal"><div class="m">' + months[e.d.getMonth()] + '</div><div class="d">' + e.d.getDate() + '</div><div class="y">' + e.d.getFullYear() + "</div></div>" +
+              "<div><span class=\"cat\">" + esc(e.type) + (e.past ? " &middot; past" : "") + "</span><h3>" + esc(e.title) + "</h3>" +
+              '<dl class="fields"><dt>When</dt><dd>' + e.d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" }) + (e.time ? ", " + fill(e.time) : "") + "</dd>" +
+              "<dt>Where</dt><dd>" + fill(e.place) + "</dd><dt>Run by</dt><dd>" + fill(e.host) + "</dd><dt>About</dt><dd>" + fill(e.desc) + "</dd></dl>" +
+              (e.link ? '<div class="btn-row" style="margin-top:.8rem"><a class="btn" href="' + esc(e.link) + '" target="_blank" rel="noopener">Register</a></div>' : "") +
+              "</div></article>";
+          }).join("");
+        }
+        var tabs = document.querySelectorAll(".tabs button");
+        tabs.forEach(function (t) {
+          t.addEventListener("click", function () {
+            tabs.forEach(function (o) { o.setAttribute("aria-selected", o === t ? "true" : "false"); });
+            render(t.dataset.filter);
+          });
+        });
+        var hasUpcoming = EVENTS.some(function (e) { return parse(e.date) >= today; });
+        if (!hasUpcoming) { tabs[0].setAttribute("aria-selected", "false"); tabs[1].setAttribute("aria-selected", "true"); render("past"); }
+        else render("upcoming");
+      })();
+    </script>
+
+  </main>
+
+  <!-- ===== FOOTER (same on every page) ===== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="stack">
+          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="28" height="37"><span>AIA</span></a>
+          <p>A student-led 501(c)(3) nonprofit in Bergen County, NJ, connecting art and business.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="resources.html">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get involved</h4>
+          <ul>
+            <li><a href="request.html">Request a design</a></li>
+            <li><a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Volunteer</a></li>
+            <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:info@artrepreneurshipalliance.org">Email us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc.</p>
+        <p>501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

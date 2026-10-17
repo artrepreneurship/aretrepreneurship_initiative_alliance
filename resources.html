@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Resources | Artrepreneurship Initiative Alliance</title>
+  <meta name="description" content="Free tools, courses and competitions for young artists and entrepreneurs, picked by AIA.">
+  <meta property="og:title" content="Resources | Artrepreneurship Initiative Alliance">
+  <meta property="og:description" content="Free tools, courses and competitions for young artists and entrepreneurs, picked by AIA.">
+  <meta property="og:image" content="assets/logo-color.png">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* show the loading screen once per visit, skip it for reduced-motion users */
+    (function () {
+      var d = document.documentElement; d.classList.add("js");
+      var seen = false; try { seen = sessionStorage.getItem("aia-loaded") === "1"; } catch (e) {}
+      if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("is-loading");
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <!-- ===== LOADING SCREEN ===== -->
+  <div class="loader" aria-hidden="true">
+    <svg class="loader-logo" viewBox="560 220 900 1195">
+      <circle class="l-dot" cx="1008" cy="373" r="146" fill="#70c1ff"/>
+      <path class="l-a" d="M885 564H1132L1447 1402H1213L1008 820L804 1402H570Z" fill="#ed6a5a"/>
+      <path class="l-tri" d="M1008 996L1152 1406H865Z" fill="#ffc847"/>
+    </svg>
+    <p class="loader-word">art<b>.</b> business<b>.</b> youth<b>.</b></p>
+  </div>
+
+  <!-- ===== NAV (same on every page) ===== -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand" aria-label="AIA home">
+        <img src="assets/logo.svg" alt="" width="28" height="37">
+        <span>AIA</span>
+      </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+      <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
+      <nav class="nav-links" aria-label="Main">
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <a href="events.html">Events</a>
+        <a href="impact.html">Impact</a>
+        <a href="resources.html" aria-current="page">Resources</a>
+        <a href="contact.html">Contact</a>
+        <a href="request.html" class="btn">Request a design</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Resources</p>
+        <h1>Tools for young artrepreneurs</h1>
+        <p class="lead">Free tools, lessons and opportunities at the meeting point of art and business, picked by our team.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:24px">
+      <div class="wrap">
+        <!-- quick menu: jumps to each section -->
+        <nav class="res-nav" aria-label="Resource sections">
+          <a href="#tools"><small>01</small><b>Free design tools</b></a>
+          <a href="#learn"><small>02</small><b>Learn design</b></a>
+          <a href="#business"><small>03</small><b>Business &amp; money basics</b></a>
+          <a href="#compete"><small>04</small><b>Competitions &amp; programs</b></a>
+          <a href="#aia-made"><small>05</small><b>AIA-made guides</b> <span class="soon">Coming soon</span></a>
+        </nav>
+
+        <div class="res-section" id="tools">
+          <div class="section-head"><p class="eyebrow">01 &middot; Make</p><h2>Free design tools</h2><p class="muted">Everything you need to start designing without paying for software.</p></div>
+          <ul class="res-list">
+            <li><a href="https://www.canva.com" target="_blank" rel="noopener"><span class="mark mark-circle" aria-hidden="true"></span><span><b>Canva</b><span>Drag-and-drop design for posts, flyers and presentations, with a free plan.</span></span></a></li>
+            <li><a href="https://www.figma.com/education/" target="_blank" rel="noopener"><span class="mark mark-circle" aria-hidden="true"></span><span><b>Figma</b><span>Professional design and prototyping tool, free for students and educators.</span></span></a></li>
+            <li><a href="https://www.adobe.com/express/" target="_blank" rel="noopener"><span class="mark mark-circle" aria-hidden="true"></span><span><b>Adobe Express</b><span>Quick graphics, videos and templates with a free plan.</span></span></a></li>
+            <li><a href="https://coolors.co" target="_blank" rel="noopener"><span class="mark mark-circle" aria-hidden="true"></span><span><b>Coolors</b><span>Generate and save color palettes for a brand.</span></span></a></li>
+            <li><a href="https://fonts.google.com" target="_blank" rel="noopener"><span class="mark mark-circle" aria-hidden="true"></span><span><b>Google Fonts</b><span>Hundreds of free fonts you can use for personal and commercial work.</span></span></a></li>
+            <li><a href="https://unsplash.com" target="_blank" rel="noopener"><span class="mark mark-circle" aria-hidden="true"></span><span><b>Unsplash</b><span>Free high-quality photos to use in your designs.</span></span></a></li>
+          </ul>
+        </div>
+
+        <div class="res-section" id="learn">
+          <div class="section-head"><p class="eyebrow">02 &middot; Learn</p><h2>Learn design</h2><p class="muted">Free places to build your skills, from the basics to branding.</p></div>
+          <ul class="res-list">
+            <li><a href="https://www.canva.com/designschool/" target="_blank" rel="noopener"><span class="mark mark-a" aria-hidden="true"></span><span><b>Canva Design School</b><span>Free short courses on design basics, branding and social media.</span></span></a></li>
+            <li><a href="https://thefutur.com" target="_blank" rel="noopener"><span class="mark mark-a" aria-hidden="true"></span><span><b>The Futur</b><span>Videos and lessons on design, branding and the business of creative work.</span></span></a></li>
+            <li><a href="https://fonts.google.com/knowledge" target="_blank" rel="noopener"><span class="mark mark-a" aria-hidden="true"></span><span><b>Google Fonts Knowledge</b><span>Free guides to choosing and using type well.</span></span></a></li>
+            <li><a href="https://www.smashingmagazine.com" target="_blank" rel="noopener"><span class="mark mark-a" aria-hidden="true"></span><span><b>Smashing Magazine</b><span>Articles on design and building for the web.</span></span></a></li>
+          </ul>
+        </div>
+
+        <div class="res-section" id="business">
+          <div class="section-head"><p class="eyebrow">03 &middot; Earn</p><h2>Business &amp; money basics</h2><p class="muted">The business side of creative work: money, planning and mentorship.</p></div>
+          <ul class="res-list">
+            <li><a href="https://www.khanacademy.org/college-careers-more/personal-finance" target="_blank" rel="noopener"><span class="mark mark-tri" aria-hidden="true"></span><span><b>Khan Academy: Personal Finance</b><span>Free lessons on budgeting, saving, taxes and more.</span></span></a></li>
+            <li><a href="https://www.sba.gov" target="_blank" rel="noopener"><span class="mark mark-tri" aria-hidden="true"></span><span><b>U.S. Small Business Administration</b><span>Guides to planning, launching and managing a small business.</span></span></a></li>
+            <li><a href="https://www.score.org" target="_blank" rel="noopener"><span class="mark mark-tri" aria-hidden="true"></span><span><b>SCORE</b><span>Free mentoring and workshops for small business owners.</span></span></a></li>
+            <li><a href="https://jausa.ja.org" target="_blank" rel="noopener"><span class="mark mark-tri" aria-hidden="true"></span><span><b>Junior Achievement</b><span>Programs that teach students financial literacy and entrepreneurship.</span></span></a></li>
+          </ul>
+        </div>
+
+        <div class="res-section" id="compete">
+          <div class="section-head"><p class="eyebrow">04 &middot; Grow</p><h2>Competitions &amp; programs for teens</h2><p class="muted">Places to show your work and test your business ideas. Check each site for current deadlines and eligibility.</p></div>
+          <ul class="res-list">
+            <li><a href="https://www.artandwriting.org" target="_blank" rel="noopener"><span class="mark mark-square" aria-hidden="true"></span><span><b>Scholastic Art &amp; Writing Awards</b><span>National recognition program for creative teens in grades 7&ndash;12.</span></span></a></li>
+            <li><a href="https://www.house.gov/educators-and-students/congressional-art-competition" target="_blank" rel="noopener"><span class="mark mark-square" aria-hidden="true"></span><span><b>Congressional Art Competition</b><span>High school art contest; winning work hangs in the U.S. Capitol.</span></span></a></li>
+            <li><a href="https://www.deca.org" target="_blank" rel="noopener"><span class="mark mark-square" aria-hidden="true"></span><span><b>DECA</b><span>Student organization with competitions in marketing, finance and entrepreneurship.</span></span></a></li>
+            <li><a href="https://www.fbla.org" target="_blank" rel="noopener"><span class="mark mark-square" aria-hidden="true"></span><span><b>FBLA</b><span>Future Business Leaders of America: competitive events and leadership for students.</span></span></a></li>
+            <li><a href="https://diamondchallenge.org" target="_blank" rel="noopener"><span class="mark mark-square" aria-hidden="true"></span><span><b>Diamond Challenge</b><span>Global entrepreneurship competition for high school students.</span></span></a></li>
+            <li><a href="https://www.nfte.com" target="_blank" rel="noopener"><span class="mark mark-square" aria-hidden="true"></span><span><b>NFTE</b><span>Entrepreneurship programs and challenges for young people.</span></span></a></li>
+          </ul>
+          <div class="tip"><b>Tip from the team:</b> keep every project you make for an AIA client. A small portfolio of real work for real organizations helps with competitions, college applications and your first paid gigs.</div>
+        </div>
+
+        <div class="res-section" id="aia-made">
+          <div class="section-head"><p class="eyebrow">05 &middot; From us</p><h2>AIA-made guides <span class="soon">Coming soon</span></h2><p class="muted">Slides and guides from our workshops will live here. Want something specific? <a href="contact.html">Tell us</a>.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER (same on every page) ===== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="stack">
+          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="28" height="37"><span>AIA</span></a>
+          <p>A student-led 501(c)(3) nonprofit in Bergen County, NJ, connecting art and business.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="resources.html">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get involved</h4>
+          <ul>
+            <li><a href="request.html">Request a design</a></li>
+            <li><a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Volunteer</a></li>
+            <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:info@artrepreneurshipalliance.org">Email us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc.</p>
+        <p>501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

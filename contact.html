@@ -11,7 +11,7 @@
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     /* show the loading screen once per visit, skip it for reduced-motion users */
@@ -39,16 +39,19 @@
   <header class="nav">
     <div class="wrap nav-inner">
       <a href="index.html" class="brand" aria-label="AIA home">
-        <img src="assets/logo.svg" alt="" width="30" height="40">
+        <img src="assets/logo.svg" alt="" width="28" height="37">
         <span>AIA</span>
       </a>
       <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
       <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
       <nav class="nav-links" aria-label="Main">
         <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <a href="events.html">Events</a>
         <a href="impact.html">Impact</a>
-        <a href="request.html">Request a Design</a>
-        <a href="contact.html" class="btn" aria-current="page">Contact</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+        <a href="request.html" class="btn">Request a design</a>
       </nav>
     </div>
   </header>
@@ -56,46 +59,61 @@
   <main>
 
     <section class="page-hero">
-      <div class="shape shape-circle" aria-hidden="true"></div>
-      <div class="shape shape-tri" aria-hidden="true"></div>
       <div class="wrap">
         <p class="eyebrow">Say hello</p>
-        <h1>Contact us</h1>
-        <p class="lead">Need design help, want to partner, or have a question? We usually reply within a few days.</p>
+        <h1>Send us a postcard</h1>
+        <p class="lead">Questions, partnerships, ideas or just a hello. We usually reply within a few days.</p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap stack" style="gap:2.5rem">
-        <div class="stack">
-          <p class="eyebrow">Email</p>
-          <p class="email-big">info@artrepreneurshipalliance.org</p>
-          <div class="btn-row"><a href="mailto:info@artrepreneurshipalliance.org" class="btn">Send an email</a></div>
-          <p class="muted">Based in Bergen County, New Jersey</p>
-        </div>
-        <div class="contact-grid">
-          <article class="card">
-            <div class="mark mark-circle" aria-hidden="true"></div>
-            <h3>Need a design?</h3>
-            <p>Use our request form so we get everything we need up front.</p>
-            <a class="more" href="request.html">Request a design &rarr;</a>
-          </article>
-          <article class="card">
-            <div class="mark mark-a" aria-hidden="true"></div>
-            <h3>Want to join?</h3>
-            <p>Volunteer on one of our teams or start a chapter at your school.</p>
-            <a class="more" href="about.html#get-involved">Get involved &rarr;</a>
-          </article>
-          <article class="card">
-            <div class="mark mark-tri" aria-hidden="true"></div>
-            <h3>Follow along</h3>
-            <p>See our latest projects and events.</p>
-            <a class="more" href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram &rarr;</a>
-            <a class="more" href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn &rarr;</a>
-          </article>
+    <section class="section" style="padding-top:24px">
+      <div class="wrap">
+        <form class="postcard" id="contact-form">
+          <div class="pc-left">
+            <p class="eyebrow">Postcard</p>
+            <h2>Hi AIA,</h2>
+            <label for="c-msg" class="muted">Your message</label>
+            <textarea id="c-msg" name="message" required placeholder="Write your message here..."></textarea>
+          </div>
+          <div class="pc-right">
+            <div class="stamp" aria-hidden="true"><div><img src="assets/logo.svg" alt=""></div></div>
+            <div class="postmark" aria-hidden="true">AIA<br>BERGEN CO.<br>NEW JERSEY</div>
+            <div class="field"><label for="c-name">From</label><input id="c-name" name="name" required autocomplete="name" placeholder="Your name"></div>
+            <div class="field"><label for="c-email">Reply to</label><input id="c-email" name="email" type="email" required autocomplete="email" placeholder="you@email.com"></div>
+            <div class="field"><label for="c-heard">Where did you hear about us?</label>
+              <select id="c-heard" name="heard"><option>Word of mouth</option><option>Instagram</option><option>LinkedIn</option><option>School or club</option><option>An event</option><option>Other</option></select></div>
+            <div class="btn-row" style="margin-top:auto"><button class="btn" type="submit">Send postcard</button></div>
+            <p class="form-result" id="c-result" hidden></p>
+          </div>
+        </form>
+
+        <p class="or">or</p>
+
+        <div class="grid-2" style="align-items:start">
+          <div class="stack">
+            <p class="eyebrow">Email us directly</p>
+            <p class="email-big">info@artrepreneurshipalliance.org</p>
+            <p class="muted">Based in Bergen County, New Jersey</p>
+            <div class="slash-links"><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a><span>/</span><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></div>
+          </div>
+          <div class="grid-2">
+            <article class="card"><div class="mark mark-circle" aria-hidden="true"></div><h3>Need a design?</h3><p>Use our request form so we get everything up front.</p><a class="more" href="request.html">Request a design &rarr;</a></article>
+            <article class="card"><div class="mark mark-tri" aria-hidden="true"></div><h3>Want to join?</h3><p>Volunteer on a team or start a chapter.</p><a class="more" href="about.html#get-involved">Get involved &rarr;</a></article>
+          </div>
         </div>
       </div>
     </section>
+
+    <script>
+      document.getElementById("contact-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var f = e.target, v = function (n) { return (f.elements[n].value || "").trim(); };
+        var body = [v("message"), "", "From: " + v("name"), "Reply to: " + v("email"), "Heard about AIA from: " + v("heard")].join("\n");
+        window.location.href = "mailto:info@artrepreneurshipalliance.org?subject=" + encodeURIComponent("Postcard from " + v("name")) + "&body=" + encodeURIComponent(body);
+        var r = document.getElementById("c-result"); r.hidden = false;
+        r.textContent = "Your email app should open with your message ready to send. If it didn't, email info@artrepreneurshipalliance.org.";
+      });
+    </script>
 
   </main>
 
@@ -104,15 +122,25 @@
     <div class="wrap">
       <div class="footer-grid">
         <div class="stack">
-          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="30" height="40"><span>AIA</span></a>
+          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="28" height="37"><span>AIA</span></a>
           <p>A student-led 501(c)(3) nonprofit in Bergen County, NJ, connecting art and business.</p>
         </div>
         <div>
           <h4>Explore</h4>
           <ul>
             <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="events.html">Events</a></li>
             <li><a href="impact.html">Impact</a></li>
-            <li><a href="request.html">Request a Design</a></li>
+            <li><a href="resources.html">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get involved</h4>
+          <ul>
+            <li><a href="request.html">Request a design</a></li>
+            <li><a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Volunteer</a></li>
+            <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -121,7 +149,7 @@
           <ul>
             <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="mailto:info@artrepreneurshipalliance.org">info@artrepreneurshipalliance.org</a></li>
+            <li><a href="mailto:info@artrepreneurshipalliance.org">Email us</a></li>
           </ul>
         </div>
       </div>

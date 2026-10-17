@@ -11,7 +11,7 @@
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     /* show the loading screen once per visit, skip it for reduced-motion users */
@@ -39,16 +39,19 @@
   <header class="nav">
     <div class="wrap nav-inner">
       <a href="index.html" class="brand" aria-label="AIA home">
-        <img src="assets/logo.svg" alt="" width="30" height="40">
+        <img src="assets/logo.svg" alt="" width="28" height="37">
         <span>AIA</span>
       </a>
       <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
       <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
       <nav class="nav-links" aria-label="Main">
         <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <a href="events.html">Events</a>
         <a href="impact.html">Impact</a>
-        <a href="request.html" aria-current="page">Request a Design</a>
-        <a href="contact.html" class="btn">Contact</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact</a>
+        <a href="request.html" class="btn" aria-current="page">Request a design</a>
       </nav>
     </div>
   </header>
@@ -56,8 +59,6 @@
   <main>
 
     <section class="page-hero">
-      <div class="shape shape-circle" aria-hidden="true"></div>
-      <div class="shape shape-tri" aria-hidden="true"></div>
       <div class="wrap">
         <p class="eyebrow">Free for small businesses &amp; student groups</p>
         <h1>Request a design</h1>
@@ -65,7 +66,6 @@
       </div>
     </section>
 
-    <!-- ===== HOW IT WORKS ===== -->
     <section class="section section-sand">
       <div class="wrap">
         <div class="section-head">
@@ -81,11 +81,10 @@
       </div>
     </section>
 
-    <!-- ===== FORM =====
-         Right now this form opens the visitor's email app with everything filled in.
-         To collect requests in a spreadsheet instead, make a free form at formspree.io
-         and set: <form ... action="https://formspree.io/f/YOUR_ID" method="POST">
-         then delete the <script> at the bottom of this page. -->
+    <!-- ===== FORM: opens the visitor's email app with everything filled in.
+         To collect requests in a spreadsheet instead, make a free form at formspree.io,
+         set action="https://formspree.io/f/YOUR_ID" method="POST" on the form,
+         and delete the <script> below. ===== -->
     <section class="section">
       <div class="wrap two-col">
         <div class="stack">
@@ -95,29 +94,12 @@
           <p class="muted">Questions first? Email <a href="mailto:info@artrepreneurshipalliance.org">info@artrepreneurshipalliance.org</a>.</p>
         </div>
         <form class="form" id="request-form">
-          <div class="field">
-            <label for="r-name">Your name</label>
-            <input id="r-name" name="name" required autocomplete="name">
-          </div>
-          <div class="field">
-            <label for="r-email">Email</label>
-            <input id="r-email" name="email" type="email" required autocomplete="email">
-          </div>
-          <div class="field">
-            <label for="r-org">Business or organization</label>
-            <input id="r-org" name="organization" required autocomplete="organization">
-          </div>
-          <div class="field">
-            <label for="r-type">Type of organization</label>
-            <select id="r-type" name="org_type">
-              <option>Small business</option>
-              <option>Nonprofit</option>
-              <option>Student club or organization</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <fieldset class="field full">
-            <legend>What do you need?</legend>
+          <div class="field"><label for="r-name">Your name</label><input id="r-name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="r-email">Email</label><input id="r-email" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="r-org">Business or organization</label><input id="r-org" name="organization" required autocomplete="organization"></div>
+          <div class="field"><label for="r-type">Type of organization</label>
+            <select id="r-type" name="org_type"><option>Small business</option><option>Nonprofit</option><option>Student club or organization</option><option>Other</option></select></div>
+          <fieldset class="field full"><legend>What do you need?</legend>
             <div class="chips">
               <label><input type="checkbox" name="needs" value="Logo"> Logo</label>
               <label><input type="checkbox" name="needs" value="Flyer or poster"> Flyer or poster</label>
@@ -127,20 +109,9 @@
               <label><input type="checkbox" name="needs" value="Other"> Other</label>
             </div>
           </fieldset>
-          <div class="field full">
-            <label for="r-details">Tell us about the project</label>
-            <textarea id="r-details" name="details" required placeholder="What is it for, who is it for, and any colors or styles you like?"></textarea>
-          </div>
-          <div class="field">
-            <label for="r-date">Ideal deadline</label>
-            <input id="r-date" name="deadline" type="date">
-            <span class="hint">Optional</span>
-          </div>
-          <div class="field">
-            <label for="r-link">Website or Instagram</label>
-            <input id="r-link" name="link" placeholder="@yourbusiness">
-            <span class="hint">Optional</span>
-          </div>
+          <div class="field full"><label for="r-details">Tell us about the project</label><textarea id="r-details" name="details" required placeholder="What is it for, who is it for, and any colors or styles you like?"></textarea></div>
+          <div class="field"><label for="r-date">Ideal deadline</label><input id="r-date" name="deadline" type="date"><span class="hint">Optional</span></div>
+          <div class="field"><label for="r-link">Website or Instagram</label><input id="r-link" name="link" placeholder="@yourbusiness"><span class="hint">Optional</span></div>
           <div class="full btn-row"><button class="btn" type="submit">Send request</button></div>
           <p class="form-note">Sending opens your email app with your request filled in, addressed to info@artrepreneurshipalliance.org.</p>
           <div class="form-result" id="r-result" hidden></div>
@@ -153,14 +124,10 @@
         e.preventDefault();
         var f = e.target, v = function (n) { return (f.elements[n] && f.elements[n].value || "").trim(); };
         var needs = Array.prototype.slice.call(f.querySelectorAll('input[name="needs"]:checked')).map(function (c) { return c.value; }).join(", ") || "Not specified";
-        var body = [
-          "Name: " + v("name"), "Email: " + v("email"), "Organization: " + v("organization") + " (" + v("org_type") + ")",
-          "Needs: " + needs, "Deadline: " + (v("deadline") || "Flexible"), "Link: " + (v("link") || "-"), "", v("details")
-        ].join("\n");
-        var subject = "Design request: " + v("organization");
-        window.location.href = "mailto:info@artrepreneurshipalliance.org?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-        var r = document.getElementById("r-result");
-        r.hidden = false;
+        var body = ["Name: " + v("name"), "Email: " + v("email"), "Organization: " + v("organization") + " (" + v("org_type") + ")",
+          "Needs: " + needs, "Deadline: " + (v("deadline") || "Flexible"), "Link: " + (v("link") || "-"), "", v("details")].join("\n");
+        window.location.href = "mailto:info@artrepreneurshipalliance.org?subject=" + encodeURIComponent("Design request: " + v("organization")) + "&body=" + encodeURIComponent(body);
+        var r = document.getElementById("r-result"); r.hidden = false;
         r.textContent = "Your email app should open with the request ready to send. If it didn't, email the details to info@artrepreneurshipalliance.org.";
       });
     </script>
@@ -172,15 +139,25 @@
     <div class="wrap">
       <div class="footer-grid">
         <div class="stack">
-          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="30" height="40"><span>AIA</span></a>
+          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="28" height="37"><span>AIA</span></a>
           <p>A student-led 501(c)(3) nonprofit in Bergen County, NJ, connecting art and business.</p>
         </div>
         <div>
           <h4>Explore</h4>
           <ul>
             <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="events.html">Events</a></li>
             <li><a href="impact.html">Impact</a></li>
-            <li><a href="request.html">Request a Design</a></li>
+            <li><a href="resources.html">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get involved</h4>
+          <ul>
+            <li><a href="request.html">Request a design</a></li>
+            <li><a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Volunteer</a></li>
+            <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -189,7 +166,7 @@
           <ul>
             <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="mailto:info@artrepreneurshipalliance.org">info@artrepreneurshipalliance.org</a></li>
+            <li><a href="mailto:info@artrepreneurshipalliance.org">Email us</a></li>
           </ul>
         </div>
       </div>
