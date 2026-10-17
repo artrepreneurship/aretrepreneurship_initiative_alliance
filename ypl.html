@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Bergen County Youth Poet Laureate | AIA</title>
+  <meta name="description" content="The Bergen County Youth Poet Laureate, a local chapter of the National Youth Poet Laureate Program, run by AIA.">
+  <meta property="og:title" content="Bergen County Youth Poet Laureate | AIA">
+  <meta property="og:description" content="The Bergen County Youth Poet Laureate, a local chapter of the National Youth Poet Laureate Program, run by AIA.">
+  <meta property="og:image" content="assets/logo-color.png">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* show the loading screen once per visit, skip it for reduced-motion users */
+    (function () {
+      var d = document.documentElement; d.classList.add("js");
+      var seen = false; try { seen = sessionStorage.getItem("aia-loaded") === "1"; } catch (e) {}
+      if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("is-loading");
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <!-- ===== LOADING SCREEN ===== -->
+  <div class="loader" aria-hidden="true">
+    <svg class="loader-logo" viewBox="560 220 900 1195">
+      <circle class="l-dot" cx="1008" cy="373" r="146" fill="#70c1ff"/>
+      <path class="l-a" d="M885 564H1132L1447 1402H1213L1008 820L804 1402H570Z" fill="#ed6a5a"/>
+      <path class="l-tri" d="M1008 996L1152 1406H865Z" fill="#ffc847"/>
+    </svg>
+    <p class="loader-word">art<b>.</b> business<b>.</b> youth<b>.</b></p>
+  </div>
+
+  <!-- ===== NAV (same on every page) ===== -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand" aria-label="AIA home">
+        <img src="assets/logo.svg" alt="" width="28" height="37">
+        <span>AIA</span>
+      </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+      <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
+      <nav class="nav-links" aria-label="Main">
+        <a href="about.html">About</a>
+        <a href="impact.html">Impact</a>
+        <a href="programs.html" aria-current="page">Programs</a>
+        <a href="join.html">Join us</a>
+        <a href="contact.html">Contact</a>
+        <a href="request.html" class="btn">Request a design</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="ypl-hero">
+      <div class="wrap stack">
+        <p class="eyebrow"><a href="programs.html" style="text-decoration:none">Programs</a> &rsaquo; Bergen County YPL</p>
+        <h1>Bergen County<br>Youth Poet Laureate</h1>
+        <p class="lead">A local chapter of the National Youth Poet Laureate Program, an initiative of Urban Word.</p>
+        <div class="btn-row">
+          <a href="https://forms.gle/xuF1nJcjqCzPzevo6" class="btn btn-yellow" target="_blank" rel="noopener">Apply</a>
+          <a href="https://www.youthlaureate.org" class="btn btn-light" target="_blank" rel="noopener">National program</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap two-col">
+        <div class="stack">
+          <p class="eyebrow">About the program</p>
+          <h2>A voice for young poets in Bergen County</h2>
+        </div>
+        <div class="stack">
+          <p>Founded in 2025 by AIA co-founder Emily Tong, the Bergen County Youth Poet Laureate brings the National Youth Poet Laureate Program to our county.</p>
+          <p>The program celebrates young poets committed to artistic excellence, civic engagement and social impact, and gives them a platform to share their work with the community.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-sand">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">What we look for</p>
+          <h2>Three things the program celebrates</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card"><div class="mark mark-circle" aria-hidden="true"></div><h3>Artistic excellence</h3><p>Poems with craft, voice and something to say.</p></article>
+          <article class="card"><div class="mark mark-a" aria-hidden="true"></div><h3>Civic engagement</h3><p>Young people who care about their communities.</p></article>
+          <article class="card"><div class="mark mark-tri" aria-hidden="true"></div><h3>Social impact</h3><p>Writing that can move people and spark change.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap cta">
+        <div class="stack">
+          <p class="eyebrow">Apply</p>
+          <h2>Are you a young poet in Bergen County?</h2>
+          <p class="muted">See the application for eligibility and deadlines.</p>
+        </div>
+        <div class="btn-row"><a href="https://forms.gle/xuF1nJcjqCzPzevo6" class="btn" target="_blank" rel="noopener">Open the application</a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER (same on every page) ===== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="stack">
+          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="28" height="37"><span>AIA</span></a>
+          <p>A student-led 501(c)(3) nonprofit in Bergen County, NJ, connecting art and business.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About &amp; team</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="ypl.html">Bergen County YPL</a></li>
+            <li><a href="resources.html">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get involved</h4>
+          <ul>
+            <li><a href="request.html">Request a design</a></li>
+            <li><a href="join.html">Join AIA</a></li>
+            <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc.</p>
+        <p>501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Contact | Artrepreneurship Initiative Alliance</title>
-  <meta name="description" content="Get in touch with AIA about design help, partnerships, volunteering or starting a chapter.">
+  <meta name="description" content="Get in touch with AIA about design help, partnerships, joining or starting a chapter.">
   <meta property="og:title" content="Contact | Artrepreneurship Initiative Alliance">
-  <meta property="og:description" content="Get in touch with AIA about design help, partnerships, volunteering or starting a chapter.">
+  <meta property="og:description" content="Get in touch with AIA about design help, partnerships, joining or starting a chapter.">
   <meta property="og:image" content="assets/logo-color.png">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     /* show the loading screen once per visit, skip it for reduced-motion users */
@@ -46,10 +46,9 @@
       <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
       <nav class="nav-links" aria-label="Main">
         <a href="about.html">About</a>
-        <a href="team.html">Team</a>
-        <a href="events.html">Events</a>
         <a href="impact.html">Impact</a>
-        <a href="resources.html">Resources</a>
+        <a href="programs.html">Programs</a>
+        <a href="join.html">Join us</a>
         <a href="contact.html" aria-current="page">Contact</a>
         <a href="request.html" class="btn">Request a design</a>
       </nav>
@@ -92,13 +91,13 @@
         <div class="grid-2" style="align-items:start">
           <div class="stack">
             <p class="eyebrow">Email us directly</p>
-            <p class="email-big">info@artrepreneurshipalliance.org</p>
+            <a class="email-big" href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a>
             <p class="muted">Based in Bergen County, New Jersey</p>
             <div class="slash-links"><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a><span>/</span><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></div>
           </div>
           <div class="grid-2">
             <article class="card"><div class="mark mark-circle" aria-hidden="true"></div><h3>Need a design?</h3><p>Use our request form so we get everything up front.</p><a class="more" href="request.html">Request a design &rarr;</a></article>
-            <article class="card"><div class="mark mark-tri" aria-hidden="true"></div><h3>Want to join?</h3><p>Volunteer on a team or start a chapter.</p><a class="more" href="about.html#get-involved">Get involved &rarr;</a></article>
+            <article class="card"><div class="mark mark-tri" aria-hidden="true"></div><h3>Want to join?</h3><p>Apply as a member or start a chapter.</p><a class="more" href="join.html">Join AIA &rarr;</a></article>
           </div>
         </div>
       </div>
@@ -109,9 +108,9 @@
         e.preventDefault();
         var f = e.target, v = function (n) { return (f.elements[n].value || "").trim(); };
         var body = [v("message"), "", "From: " + v("name"), "Reply to: " + v("email"), "Heard about AIA from: " + v("heard")].join("\n");
-        window.location.href = "mailto:info@artrepreneurshipalliance.org?subject=" + encodeURIComponent("Postcard from " + v("name")) + "&body=" + encodeURIComponent(body);
+        window.location.href = "mailto:artrepreneurship.initiative@gmail.com?subject=" + encodeURIComponent("Postcard from " + v("name")) + "&body=" + encodeURIComponent(body);
         var r = document.getElementById("c-result"); r.hidden = false;
-        r.textContent = "Your email app should open with your message ready to send. If it didn't, email info@artrepreneurshipalliance.org.";
+        r.textContent = "Your email app should open with your message ready to send. If it didn't, email artrepreneurship.initiative@gmail.com.";
       });
     </script>
 
@@ -128,10 +127,10 @@
         <div>
           <h4>Explore</h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="events.html">Events</a></li>
+            <li><a href="about.html">About &amp; team</a></li>
             <li><a href="impact.html">Impact</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="ypl.html">Bergen County YPL</a></li>
             <li><a href="resources.html">Resources</a></li>
           </ul>
         </div>
@@ -139,7 +138,7 @@
           <h4>Get involved</h4>
           <ul>
             <li><a href="request.html">Request a design</a></li>
-            <li><a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Volunteer</a></li>
+            <li><a href="join.html">Join AIA</a></li>
             <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -149,7 +148,7 @@
           <ul>
             <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="mailto:info@artrepreneurshipalliance.org">Email us</a></li>
+            <li><a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a></li>
           </ul>
         </div>
       </div>

@@ -33,35 +33,62 @@
     });
   }
 
-  /* ---------- about page: open the envelope ---------- */
-  var env = document.getElementById("envelope");
-  if (env) {
-    var wrap = document.getElementById("letter-wrap");
-    var hint = document.getElementById("letter-hint");
-    env.addEventListener("click", function () {
-      var open = !env.classList.contains("open");
-      env.classList.toggle("open", open);
-      wrap.classList.toggle("open", open);
-      env.setAttribute("aria-expanded", open ? "true" : "false");
-      if (hint) hint.textContent = open ? "Click the envelope to close it" : "Click the envelope to open it";
-      if (open) setTimeout(function () {
-        var top = wrap.getBoundingClientRect().top + window.scrollY - 120;
-        if (lenis) lenis.scrollTo(top); else window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
-      }, 650);
-    });
-  }
+  /* ---------- about page: team cards fan out, flip into paint chips, then spread into a grid ---------- */
+  var stage = document.querySelector(".team-stage");
+  if (stage) {
+    var cards = Array.prototype.slice.call(stage.querySelectorAll(".pcard"));
+    var inners = cards.map(function (c) { return c.querySelector(".pcard-inner"); });
+    var wide = window.matchMedia("(min-width: 760px) and (min-height: 620px)");
+    var offs = [], flipIO = null, n = cards.length;
+    var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
+    var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
 
-  /* ---------- team page: flip business cards ---------- */
-  document.querySelectorAll(".bcard").forEach(function (card) {
-    card.addEventListener("click", function () {
-      var f = card.classList.toggle("flipped");
-      card.setAttribute("aria-pressed", f ? "true" : "false");
-    });
-  });
+    function clearT() { cards.forEach(function (c, i) { c.style.transform = ""; c.style.zIndex = ""; inners[i].style.transform = ""; }); }
+    function measure() {
+      clearT();
+      var g = stage.querySelector(".pgrid").getBoundingClientRect();
+      var gx = g.left + g.width / 2, gy = g.top + g.height / 2;
+      offs = cards.map(function (c) { var r = c.getBoundingClientRect(); return [gx - (r.left + r.width / 2), gy - (r.top + r.height / 2)]; });
+    }
+    function tick() {
+      if (!stage.classList.contains("scrolly")) return;
+      var r = stage.getBoundingClientRect(), total = stage.offsetHeight - window.innerHeight;
+      var p = clamp(-r.top / Math.max(1, total));
+      var m = ease(clamp((p - 0.6) / 0.32));            // spreading out into the grid
+      cards.forEach(function (c, i) {
+        var k = i - (n - 1) / 2;
+        var ft = ease(clamp((p - (0.06 + i * 0.075)) / 0.12)); // this card's flip
+        inners[i].style.transform = "rotateY(" + (180 * (1 - ft)) + "deg)";
+        var tx = (offs[i][0] + k * 42) * (1 - m), ty = (offs[i][1] + Math.abs(k) * 10) * (1 - m), rot = k * 7 * (1 - m);
+        c.style.transform = "translate(" + tx + "px," + ty + "px) rotate(" + rot + "deg)";
+        c.style.zIndex = m < 1 ? String(i + 1) : "";
+      });
+    }
+    function setup() {
+      stage.classList.remove("scrolly", "flippy");
+      if (flipIO) { flipIO.disconnect(); flipIO = null; }
+      clearT();
+      if (reduce) return;
+      if (wide.matches) {
+        stage.classList.add("scrolly");
+        measure(); tick();
+      } else if ("IntersectionObserver" in window) {
+        stage.classList.add("flippy");
+        flipIO = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("shown"); flipIO.unobserve(e.target); } });
+        }, { threshold: 0.5 });
+        cards.forEach(function (c) { c.classList.remove("shown"); flipIO.observe(c); });
+      }
+    }
+    setup();
+    window.addEventListener("scroll", function () { requestAnimationFrame(tick); }, { passive: true });
+    var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(setup, 150); });
+    if (wide.addEventListener) wide.addEventListener("change", setup);
+  }
 
   /* ---------- reveal sections as they scroll in ---------- */
   if (!reduce && "IntersectionObserver" in window) {
-    var items = document.querySelectorAll(".section-head, .split-head, .card, .case, .order, .comment, .bcard, .brief, .steps li, .timeline li, .res-list li, .two-col > *, .form, .postcard, .cta");
+    var items = document.querySelectorAll("main > section:not(.team-stage) .section-head, .split-head, .card, .case-card, .tile, .benefit, .partner-wall li, .comment, .brief, .mini-event, .steps li, .res-list li, .two-col > *, .form, .postcard, .cta, .notebook, .ypl-teaser");
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) {

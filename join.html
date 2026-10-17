@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Join AIA | Artrepreneurship Initiative Alliance</title>
+  <meta name="description" content="Join the Artrepreneurship Initiative Alliance: design for real clients, lead events, and give back.">
+  <meta property="og:title" content="Join AIA | Artrepreneurship Initiative Alliance">
+  <meta property="og:description" content="Join the Artrepreneurship Initiative Alliance: design for real clients, lead events, and give back.">
+  <meta property="og:image" content="assets/logo-color.png">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* show the loading screen once per visit, skip it for reduced-motion users */
+    (function () {
+      var d = document.documentElement; d.classList.add("js");
+      var seen = false; try { seen = sessionStorage.getItem("aia-loaded") === "1"; } catch (e) {}
+      if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("is-loading");
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <!-- ===== LOADING SCREEN ===== -->
+  <div class="loader" aria-hidden="true">
+    <svg class="loader-logo" viewBox="560 220 900 1195">
+      <circle class="l-dot" cx="1008" cy="373" r="146" fill="#70c1ff"/>
+      <path class="l-a" d="M885 564H1132L1447 1402H1213L1008 820L804 1402H570Z" fill="#ed6a5a"/>
+      <path class="l-tri" d="M1008 996L1152 1406H865Z" fill="#ffc847"/>
+    </svg>
+    <p class="loader-word">art<b>.</b> business<b>.</b> youth<b>.</b></p>
+  </div>
+
+  <!-- ===== NAV (same on every page) ===== -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand" aria-label="AIA home">
+        <img src="assets/logo.svg" alt="" width="28" height="37">
+        <span>AIA</span>
+      </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+      <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
+      <nav class="nav-links" aria-label="Main">
+        <a href="about.html">About</a>
+        <a href="impact.html">Impact</a>
+        <a href="programs.html">Programs</a>
+        <a href="join.html" aria-current="page">Join us</a>
+        <a href="contact.html">Contact</a>
+        <a href="request.html" class="btn">Request a design</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Join us</p>
+        <h1>Your art can do real work</h1>
+        <p class="lead">AIA members design for real organizations, run events and give back to their community. No experience needed, just interest.</p>
+      </div>
+    </section>
+
+    <!-- ===== BENEFITS ===== -->
+    <section class="section" style="padding-top:40px">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Why join</p>
+          <h2>What you get as a member</h2>
+        </div>
+        <div class="benefits">
+          <article class="benefit" style="--c:#ed6a5a"><h3>A real portfolio</h3><p>Design logos, flyers and posts for actual businesses and organizations.</p></article>
+          <article class="benefit" style="--c:#70c1ff"><h3>Leadership</h3><p>Run a team, plan an event, or start an AIA chapter at your school.</p></article>
+          <article class="benefit" style="--c:#ffc847"><h3>Business skills</h3><p>Work with clients, meet deadlines and learn how creative work gets paid.</p></article>
+          <article class="benefit" style="--c:#2f326b"><h3>Community service</h3><p>Card-making, pop-ups and fundraisers that support people nearby.</p></article>
+          <article class="benefit" style="--c:#f4a08f"><h3>Creative friends</h3><p>Meet students who love art, design and business as much as you do.</p></article>
+          <article class="benefit" style="--c:#a9d9ff"><h3>Room to grow</h3><p>Start as a member and move into exec roles as AIA grows.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SHORT FORM: opens the visitor's email app with everything filled in ===== -->
+    <section class="section section-sand" id="apply">
+      <div class="wrap two-col">
+        <div class="stack">
+          <p class="eyebrow">Member application</p>
+          <h2>Join in two minutes</h2>
+          <p class="muted">Fill this out and we'll reach out about next steps. Prefer Google Forms? <a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Use our volunteer form</a>.</p>
+          <div class="postit small-postit"><p class="postit-title">teams</p><ul><li>Design</li><li>Social media</li><li>Operations &amp; events</li></ul></div>
+        </div>
+        <form class="form" id="join-form">
+          <div class="field"><label for="j-name">Name</label><input id="j-name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="j-email">Email</label><input id="j-email" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="j-school">School</label><input id="j-school" name="school" required></div>
+          <div class="field"><label for="j-grade">Grade</label>
+            <select id="j-grade" name="grade"><option>9</option><option>10</option><option>11</option><option>12</option><option>Other</option></select></div>
+          <fieldset class="field full"><legend>Which teams interest you?</legend>
+            <div class="chips">
+              <label><input type="checkbox" name="teams" value="Design"> Design</label>
+              <label><input type="checkbox" name="teams" value="Social media"> Social media</label>
+              <label><input type="checkbox" name="teams" value="Operations & events"> Operations &amp; events</label>
+              <label><input type="checkbox" name="teams" value="Starting a chapter"> Starting a chapter</label>
+            </div>
+          </fieldset>
+          <div class="field full"><label for="j-why">Why do you want to join?</label><textarea id="j-why" name="why" style="min-height:100px" placeholder="A sentence or two is plenty."></textarea></div>
+          <div class="full btn-row"><button class="btn" type="submit">Send application</button></div>
+          <p class="form-note">Sending opens your email app with your application filled in, addressed to artrepreneurship.initiative@gmail.com.</p>
+          <div class="form-result" id="j-result" hidden></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== CHAPTER ===== -->
+    <section class="section section-navy">
+      <div class="wrap cta">
+        <div class="stack">
+          <p class="eyebrow">Not in Bergen County?</p>
+          <h2>Start an AIA chapter at your school.</h2>
+          <p class="lead">Apply online and we reply in 1&ndash;2 weeks. Chapter leaders get toolkits, mentorship and a support network.</p>
+        </div>
+        <div class="btn-row"><a href="https://forms.gle/LL3oockq1as284dW6" class="btn btn-yellow" target="_blank" rel="noopener">Start a chapter</a></div>
+      </div>
+    </section>
+
+    <script>
+      document.getElementById("join-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var f = e.target, v = function (n) { return (f.elements[n] && f.elements[n].value || "").trim(); };
+        var teams = Array.prototype.slice.call(f.querySelectorAll('input[name="teams"]:checked')).map(function (c) { return c.value; }).join(", ") || "Not sure yet";
+        var body = ["Name: " + v("name"), "Email: " + v("email"), "School: " + v("school"), "Grade: " + v("grade"), "Teams: " + teams, "", "Why I want to join:", v("why")].join("\n");
+        window.location.href = "mailto:artrepreneurship.initiative@gmail.com?subject=" + encodeURIComponent("Member application: " + v("name")) + "&body=" + encodeURIComponent(body);
+        var r = document.getElementById("j-result"); r.hidden = false;
+        r.textContent = "Your email app should open with your application ready to send. If it didn't, email artrepreneurship.initiative@gmail.com.";
+      });
+    </script>
+
+  </main>
+
+  <!-- ===== FOOTER (same on every page) ===== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="stack">
+          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="28" height="37"><span>AIA</span></a>
+          <p>A student-led 501(c)(3) nonprofit in Bergen County, NJ, connecting art and business.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About &amp; team</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="ypl.html">Bergen County YPL</a></li>
+            <li><a href="resources.html">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get involved</h4>
+          <ul>
+            <li><a href="request.html">Request a design</a></li>
+            <li><a href="join.html">Join AIA</a></li>
+            <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc.</p>
+        <p>501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

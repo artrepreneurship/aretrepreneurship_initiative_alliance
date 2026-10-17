@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>About AIA | Artrepreneurship Initiative Alliance</title>
-  <meta name="description" content="A letter from AIA's founders about why they started a student-led nonprofit connecting art and business.">
+  <meta name="description" content="Meet the founders and team behind AIA, a student-led nonprofit connecting art and business.">
   <meta property="og:title" content="About AIA | Artrepreneurship Initiative Alliance">
-  <meta property="og:description" content="A letter from AIA's founders about why they started a student-led nonprofit connecting art and business.">
+  <meta property="og:description" content="Meet the founders and team behind AIA, a student-led nonprofit connecting art and business.">
   <meta property="og:image" content="assets/logo-color.png">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     /* show the loading screen once per visit, skip it for reduced-motion users */
@@ -46,10 +46,9 @@
       <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
       <nav class="nav-links" aria-label="Main">
         <a href="about.html" aria-current="page">About</a>
-        <a href="team.html">Team</a>
-        <a href="events.html">Events</a>
         <a href="impact.html">Impact</a>
-        <a href="resources.html">Resources</a>
+        <a href="programs.html">Programs</a>
+        <a href="join.html">Join us</a>
         <a href="contact.html">Contact</a>
         <a href="request.html" class="btn">Request a design</a>
       </nav>
@@ -58,88 +57,119 @@
 
   <main>
 
-    <section class="page-hero" style="padding-bottom:0">
+    <section class="page-hero">
       <div class="wrap">
         <p class="eyebrow">About us</p>
-        <h1>A letter from our founders</h1>
-        <p class="lead">Why two business students started a nonprofit about art.</p>
+        <h1>Art deserves a seat at the business table</h1>
+        <p class="lead">Why two business students started a nonprofit about art, and the team that runs it today.</p>
       </div>
     </section>
 
-    <!-- ===== THE LETTER: click the envelope to open it ===== -->
-    <section class="section" style="padding-top:150px">
-      <div class="wrap letter-stage">
-        <button class="envelope no-js-hide" id="envelope" aria-expanded="false" aria-controls="letter">
-          <span class="back"></span>
-          <span class="peek">From the desks of the AIA founders&hellip;</span>
-          <span class="front"></span>
-          <span class="flap"></span>
-          <span class="seal"><img src="assets/logo.svg" alt=""></span>
-          <span class="to">To: the AIA community</span>
-        </button>
-        <p class="letter-hint no-js-hide" id="letter-hint">Click the envelope to open it</p>
-        <div class="letter-wrap" id="letter-wrap">
-          <article class="letter" id="letter">
-            <p class="from">From the desks of Emily Tong &amp; Grace Zhou<br>Bergen County, New Jersey</p>
-            <h2>Dear AIA community (and anyone who just found us),</h2>
-            <h3>Two business students and a lot of sketchbooks</h3>
-            <p>We met at Bergen County Academies, where we bonded over marketing, graphic design and art. The more we learned about business, the more we noticed that art and design were treated as an afterthought, and with AI tools everywhere, that has only gotten worse.</p>
-            <p>So we started AIA to show the opposite: good design is worth something, and young artists can bring real value to real businesses.</p>
-            <p>Today, AIA is more than 60 student members. We design for small businesses and community organizations for free, run workshops on entrepreneurship and financial literacy, and host events that give back. Along the way we've raised over $3,000 and worked with more than 20 organizations. In 2025, we also launched the Bergen County Youth Poet Laureate program.</p>
-            <p>If you're a student who loves to create, a business that needs a hand, or someone who wants to bring AIA to your own town, there's a place for you here.</p>
-            <p>Take care,</p>
-            <div class="sign">
-              <div><b>Emily Tong</b><span>Co-Founder &amp; Co-President</span></div>
-              <div><b>Grace Zhou</b><span>Co-Founder &amp; Co-President</span></div>
+    <!-- ===== FOUNDERS' NOTE (index card) ===== -->
+    <section class="section" style="padding-top:40px">
+      <div class="wrap note-stage">
+        <article class="index-card">
+          <span class="tape" aria-hidden="true"></span>
+          <p class="card-from">FROM: Emily Tong &amp; Grace Zhou &middot; Co-Founders</p>
+          <h2>Dear AIA community,</h2>
+          <p>We met at Bergen County Academies, where we bonded over marketing, graphic design and art. The more we learned about business, the more we noticed art and design being treated as an afterthought, and with AI tools everywhere, that has only gotten worse.</p>
+          <p>So we started AIA to show the opposite: good design is worth something, and young artists can bring real value to real businesses.</p>
+          <p>Today we're 60+ students who design for local organizations for free, run workshops and give back through service. If you love to create, you belong here.</p>
+          <p class="sign">Emily &amp; Grace</p>
+        </article>
+        <aside class="postit" aria-label="Our mission">
+          <p class="postit-title">our mission</p>
+          <ul>
+            <li>encourage artistic expression in students</li>
+            <li>uplift young creative entrepreneurs</li>
+            <li>support small businesses in our community</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== TEAM: cards flip into paint chips, then spread into a gallery as you scroll ===== -->
+    <section class="team-stage" id="team">
+      <div class="team-sticky">
+        <div class="wrap">
+          <div class="section-head center-head">
+            <p class="eyebrow">Meet the team</p>
+            <h2>The AIA color guide</h2>
+            <p class="muted team-hint">Keep scrolling to meet everyone.</p>
+          </div>
+          <div class="pgrid">
+          <article class="pcard" style="--c: #ed6a5a; --t: #ffffff">
+            <div class="pcard-inner">
+              <div class="pface pfront">
+                <!-- For a photo: replace <span class="pinit">..</span> with <img src="assets/team/FILE.jpg" alt="Emily Tong"> -->
+                <div class="pcolor"><span class="pinit">ET</span></div>
+                <div class="pinfo"><span class="pbrand">AIA&reg;</span><span class="pcode">CORAL 01 &middot; ED6A5A</span><h3>Emily Tong</h3><p>Co-Founder &amp; Co-President</p></div>
+              </div>
+              <div class="pface pback" aria-hidden="true"><img src="assets/logo.svg" alt=""><span>AIA COLOR GUIDE</span></div>
             </div>
           </article>
+          <article class="pcard" style="--c: #70c1ff; --t: #2d2a45">
+            <div class="pcard-inner">
+              <div class="pface pfront">
+                <!-- For a photo: replace <span class="pinit">..</span> with <img src="assets/team/FILE.jpg" alt="Grace Zhou"> -->
+                <div class="pcolor"><span class="pinit">GZ</span></div>
+                <div class="pinfo"><span class="pbrand">AIA&reg;</span><span class="pcode">SKY 02 &middot; 70C1FF</span><h3>Grace Zhou</h3><p>Co-Founder &amp; Co-President</p></div>
+              </div>
+              <div class="pface pback" aria-hidden="true"><img src="assets/logo.svg" alt=""><span>AIA COLOR GUIDE</span></div>
+            </div>
+          </article>
+          <article class="pcard" style="--c: #ffc847; --t: #2d2a45">
+            <div class="pcard-inner">
+              <div class="pface pfront">
+                <!-- For a photo: replace <span class="pinit">..</span> with <img src="assets/team/FILE.jpg" alt="Max Deninzon"> -->
+                <div class="pcolor"><span class="pinit">MD</span></div>
+                <div class="pinfo"><span class="pbrand">AIA&reg;</span><span class="pcode">SUN 03 &middot; FFC847</span><h3>Max Deninzon</h3><p>Treasurer</p></div>
+              </div>
+              <div class="pface pback" aria-hidden="true"><img src="assets/logo.svg" alt=""><span>AIA COLOR GUIDE</span></div>
+            </div>
+          </article>
+          <article class="pcard" style="--c: #2f326b; --t: #ffffff">
+            <div class="pcard-inner">
+              <div class="pface pfront">
+                <!-- For a photo: replace <span class="pinit">..</span> with <img src="assets/team/FILE.jpg" alt="Jenny Xu"> -->
+                <div class="pcolor"><span class="pinit">JX</span></div>
+                <div class="pinfo"><span class="pbrand">AIA&reg;</span><span class="pcode">NAVY 04 &middot; 2F326B</span><h3>Jenny Xu</h3><p>Artistic Director</p></div>
+              </div>
+              <div class="pface pback" aria-hidden="true"><img src="assets/logo.svg" alt=""><span>AIA COLOR GUIDE</span></div>
+            </div>
+          </article>
+          <article class="pcard" style="--c: #f4a08f; --t: #2d2a45">
+            <div class="pcard-inner">
+              <div class="pface pfront">
+                <!-- For a photo: replace <span class="pinit">..</span> with <img src="assets/team/FILE.jpg" alt="Kana Watanabe"> -->
+                <div class="pcolor"><span class="pinit">KW</span></div>
+                <div class="pinfo"><span class="pbrand">AIA&reg;</span><span class="pcode">PEACH 05 &middot; F4A08F</span><h3>Kana Watanabe</h3><p>Outreach Director</p></div>
+              </div>
+              <div class="pface pback" aria-hidden="true"><img src="assets/logo.svg" alt=""><span>AIA COLOR GUIDE</span></div>
+            </div>
+          </article>
+          <article class="pcard" style="--c: #a9d9ff; --t: #2d2a45">
+            <div class="pcard-inner">
+              <div class="pface pfront">
+                <!-- For a photo: replace <span class="pinit">..</span> with <img src="assets/team/FILE.jpg" alt="Sophia Yang"> -->
+                <div class="pcolor"><span class="pinit">SY</span></div>
+                <div class="pinfo"><span class="pbrand">AIA&reg;</span><span class="pcode">MIST 06 &middot; A9D9FF</span><h3>Sophia Yang</h3><p>Assistant Outreach Director</p></div>
+              </div>
+              <div class="pface pback" aria-hidden="true"><img src="assets/logo.svg" alt=""><span>AIA COLOR GUIDE</span></div>
+            </div>
+          </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== MISSION ===== -->
     <section class="section section-sand">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">Our mission</p>
-          <h2>Three things we care about</h2>
+      <div class="wrap cta">
+        <div class="stack">
+          <p class="eyebrow">We're growing</p>
+          <h2>Want your own color on this page?</h2>
         </div>
-        <div class="grid-3">
-          <article class="card"><div class="mark mark-circle" aria-hidden="true"></div><h3>Artistic expression</h3><p>Encourage students to create, and to see their art as valuable.</p></article>
-          <article class="card"><div class="mark mark-a" aria-hidden="true"></div><h3>Young creative entrepreneurs</h3><p>Give young artists the business skills to turn creativity into opportunity.</p></article>
-          <article class="card"><div class="mark mark-tri" aria-hidden="true"></div><h3>Local small businesses</h3><p>Support businesses and organizations in our community with free, quality design.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== GET INVOLVED ===== -->
-    <section id="get-involved" class="section section-navy">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">Join us</p>
-          <h2>Get involved</h2>
-        </div>
-        <div class="grid-2">
-          <article class="card">
-            <h3>Volunteer</h3>
-            <p>Join our Executive, Social Media or Operations team. Help run the organization, grow our online presence, or design for real clients.</p>
-            <div class="btn-row">
-              <a href="https://forms.gle/B6iSh6M284dFq9mu7" class="btn btn-yellow" target="_blank" rel="noopener">Apply to volunteer</a>
-              <a href="https://docs.google.com/document/d/146Gmea3VteAliJ_lhYG7CtOsoiPS_MwYFY-k_Yvg6LE/edit" class="btn btn-light" target="_blank" rel="noopener">Open positions</a>
-            </div>
-          </article>
-          <article class="card">
-            <h3>Start a chapter</h3>
-            <p>Bring AIA to your school or community. Chapter leaders get toolkits, mentorship and a support network.</p>
-            <ol class="list-steps">
-              <li>Apply online (we reply in 1&ndash;2 weeks)</li>
-              <li>Interview &amp; review</li>
-              <li>Approval and starter resources</li>
-              <li>Launch your chapter</li>
-            </ol>
-            <div class="btn-row"><a href="https://forms.gle/LL3oockq1as284dW6" class="btn btn-yellow" target="_blank" rel="noopener">Start a chapter</a></div>
-          </article>
-        </div>
+        <div class="btn-row"><a href="join.html" class="btn">Join AIA</a><a href="https://docs.google.com/document/d/146Gmea3VteAliJ_lhYG7CtOsoiPS_MwYFY-k_Yvg6LE/edit" class="btn btn-ghost" target="_blank" rel="noopener">See open positions</a></div>
       </div>
     </section>
 
@@ -156,10 +186,10 @@
         <div>
           <h4>Explore</h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="events.html">Events</a></li>
+            <li><a href="about.html">About &amp; team</a></li>
             <li><a href="impact.html">Impact</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="ypl.html">Bergen County YPL</a></li>
             <li><a href="resources.html">Resources</a></li>
           </ul>
         </div>
@@ -167,7 +197,7 @@
           <h4>Get involved</h4>
           <ul>
             <li><a href="request.html">Request a design</a></li>
-            <li><a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Volunteer</a></li>
+            <li><a href="join.html">Join AIA</a></li>
             <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -177,7 +207,7 @@
           <ul>
             <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="mailto:info@artrepreneurshipalliance.org">Email us</a></li>
+            <li><a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a></li>
           </ul>
         </div>
       </div>

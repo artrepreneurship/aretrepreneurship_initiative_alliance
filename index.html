@@ -11,7 +11,7 @@
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     /* show the loading screen once per visit, skip it for reduced-motion users */
@@ -23,6 +23,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="site.js" defer></script>
+  <script src="events.js" defer></script>
 </head>
 <body>
   <!-- ===== LOADING SCREEN ===== -->
@@ -46,10 +47,9 @@
       <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
       <nav class="nav-links" aria-label="Main">
         <a href="about.html">About</a>
-        <a href="team.html">Team</a>
-        <a href="events.html">Events</a>
         <a href="impact.html">Impact</a>
-        <a href="resources.html">Resources</a>
+        <a href="programs.html">Programs</a>
+        <a href="join.html">Join us</a>
         <a href="contact.html">Contact</a>
         <a href="request.html" class="btn">Request a design</a>
       </nav>
@@ -67,7 +67,7 @@
           <p class="lead">The Artrepreneurship Initiative Alliance is a student-led nonprofit. Our members design for small businesses and community groups for free, and build real creative and business skills along the way.</p>
           <div class="btn-row">
             <a href="request.html" class="btn">Request a design</a>
-            <a href="about.html" class="btn btn-ghost">Read our story</a>
+            <a href="join.html" class="btn btn-ghost">Join AIA</a>
           </div>
           <ul class="tags" aria-label="About AIA">
             <li>Student-led</li><li>501(c)(3) nonprofit</li><li>Bergen County, NJ</li>
@@ -85,81 +85,11 @@
     <!-- ===== SCROLLING TICKER: edit the words inside the <span> tags ===== -->
     <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Logos</span><i class="m-dot"></i><span>Flyers</span><i class="m-a"></i><span>Branding</span><i class="m-tri"></i><span>Workshops</span><i class="m-dot"></i><span>Social media</span><i class="m-a"></i><span>Chapters</span><i class="m-tri"></i><span>Youth poetry</span><i class="m-dot"></i><span>Small business</span><i class="m-a"></i><span>Community events</span><i class="m-tri"></i><span>Logos</span><i class="m-dot"></i><span>Flyers</span><i class="m-a"></i><span>Branding</span><i class="m-tri"></i><span>Workshops</span><i class="m-dot"></i><span>Social media</span><i class="m-a"></i><span>Chapters</span><i class="m-tri"></i><span>Youth poetry</span><i class="m-dot"></i><span>Small business</span><i class="m-a"></i><span>Community events</span><i class="m-tri"></i></div></div>
 
-    <!-- ===== SO FAR, WE'VE... (click a work order to open it) ===== -->
-    <section class="section">
-      <div class="wrap">
-        <div class="split-head">
-          <div>
-            <p class="eyebrow">What we do</p>
-            <h2>So far, we've&hellip;</h2>
-          </div>
-          <p class="muted">Tap a work order to see the details.</p>
-        </div>
-        <div class="orders">
-          <details class="order" style="--c: #ed6a5a">
-            <summary><span class="meta"><span>WORK ORDER 001</span><span>TEAM</span></span><h3>Built a creative team</h3><span class="big">60+ members</span><span class="toggle">Details</span></summary>
-            <div class="body">
-              <p>Students across our Executive, Social Media and Operations teams run AIA, grow our online presence and design for real clients.</p>
-              <dl><dt>Teams</dt><dd>Executive, Social Media, Operations</dd><dt>Join</dt><dd><a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Apply to volunteer</a></dd></dl>
-            </div>
-          </details>
-          <details class="order" style="--c: #70c1ff">
-            <summary><span class="meta"><span>WORK ORDER 002</span><span>DESIGN</span></span><h3>Designed for local organizations</h3><span class="big">20+ helped</span><span class="toggle">Details</span></summary>
-            <div class="body">
-              <p>Free logos, flyers, social media graphics and branding for small businesses and student-led organizations.</p>
-              <dl><dt>Partners</dt><dd>AYLUS Bergen Branch, StrongHER TogetHER, BCA Filipino Club</dd><dt>See more</dt><dd><a href="impact.html">Our impact</a></dd></dl>
-            </div>
-          </details>
-          <details class="order" style="--c: #ffc847">
-            <summary><span class="meta"><span>WORK ORDER 003</span><span>EVENTS</span></span><h3>Hosted workshops &amp; events</h3><span class="big">Workshops, pop-ups &amp; more</span><span class="toggle">Details</span></summary>
-            <div class="body">
-              <p>In-person workshops and webinars on entrepreneurship, financial literacy and creative skills, plus card-making sessions, pop-up stands and fundraisers.</p>
-              <dl><dt>See all</dt><dd><a href="events.html">Events</a></dd></dl>
-            </div>
-          </details>
-          <details class="order" style="--c: #2f326b">
-            <summary><span class="meta"><span>WORK ORDER 004</span><span>PROGRAMS</span></span><h3>Raised funds &amp; launched programs</h3><span class="big">$3,000+ raised</span><span class="toggle">Details</span></summary>
-            <div class="body">
-              <p>Every dollar goes back into our programs. In 2025 we launched the Bergen County Youth Poet Laureate, a local chapter of the National Youth Poet Laureate Program.</p>
-              <dl><dt>Program</dt><dd><a href="events.html#programs">Bergen County YPL</a></dd></dl>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== LATEST EVENT: update when you post a new one ===== -->
-    <section class="section section-sand">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">Check out our latest event</p>
-          <h2>Our latest event</h2>
-        </div>
-        <article class="brief">
-          <div class="brief-copy">
-            <h3 style="font-size:1.6rem">AIA Youth Workshop</h3>
-            <dl class="fields">
-              <dt>Type</dt><dd>Workshop</dd>
-              <dt>Host</dt><dd>AIA</dd>
-              <dt>Date</dt><dd>Tuesday, June 17, 2025</dd>
-              <dt>Where</dt><dd>Hackensack, NJ</dd>
-            </dl>
-            <p class="muted"><span class="fill">[Add a one or two sentence description of the workshop]</span></p>
-            <div class="btn-row"><a href="events.html" class="btn">See all events</a></div>
-          </div>
-          <div class="brief-art" aria-hidden="true">
-            <div class="s1"></div><div class="s2"></div>
-            <p class="big-date"><span>JUNE</span><strong>17</strong></p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===== BY THE NUMBERS ===== -->
+    <!-- ===== NUMBERS AT A GLANCE ===== -->
     <section class="section section-navy">
       <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">AIA by the numbers</p>
+          <p class="eyebrow">Numbers at a glance</p>
           <h2>Small team, real results</h2>
         </div>
 
@@ -174,32 +104,152 @@
       </div>
     </section>
 
-    <!-- ===== COMMUNITY QUOTES: replace the [brackets] with real quotes from members and clients ===== -->
+    <!-- ===== EVENTS: edit events in events.js ===== -->
     <section class="section">
       <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">Hear from the AIA community</p>
-          <h2>In their words</h2>
+          <p class="eyebrow">Events</p>
+          <h2>What we've been up to</h2>
         </div>
-        <div class="comments">
-          <figure class="comment"><div class="who"><div class="pin">?</div><div><p class="name"><span class="fill">[Member name]</span></p><p class="role">member</p></div></div><blockquote><span class="fill">[Quote: what has AIA meant to you?]</span></blockquote></figure>
-          <figure class="comment"><div class="who"><div class="pin">?</div><div><p class="name"><span class="fill">[Name]</span></p><p class="role">client &middot; <span class="fill">[organization]</span></p></div></div><blockquote><span class="fill">[Quote from an organization we designed for]</span></blockquote></figure>
-          <figure class="comment"><div class="who"><div class="pin">?</div><div><p class="name"><span class="fill">[Member name]</span></p><p class="role">exec board</p></div></div><blockquote><span class="fill">[Quote: favorite project or moment]</span></blockquote></figure>
+        <div class="events-layout" id="events">
+          <div class="stack" style="gap:20px">
+            <article class="brief" id="event-feature"></article>
+            <div>
+              <h3 class="sub-h">Past events</h3>
+              <div class="mini-events" id="event-more"></div>
+            </div>
+          </div>
+          <aside class="calendar" aria-label="Event calendar">
+            <div class="cal-head">
+              <button id="cal-prev" aria-label="Previous month">&larr;</button>
+              <p id="cal-label"></p>
+              <button id="cal-next" aria-label="Next month">&rarr;</button>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+            <div class="cal-foot"><button id="cal-today" class="link-btn">Jump to today</button><span><i class="dot"></i> event</span></div>
+            <div class="cal-detail" id="cal-detail" aria-live="polite"></div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- ===== CTA ===== -->
+    <!-- ===== GALLERY + CASE STUDIES ===== -->
     <section class="section section-sand">
-      <div class="wrap cta">
+      <div class="wrap">
+        <div class="split-head">
+          <div>
+            <p class="eyebrow">Our work</p>
+            <h2>Designs we've delivered</h2>
+          </div>
+          <a href="impact.html" class="btn btn-ghost">See the full gallery</a>
+        </div>
+        <div class="gallery">
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
+          <figure class="tile" style="--c: #ed6a5a"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>AYLUS Bergen Branch</span></figcaption></figure>
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
+          <figure class="tile" style="--c: #70c1ff"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>StrongHER TogetHER</span></figcaption></figure>
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
+          <figure class="tile" style="--c: #ffc847"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>BCA Filipino Club</span></figcaption></figure>
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
+          <figure class="tile" style="--c: #2f326b"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>[Client]</span></figcaption></figure>
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
+          <figure class="tile" style="--c: #f4a08f"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>[Client]</span></figcaption></figure>
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
+          <figure class="tile" style="--c: #a9d9ff"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>[Client]</span></figcaption></figure>
+        </div>
+        <h3 class="sub-h" style="margin-top:3rem">Case studies</h3>
+        <div class="cases">
+        <article class="case-card" style="--c: #ed6a5a">
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="Design for AYLUS Bergen Branch"> -->
+          <div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div>
+          <div class="case-body">
+            <p class="case-no">CASE STUDY 01 &middot; COMMUNITY SERVICE</p>
+            <h3>AYLUS Bergen Branch</h3>
+            <dl class="fields">
+              <dt>We made</dt><dd><span class="fill">[e.g. event flyers and Instagram posts]</span></dd>
+              <dt>Result</dt><dd><span class="fill">[e.g. used at an event with 150 attendees]</span></dd>
+            </dl>
+          </div>
+        </article>
+        <article class="case-card" style="--c: #70c1ff">
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="Design for StrongHER TogetHER"> -->
+          <div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div>
+          <div class="case-body">
+            <p class="case-no">CASE STUDY 02 &middot; NONPROFIT</p>
+            <h3>StrongHER TogetHER</h3>
+            <dl class="fields">
+              <dt>We made</dt><dd><span class="fill">[e.g. event flyers and Instagram posts]</span></dd>
+              <dt>Result</dt><dd><span class="fill">[e.g. used at an event with 150 attendees]</span></dd>
+            </dl>
+          </div>
+        </article>
+        <article class="case-card" style="--c: #ffc847">
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="Design for BCA Filipino Club"> -->
+          <div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div>
+          <div class="case-body">
+            <p class="case-no">CASE STUDY 03 &middot; STUDENT CLUB</p>
+            <h3>BCA Filipino Club</h3>
+            <dl class="fields">
+              <dt>We made</dt><dd><span class="fill">[e.g. event flyers and Instagram posts]</span></dd>
+              <dt>Result</dt><dd><span class="fill">[e.g. used at an event with 150 attendees]</span></dd>
+            </dl>
+          </div>
+        </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PARTNERS ===== -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Partners</p>
+          <h2>Organizations we've worked with</h2>
+        </div>
+
+        <!-- Add a partner: copy one <li>. To use a logo, put <img src="assets/partners/FILE.png" alt="Name"> inside the <li> -->
+        <ul class="partner-wall">
+          <li><span class="mark mark-circle" aria-hidden="true"></span>AYLUS Bergen Branch</li>
+          <li><span class="mark mark-a" aria-hidden="true"></span>StrongHER TogetHER</li>
+          <li><span class="mark mark-tri" aria-hidden="true"></span>BCA Filipino Club</li>
+          <li class="partner-more"><a href="request.html">Your organization? Request a design &rarr;</a></li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="section section-sand">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Testimonials</p>
+          <h2>In their words</h2>
+        </div>
+
+        <!-- Replace the [brackets] with real quotes from members and clients -->
+        <div class="comments">
+          <figure class="comment"><div class="who"><div class="pin">?</div><div><p class="name"><span class="fill">[Name]</span></p><p class="role">client &middot; <span class="fill">[organization]</span></p></div></div><blockquote><span class="fill">[Quote from an organization we designed for]</span></blockquote></figure>
+          <figure class="comment"><div class="who"><div class="pin">?</div><div><p class="name"><span class="fill">[Member name]</span></p><p class="role">member</p></div></div><blockquote><span class="fill">[Quote: what has AIA meant to you?]</span></blockquote></figure>
+          <figure class="comment"><div class="who"><div class="pin">?</div><div><p class="name"><span class="fill">[Name]</span></p><p class="role">client &middot; <span class="fill">[organization]</span></p></div></div><blockquote><span class="fill">[Quote from another client]</span></blockquote></figure>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== JOIN US (short) ===== -->
+    <section class="section section-navy">
+      <div class="wrap join-strip">
         <div class="stack">
-          <p class="eyebrow">Your move</p>
-          <h2>Need a design, or want to make them?</h2>
+          <p class="eyebrow">Join us</p>
+          <h2>Make real work for real clients.</h2>
+          <p class="lead">Open to students who love art, design or business. No experience needed.</p>
+          <div class="btn-row"><a href="join.html" class="btn btn-yellow">Join AIA</a><a href="programs.html" class="btn btn-light">See our programs</a></div>
         </div>
-        <div class="btn-row">
-          <a href="request.html" class="btn">Request a design</a>
-          <a href="https://forms.gle/B6iSh6M284dFq9mu7" class="btn btn-ghost" target="_blank" rel="noopener">Join AIA</a>
-        </div>
+        <ul class="perk-list">
+          <li><span class="mark mark-circle" aria-hidden="true"></span><div><b>Build a portfolio</b><span>Design for actual businesses and organizations.</span></div></li>
+          <li><span class="mark mark-a" aria-hidden="true"></span><div><b>Lead something</b><span>Run events, teams or your own chapter.</span></div></li>
+          <li><span class="mark mark-tri" aria-hidden="true"></span><div><b>Give back</b><span>Support small businesses in your community.</span></div></li>
+        </ul>
       </div>
     </section>
 
@@ -216,10 +266,10 @@
         <div>
           <h4>Explore</h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="events.html">Events</a></li>
+            <li><a href="about.html">About &amp; team</a></li>
             <li><a href="impact.html">Impact</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="ypl.html">Bergen County YPL</a></li>
             <li><a href="resources.html">Resources</a></li>
           </ul>
         </div>
@@ -227,7 +277,7 @@
           <h4>Get involved</h4>
           <ul>
             <li><a href="request.html">Request a design</a></li>
-            <li><a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Volunteer</a></li>
+            <li><a href="join.html">Join AIA</a></li>
             <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -237,7 +287,7 @@
           <ul>
             <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="mailto:info@artrepreneurshipalliance.org">Email us</a></li>
+            <li><a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a></li>
           </ul>
         </div>
       </div>

@@ -11,7 +11,7 @@
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     /* show the loading screen once per visit, skip it for reduced-motion users */
@@ -46,10 +46,9 @@
       <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
       <nav class="nav-links" aria-label="Main">
         <a href="about.html">About</a>
-        <a href="team.html">Team</a>
-        <a href="events.html">Events</a>
         <a href="impact.html">Impact</a>
-        <a href="resources.html">Resources</a>
+        <a href="programs.html">Programs</a>
+        <a href="join.html">Join us</a>
         <a href="contact.html">Contact</a>
         <a href="request.html" class="btn" aria-current="page">Request a design</a>
       </nav>
@@ -91,7 +90,7 @@
           <p class="eyebrow">Design request</p>
           <h2>What can we make for you?</h2>
           <p class="muted">We work with small businesses, nonprofits and student-led organizations. Most projects take 1&ndash;3 weeks depending on size.</p>
-          <p class="muted">Questions first? Email <a href="mailto:info@artrepreneurshipalliance.org">info@artrepreneurshipalliance.org</a>.</p>
+          <p class="muted">Questions first? Email <a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a>.</p>
         </div>
         <form class="form" id="request-form">
           <div class="field"><label for="r-name">Your name</label><input id="r-name" name="name" required autocomplete="name"></div>
@@ -113,7 +112,7 @@
           <div class="field"><label for="r-date">Ideal deadline</label><input id="r-date" name="deadline" type="date"><span class="hint">Optional</span></div>
           <div class="field"><label for="r-link">Website or Instagram</label><input id="r-link" name="link" placeholder="@yourbusiness"><span class="hint">Optional</span></div>
           <div class="full btn-row"><button class="btn" type="submit">Send request</button></div>
-          <p class="form-note">Sending opens your email app with your request filled in, addressed to info@artrepreneurshipalliance.org.</p>
+          <p class="form-note">Sending opens your email app with your request filled in, addressed to artrepreneurship.initiative@gmail.com.</p>
           <div class="form-result" id="r-result" hidden></div>
         </form>
       </div>
@@ -126,9 +125,9 @@
         var needs = Array.prototype.slice.call(f.querySelectorAll('input[name="needs"]:checked')).map(function (c) { return c.value; }).join(", ") || "Not specified";
         var body = ["Name: " + v("name"), "Email: " + v("email"), "Organization: " + v("organization") + " (" + v("org_type") + ")",
           "Needs: " + needs, "Deadline: " + (v("deadline") || "Flexible"), "Link: " + (v("link") || "-"), "", v("details")].join("\n");
-        window.location.href = "mailto:info@artrepreneurshipalliance.org?subject=" + encodeURIComponent("Design request: " + v("organization")) + "&body=" + encodeURIComponent(body);
+        window.location.href = "mailto:artrepreneurship.initiative@gmail.com?subject=" + encodeURIComponent("Design request: " + v("organization")) + "&body=" + encodeURIComponent(body);
         var r = document.getElementById("r-result"); r.hidden = false;
-        r.textContent = "Your email app should open with the request ready to send. If it didn't, email the details to info@artrepreneurshipalliance.org.";
+        r.textContent = "Your email app should open with the request ready to send. If it didn't, email the details to artrepreneurship.initiative@gmail.com.";
       });
     </script>
 
@@ -145,10 +144,10 @@
         <div>
           <h4>Explore</h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="events.html">Events</a></li>
+            <li><a href="about.html">About &amp; team</a></li>
             <li><a href="impact.html">Impact</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="ypl.html">Bergen County YPL</a></li>
             <li><a href="resources.html">Resources</a></li>
           </ul>
         </div>
@@ -156,7 +155,7 @@
           <h4>Get involved</h4>
           <ul>
             <li><a href="request.html">Request a design</a></li>
-            <li><a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Volunteer</a></li>
+            <li><a href="join.html">Join AIA</a></li>
             <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -166,7 +165,7 @@
           <ul>
             <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="mailto:info@artrepreneurshipalliance.org">Email us</a></li>
+            <li><a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a></li>
           </ul>
         </div>
       </div>
