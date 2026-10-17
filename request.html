@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Request a Design | Artrepreneurship Initiative Alliance</title>
+  <meta name="description" content="Small businesses and student organizations can request free design work from AIA's student designers.">
+  <meta property="og:title" content="Request a Design | Artrepreneurship Initiative Alliance">
+  <meta property="og:description" content="Small businesses and student organizations can request free design work from AIA's student designers.">
+  <meta property="og:image" content="assets/logo-color.png">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAV (same on every page) ===== -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand" aria-label="AIA home">
+        <img src="assets/logo.svg" alt="" width="30" height="40">
+        <span>AIA</span>
+      </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+      <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
+      <nav class="nav-links" aria-label="Main">
+        <a href="about.html">About</a>
+        <a href="impact.html">Impact</a>
+        <a href="request.html" aria-current="page">Request a Design</a>
+        <a href="contact.html" class="btn">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="shape shape-circle" aria-hidden="true"></div>
+      <div class="shape shape-tri" aria-hidden="true"></div>
+      <div class="wrap">
+        <p class="eyebrow">Free for small businesses &amp; student groups</p>
+        <h1>Request a design</h1>
+        <p class="lead">Tell us what you need and our student designers will get back to you. There's no cost; we just ask that you let us share the finished work in our portfolio.</p>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="section section-sand">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2>From request to finished design</h2>
+        </div>
+        <ol class="steps">
+          <li><h3>Send a request</h3><p>Fill out the form below with what you need and when you need it.</p></li>
+          <li><h3>We match a designer</h3><p>Our team reviews it and pairs you with a member designer.</p></li>
+          <li><h3>Review drafts</h3><p>You see a first draft and tell us what to change.</p></li>
+          <li><h3>Get your files</h3><p>We send the final files, ready to print or post.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== FORM =====
+         Right now this form opens the visitor's email app with everything filled in.
+         To collect requests in a spreadsheet instead, make a free form at formspree.io
+         and set: <form ... action="https://formspree.io/f/YOUR_ID" method="POST">
+         then delete the <script> at the bottom of this page. -->
+    <section class="section">
+      <div class="wrap two-col">
+        <div class="stack">
+          <p class="eyebrow">Design request</p>
+          <h2>What can we make for you?</h2>
+          <p class="muted">We work with small businesses, nonprofits and student-led organizations. Most projects take 1&ndash;3 weeks depending on size.</p>
+          <p class="muted">Questions first? Email <a href="mailto:info@artrepreneurshipalliance.org">info@artrepreneurshipalliance.org</a>.</p>
+        </div>
+        <form class="form" id="request-form">
+          <div class="field">
+            <label for="r-name">Your name</label>
+            <input id="r-name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="r-email">Email</label>
+            <input id="r-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="r-org">Business or organization</label>
+            <input id="r-org" name="organization" required autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="r-type">Type of organization</label>
+            <select id="r-type" name="org_type">
+              <option>Small business</option>
+              <option>Nonprofit</option>
+              <option>Student club or organization</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <fieldset class="field full">
+            <legend>What do you need?</legend>
+            <div class="chips">
+              <label><input type="checkbox" name="needs" value="Logo"> Logo</label>
+              <label><input type="checkbox" name="needs" value="Flyer or poster"> Flyer or poster</label>
+              <label><input type="checkbox" name="needs" value="Social media graphics"> Social media graphics</label>
+              <label><input type="checkbox" name="needs" value="Branding kit"> Branding kit</label>
+              <label><input type="checkbox" name="needs" value="Menu or signage"> Menu or signage</label>
+              <label><input type="checkbox" name="needs" value="Other"> Other</label>
+            </div>
+          </fieldset>
+          <div class="field full">
+            <label for="r-details">Tell us about the project</label>
+            <textarea id="r-details" name="details" required placeholder="What is it for, who is it for, and any colors or styles you like?"></textarea>
+          </div>
+          <div class="field">
+            <label for="r-date">Ideal deadline</label>
+            <input id="r-date" name="deadline" type="date">
+            <span class="hint">Optional</span>
+          </div>
+          <div class="field">
+            <label for="r-link">Website or Instagram</label>
+            <input id="r-link" name="link" placeholder="@yourbusiness">
+            <span class="hint">Optional</span>
+          </div>
+          <div class="full btn-row"><button class="btn" type="submit">Send request</button></div>
+          <p class="form-note">Sending opens your email app with your request filled in, addressed to info@artrepreneurshipalliance.org.</p>
+          <div class="form-result" id="r-result" hidden></div>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      document.getElementById("request-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var f = e.target, v = function (n) { return (f.elements[n] && f.elements[n].value || "").trim(); };
+        var needs = Array.prototype.slice.call(f.querySelectorAll('input[name="needs"]:checked')).map(function (c) { return c.value; }).join(", ") || "Not specified";
+        var body = [
+          "Name: " + v("name"), "Email: " + v("email"), "Organization: " + v("organization") + " (" + v("org_type") + ")",
+          "Needs: " + needs, "Deadline: " + (v("deadline") || "Flexible"), "Link: " + (v("link") || "-"), "", v("details")
+        ].join("\n");
+        var subject = "Design request: " + v("organization");
+        window.location.href = "mailto:info@artrepreneurshipalliance.org?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        var r = document.getElementById("r-result");
+        r.hidden = false;
+        r.textContent = "Your email app should open with the request ready to send. If it didn't, email the details to info@artrepreneurshipalliance.org.";
+      });
+    </script>
+
+  </main>
+
+  <!-- ===== FOOTER (same on every page) ===== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="stack">
+          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="30" height="40"><span>AIA</span></a>
+          <p>A student-led 501(c)(3) nonprofit in Bergen County, NJ, connecting art and business.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="request.html">Request a Design</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:info@artrepreneurshipalliance.org">info@artrepreneurshipalliance.org</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc.</p>
+        <p>501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -2,204 +2,157 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artrepreneurship Initiative Alliance | art. business. youth.</title>
-  <meta name="description" content="Artrepreneurship Initiative Alliance (AIA) is a student-led 501(c)(3) nonprofit in Bergen County, NJ, empowering youth through design, entrepreneurship, and community.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Artrepreneurship Initiative Alliance</title>
+  <meta name="description" content="AIA is a student-led 501(c)(3) nonprofit in Bergen County, NJ, giving small businesses free design support and helping young creatives grow as entrepreneurs.">
+  <meta property="og:title" content="Artrepreneurship Initiative Alliance">
+  <meta property="og:description" content="AIA is a student-led 501(c)(3) nonprofit in Bergen County, NJ, giving small businesses free design support and helping young creatives grow as entrepreneurs.">
+  <meta property="og:image" content="assets/logo-color.png">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ===== NAV ===== -->
+  <!-- ===== NAV (same on every page) ===== -->
   <header class="nav">
-    <div class="container nav-inner">
-      <a href="#top" class="logo">AIA<span>.</span></a>
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="menu-btn" aria-label="Open menu">☰</label>
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#initiatives">Initiatives</a>
-        <a href="#team">Team</a>
-        <a href="#ypl">Bergen County YPL</a>
-        <a href="#get-involved">Get Involved</a>
-        <a href="#contact" class="btn btn-small">Contact</a>
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand" aria-label="AIA home">
+        <img src="assets/logo.svg" alt="" width="30" height="40">
+        <span>AIA</span>
+      </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+      <label for="menu-toggle" class="menu-btn" aria-hidden="true">&#9776;</label>
+      <nav class="nav-links" aria-label="Main">
+        <a href="about.html">About</a>
+        <a href="impact.html">Impact</a>
+        <a href="request.html">Request a Design</a>
+        <a href="contact.html" class="btn">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main id="top">
+  <main>
 
     <!-- ===== HERO ===== -->
     <section class="hero">
-      <div class="container hero-inner">
-        <p class="eyebrow">art. business. youth.</p>
-        <h1>Artrepreneurship <br><em>Initiative Alliance</em></h1>
-        <p class="lead">A student-led nonprofit empowering youth through design, entrepreneurship, and community &mdash; and giving small businesses free creative support along the way.</p>
-        <div class="hero-buttons">
-          <a href="#get-involved" class="btn">Get Involved</a>
-          <a href="#initiatives" class="btn btn-outline">Our Initiatives</a>
-        </div>
-      </div>
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-    </section>
-
-    <!-- ===== STATS ===== -->
-    <section class="stats">
-      <div class="container stats-grid">
-        <div class="stat"><span class="num">60+</span><span class="label">Members</span></div>
-        <div class="stat"><span class="num">$3,000+</span><span class="label">Raised</span></div>
-        <div class="stat"><span class="num">20+</span><span class="label">Organizations helped</span></div>
-      </div>
-    </section>
-
-    <!-- ===== ABOUT ===== -->
-    <section id="about" class="section">
-      <div class="container two-col">
-        <div>
-          <p class="eyebrow">Our story</p>
-          <h2>Bridging the gap between art and business</h2>
-        </div>
-        <div>
-          <p>AIA was founded by Emily Tong and Grace Zhou, two business students at Bergen County Academies in New Jersey who bonded over marketing, graphic design, and art.</p>
-          <p>They noticed that art and design were becoming increasingly overlooked &mdash; especially with the rise of AI &mdash; and started AIA to elevate the value of creative work and connect it with business and marketing.</p>
-          <p>Our mission: to encourage artistic expression in students, uplift young creative entrepreneurs, and support small businesses in our community.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== INITIATIVES ===== -->
-    <section id="initiatives" class="section section-tint">
-      <div class="container">
-        <p class="eyebrow">What we do</p>
-        <h2>Our Initiatives</h2>
-        <div class="cards">
-          <article class="card">
-            <div class="card-icon">✦</div>
-            <h3>Creative Services</h3>
-            <p>Free graphic design and branding support for small businesses and student-led ventures &mdash; from logos to social media content.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">◎</div>
-            <h3>Workshops &amp; Webinars</h3>
-            <p>In-person workshops and virtual webinars on entrepreneurship, financial literacy, and creative skill-building.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">❖</div>
-            <h3>Community Events</h3>
-            <p>Service-based initiatives like card-making sessions, pop-up stands, and fundraisers.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">▲</div>
-            <h3>Student Empowerment</h3>
-            <p>Leadership opportunities to launch chapters, plan events, and put creative and business skills to work.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CLIENTS ===== -->
-    <section class="section">
-      <div class="container center">
-        <p class="eyebrow">Organizations we've worked with</p>
-        <div class="clients">
-          <span>AYLUS Bergen Branch</span>
-          <span>StrongHER TogetHER</span>
-          <span>BCA Filipino Club</span>
-        </div>
-        <!-- TIP: paste your real testimonial quotes from the old site here if you want them back -->
-      </div>
-    </section>
-
-    <!-- ===== TEAM ===== -->
-    <section id="team" class="section section-tint">
-      <div class="container">
-        <p class="eyebrow">Meet the team</p>
-        <h2>The people behind AIA</h2>
-        <!-- To add a photo: replace <div class="avatar">ET</div> with <img class="avatar" src="images/emily.jpg" alt="Emily Tong"> -->
-        <div class="team">
-          <div class="member"><div class="avatar">ET</div><h3>Emily Tong</h3><p>Co-founder &amp; Co-President</p></div>
-          <div class="member"><div class="avatar">GZ</div><h3>Grace Zhou</h3><p>Co-founder &amp; Co-President</p></div>
-          <div class="member"><div class="avatar">MD</div><h3>Max Deninzon</h3><p>Treasurer</p></div>
-          <div class="member"><div class="avatar">JX</div><h3>Jenny Xu</h3><p>Artistic Director</p></div>
-          <div class="member"><div class="avatar">KW</div><h3>Kana Watanabe</h3><p>Outreach Director</p></div>
-          <div class="member"><div class="avatar">SY</div><h3>Sophia Yang</h3><p>Assistant Outreach Director</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== BERGEN COUNTY YPL ===== -->
-    <section id="ypl" class="section">
-      <div class="container two-col">
-        <div>
-          <p class="eyebrow">Program</p>
-          <h2>Bergen County Youth Poet Laureate</h2>
-        </div>
-        <div>
-          <p>Founded in 2025 by AIA co-founder Emily Tong, the Bergen County YPL is a local chapter of the National Youth Poet Laureate Program, an initiative of Urban Word. It celebrates young poets committed to artistic excellence, civic engagement, and social impact.</p>
-          <div class="hero-buttons">
-            <a href="https://forms.gle/xuF1nJcjqCzPzevo6" class="btn" target="_blank" rel="noopener">Apply</a>
-            <a href="https://www.youthlaureate.org" class="btn btn-outline" target="_blank" rel="noopener">National Program</a>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="tagline">art<b>.</b> business<b>.</b> youth<b>.</b></p>
+          <h1>Student designers, <span class="hl">real clients</span>, free creative work.</h1>
+          <p class="lead">The Artrepreneurship Initiative Alliance is a student-led nonprofit that gives small businesses and community groups free design support, and gives young artists a place to build real-world skills.</p>
+          <div class="btn-row">
+            <a href="request.html" class="btn">Request a design</a>
+            <a href="about.html#get-involved" class="btn btn-ghost">Join AIA</a>
           </div>
         </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="disc"></div>
+          <img src="assets/logo.svg" alt="">
+        </div>
       </div>
     </section>
 
-    <!-- ===== GET INVOLVED ===== -->
-    <section id="get-involved" class="section section-dark">
-      <div class="container">
-        <p class="eyebrow">Join us</p>
-        <h2>Get Involved</h2>
-        <div class="cards cards-2">
-          <article class="card card-dark">
-            <h3>Volunteer</h3>
-            <p>Join our Executive, Social Media, or Operations team. Help run the organization, grow our online presence, or design for real business clients.</p>
-            <div class="card-links">
-              <a href="https://forms.gle/B6iSh6M284dFq9mu7" class="btn" target="_blank" rel="noopener">Apply to Volunteer</a>
-              <a href="https://docs.google.com/document/d/146Gmea3VteAliJ_lhYG7CtOsoiPS_MwYFY-k_Yvg6LE/edit" class="link" target="_blank" rel="noopener">See open positions →</a>
-            </div>
+    <!-- ===== STATS — update these numbers as you grow ===== -->
+    <section class="stats" aria-label="AIA by the numbers">
+      <div class="wrap stats-grid">
+        <div class="stat"><span class="num">60+</span><span class="label">Student members</span></div>
+        <div class="stat"><span class="num">$3,000+</span><span class="label">Raised for our programs</span></div>
+        <div class="stat"><span class="num">20+</span><span class="label">Organizations supported</span></div>
+      </div>
+    </section>
+
+    <!-- ===== WHAT WE DO ===== -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">What we do</p>
+          <h2>Three ways we connect art and business</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="mark mark-circle" aria-hidden="true"></div>
+            <h3>Free design services</h3>
+            <p>Logos, flyers, social media graphics and branding for small businesses and student-led organizations, made by our member designers.</p>
+            <a class="more" href="request.html">Request a design &rarr;</a>
           </article>
-          <article class="card card-dark">
-            <h3>Start a Chapter</h3>
-            <p>Bring AIA to your community. Chapter leaders get toolkits, mentorship, and a support network.</p>
-            <ol class="steps">
-              <li>Apply online (we reply in 1&ndash;2 weeks)</li>
-              <li>Interview &amp; review</li>
-              <li>Approval + starter resources</li>
-              <li>Launch your chapter</li>
-            </ol>
-            <div class="card-links">
-              <a href="https://forms.gle/LL3oockq1as284dW6" class="btn" target="_blank" rel="noopener">Start a Chapter</a>
-            </div>
+          <article class="card">
+            <div class="mark mark-a" aria-hidden="true"></div>
+            <h3>Workshops &amp; events</h3>
+            <p>In-person workshops and webinars on entrepreneurship, financial literacy and creative skills, plus community events and fundraisers.</p>
+            <a class="more" href="impact.html#programs">See our programs &rarr;</a>
+          </article>
+          <article class="card">
+            <div class="mark mark-tri" aria-hidden="true"></div>
+            <h3>Student leadership</h3>
+            <p>Members lead teams, run events and start chapters in their own communities, putting creative and business skills to work.</p>
+            <a class="more" href="about.html#get-involved">Get involved &rarr;</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ===== CONTACT ===== -->
-    <section id="contact" class="section">
-      <div class="container center">
-        <p class="eyebrow">Say hello</p>
-        <h2>Contact Us</h2>
-        <p class="lead">Need design help for your business, want to partner, or have a question?</p>
-        <a href="mailto:info@artrepreneurshipalliance.org" class="btn">info@artrepreneurshipalliance.org</a>
-        <p class="muted">Bergen County, New Jersey</p>
-        <div class="socials">
-          <a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://artrepreneurship-initiative.carrd.co" target="_blank" rel="noopener">Carrd</a>
+    <!-- ===== PARTNERS ===== -->
+    <section class="section section-sand">
+      <div class="wrap two-col">
+        <div class="stack">
+          <p class="eyebrow">Who we've worked with</p>
+          <h2>Trusted by local organizations</h2>
         </div>
+        <div class="stack">
+          <!-- Add more partners by copying a <span> line -->
+          <div class="partners">
+            <span>AYLUS Bergen Branch</span>
+            <span>StrongHER TogetHER</span>
+            <span>BCA Filipino Club</span>
+          </div>
+          <p class="muted">See what we made for them on our <a href="impact.html">Impact page</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="section section-navy">
+      <div class="wrap cta">
+        <h2>Need a logo, flyer or social post for your organization?</h2>
+        <a href="request.html" class="btn btn-yellow">Start a design request</a>
       </div>
     </section>
 
   </main>
 
+  <!-- ===== FOOTER (same on every page) ===== -->
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc. All rights reserved.</p>
-      <p>A 501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="stack">
+          <a href="index.html" class="brand"><img src="assets/logo.svg" alt="" width="30" height="40"><span>AIA</span></a>
+          <p>A student-led 501(c)(3) nonprofit in Bergen County, NJ, connecting art and business.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="request.html">Request a Design</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:info@artrepreneurshipalliance.org">info@artrepreneurshipalliance.org</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc.</p>
+        <p>501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+      </div>
     </div>
   </footer>
 
