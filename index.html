@@ -11,10 +11,29 @@
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    /* show the loading screen once per visit, skip it for reduced-motion users */
+    (function () {
+      var d = document.documentElement; d.classList.add("js");
+      var seen = false; try { seen = sessionStorage.getItem("aia-loaded") === "1"; } catch (e) {}
+      if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("is-loading");
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="site.js" defer></script>
 </head>
 <body>
+  <!-- ===== LOADING SCREEN ===== -->
+  <div class="loader" aria-hidden="true">
+    <svg class="loader-logo" viewBox="560 220 900 1195">
+      <circle class="l-dot" cx="1008" cy="373" r="146" fill="#70c1ff"/>
+      <path class="l-a" d="M885 564H1132L1447 1402H1213L1008 820L804 1402H570Z" fill="#ed6a5a"/>
+      <path class="l-tri" d="M1008 996L1152 1406H865Z" fill="#ffc847"/>
+    </svg>
+    <p class="loader-word">art<b>.</b> business<b>.</b> youth<b>.</b></p>
+  </div>
 
   <!-- ===== NAV (same on every page) ===== -->
   <header class="nav">
@@ -47,6 +66,9 @@
             <a href="request.html" class="btn">Request a design</a>
             <a href="about.html#get-involved" class="btn btn-ghost">Join AIA</a>
           </div>
+          <ul class="tags" aria-label="About AIA">
+            <li>Student-led</li><li>501(c)(3) nonprofit</li><li>Bergen County, NJ</li>
+          </ul>
         </div>
         <div class="hero-art" aria-hidden="true">
           <div class="disc"></div>
@@ -54,6 +76,11 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== SCROLLING TICKER — edit the words inside the <span> tags ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track"><span>Logos</span><i class="m-dot"></i><span>Flyers</span><i class="m-a"></i><span>Branding</span><i class="m-tri"></i><span>Workshops</span><i class="m-dot"></i><span>Social media</span><i class="m-a"></i><span>Chapters</span><i class="m-tri"></i><span>Youth poetry</span><i class="m-dot"></i><span>Small business</span><i class="m-a"></i><span>Community events</span><i class="m-tri"></i><span>Logos</span><i class="m-dot"></i><span>Flyers</span><i class="m-a"></i><span>Branding</span><i class="m-tri"></i><span>Workshops</span><i class="m-dot"></i><span>Social media</span><i class="m-a"></i><span>Chapters</span><i class="m-tri"></i><span>Youth poetry</span><i class="m-dot"></i><span>Small business</span><i class="m-a"></i><span>Community events</span><i class="m-tri"></i></div>
+    </div>
 
     <!-- ===== STATS — update these numbers as you grow ===== -->
     <section class="stats" aria-label="AIA by the numbers">
