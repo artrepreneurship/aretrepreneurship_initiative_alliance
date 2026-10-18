@@ -216,7 +216,10 @@
     function size() {
       var w = fb.clientWidth;
       mobile = window.matchMedia("(max-width: 760px)").matches;
-      var pw = mobile ? Math.min(w * 0.82, 360) : Math.min(470, Math.floor((w - 8) / 2));
+      // desktop: leave room for the side arrows, and keep the whole book on screen
+      var byWidth = Math.floor((w - 2 * (54 + 18) - 8) / 2);
+      var byHeight = Math.floor((window.innerHeight - 190) / 1.3);
+      var pw = mobile ? Math.min(w * 0.82, 360) : Math.max(220, Math.min(470, byWidth, byHeight));
       fb.style.setProperty("--pw", pw + "px");
       fb.style.setProperty("--k", (pw / 460).toFixed(4));
       update(true);
@@ -287,7 +290,10 @@
     });
     mbook.addEventListener("scroll", function () { requestAnimationFrame(function () { update(); }); }, { passive: true });
     var lastW = 0;
-    window.addEventListener("resize", function () { if (fb.clientWidth !== lastW) { lastW = fb.clientWidth; size(); } });
+    var lastH = window.innerHeight;
+    window.addEventListener("resize", function () {
+      if (fb.clientWidth !== lastW || Math.abs(window.innerHeight - lastH) > 80) { lastW = fb.clientWidth; lastH = window.innerHeight; size(); }
+    });
     size(); lastW = fb.clientWidth;
   });
 
@@ -311,4 +317,30 @@
     q(".pd-close").addEventListener("click", function () { dlg.close ? dlg.close() : dlg.removeAttribute("open"); });
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
   }
+})();
+
+/* ---------- numbers count up from 0 when they scroll into view ---------- */
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+  var nums = document.querySelectorAll(".swatch-card .num, .stat .num");
+  nums.forEach(function (el) {
+    var m = el.textContent.trim().match(/^([^0-9]*)([0-9][0-9,]*)(.*)$/);
+    if (!m) return;
+    var target = parseInt(m[2].replace(/,/g, ""), 10), pre = m[1], post = m[3], comma = m[2].indexOf(",") > -1;
+    var fmt = function (v) { return pre + (comma ? v.toLocaleString("en-US") : String(v)) + post; };
+    el.style.minWidth = el.offsetWidth + "px";          // keep the layout from jumping while counting
+    el.textContent = fmt(0);
+    var io = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      var start = null, dur = 1600 + Math.min(900, String(target).length * 180);
+      (function step(t) {
+        if (start === null) start = t;
+        var k = Math.min(1, (t - start) / dur), e = 1 - Math.pow(1 - k, 4);
+        el.textContent = fmt(Math.round(target * e));
+        if (k < 1) requestAnimationFrame(step); else { el.textContent = fmt(target); el.classList.add("counted"); }
+      })(performance.now());
+    }, { threshold: 0.6 });
+    io.observe(el);
+  });
 })();

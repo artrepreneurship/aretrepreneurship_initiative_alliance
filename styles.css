@@ -930,3 +930,19 @@ html.lenis, html.lenis body { height: auto; }
 [hidden] { display: none !important; }
 .pol-dialog { margin: auto; position: fixed; inset: 0; height: fit-content; max-height: calc(100vh - 40px); overflow: auto; }
 .tl-card img { max-height: 170px; object-fit: contain; background: #fff; border: 1px solid var(--line); }
+
+/* book arrows on the sides (desktop) */
+@media (min-width: 761px) {
+  .flipbook { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "prev book next" ". count ."; align-items: center; column-gap: 18px; row-gap: 6px; }
+  .book-wrap { grid-area: book; padding-block: 12px 4px; }
+  .book-ui { display: contents; }
+  .book-btn[data-dir="-1"] { grid-area: prev; }
+  .book-btn[data-dir="1"] { grid-area: next; }
+  .book-btn { width: 54px; height: 54px; box-shadow: 0 10px 20px -12px rgba(45,42,69,.5); }
+  .book-count { grid-area: count; justify-self: center; font-size: .78rem; }
+}
+
+/* count-up: little pop when a number lands */
+.swatch-card .num.counted { animation: numPop .45s cubic-bezier(.3,1.6,.5,1); }
+@keyframes numPop { 50% { transform: scale(1.12); } }
+.swatch-card .num { display: inline-block; transform-origin: left center; }
