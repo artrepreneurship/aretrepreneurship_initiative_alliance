@@ -1076,3 +1076,19 @@ html.lenis, html.lenis body { height: auto; }
   .team-stage .pcard { width: var(--gw); }
   .g-about { font-size: calc(var(--gw) * .066); }
 }
+
+/* bigger team cards + text (normal grid after the deal, and on small screens) */
+.team-stage { --g: 24px; --gw: min(290px, calc((min(100vw, 1240px) - 64px - 3 * var(--g)) / 4)); }
+.team-stage.dealt .wrap, .team-stage .wrap { max-width: 1240px; }
+.team-stage:not(.scrolly) { padding-block: 72px 96px; }
+.g-name b { font-size: calc(var(--gw) * .092); }
+.g-name .pcode { font-size: calc(var(--gw) * .045); }
+.g-role { font-size: calc(var(--gw) * .115); }
+.g-name-sm { font-size: calc(var(--gw) * .048); }
+.g-about { font-size: calc(var(--gw) * .064); line-height: 1.42; }
+.g-back { padding: calc(var(--gw) * .085); }
+.post-info h3 { font-size: calc(var(--gw) * .1); }
+.post-role { font-size: calc(var(--gw) * .088); }
+.post-about { font-size: calc(var(--gw) * .056); }
+.post-info .pcode { font-size: calc(var(--gw) * .042); }
+@media (max-width: 760px) { .g-about { font-size: calc(var(--gw) * .07); } }

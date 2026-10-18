@@ -56,8 +56,21 @@
       var g = stage.querySelector(".pgrid"), gx = g.offsetWidth / 2, gy = g.offsetHeight / 2;
       return cards.map(function (c) { return [gx - (c.offsetLeft + c.offsetWidth / 2), gy - (c.offsetTop + c.offsetHeight / 2)]; });
     }
+    var latched = false;
+    // once the deck has dealt out, lock it as a normal grid so hover works and it never reshuffles
+    function latch() {
+      latched = true;
+      var g = stage.querySelector(".pgrid"), before = g.getBoundingClientRect().top;
+      stage.classList.remove("scrolly");
+      stage.classList.add("dealt");
+      stage.style.height = "";
+      clearT();
+      if (hint) hint.textContent = "The whole crew. Hover a card to flip it.";
+      var after = g.getBoundingClientRect().top, y = window.scrollY + (after - before);
+      if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else window.scrollTo(0, y);
+    }
     function tick() {
-      if (!stage.classList.contains("scrolly")) return;
+      if (latched || !stage.classList.contains("scrolly")) return;
       var r = stage.getBoundingClientRect(), total = stage.offsetHeight - window.innerHeight;
       if (r.bottom < -50 || r.top > window.innerHeight + 50) return;   // off screen: nothing to do
       var p = clamp(-r.top / Math.max(1, total));
@@ -97,12 +110,14 @@
         c.style.zIndex = spread > 0.6 ? "" : String(z);
       });
       stage.classList.toggle("dealt", spread >= 1);
+      if (spread >= 1) { latch(); return; }
       if (hint) {
         var txt = p >= SPREAD ? "The whole crew. Hover a card to flip it." : current >= 0 || p > START ? "Meet the team · " + String(Math.max(current, 0) + 1).padStart(2, "0") + " / " + String(n).padStart(2, "0") : "Scroll to meet everyone, one by one.";
         if (hint.textContent !== txt) hint.textContent = txt;
       }
     }
     function setup() {
+      if (latched) return;
       stage.classList.remove("scrolly", "flippy");
       stage.style.height = "";
       if (flipIO) { flipIO.disconnect(); flipIO = null; }
