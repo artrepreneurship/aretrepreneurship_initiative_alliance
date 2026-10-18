@@ -18,7 +18,10 @@
     (function () {
       var d = document.documentElement; d.classList.add("js");
       var seen = false; try { seen = sessionStorage.getItem("aia-loaded") === "1"; } catch (e) {}
-      if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("is-loading");
+      var calm = matchMedia("(prefers-reduced-motion: reduce)").matches, nav = false;
+      try { nav = sessionStorage.getItem("aia-nav") === "1"; sessionStorage.removeItem("aia-nav"); } catch (e) {}
+      if (!seen && !calm) d.classList.add("is-loading");
+      else if (nav && !calm) d.classList.add("is-arriving");
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
@@ -35,6 +38,8 @@
     </svg>
     <p class="loader-word">art<b>.</b> business<b>.</b> youth<b>.</b></p>
   </div>
+  <!-- ===== PAGE TRANSITION (color panels sweep between pages) ===== -->
+  <div class="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><img src="assets/logo.svg" alt=""></div>
 
   <!-- ===== NAV (same on every page) ===== -->
   <header class="nav">
@@ -144,12 +149,12 @@
           <a href="impact.html" class="btn btn-ghost">See the full gallery</a>
         </div>
         <div class="gallery">
-          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
-          <figure class="tile" style="--c: #ed6a5a"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>AYLUS Bergen Branch</span></figcaption></figure>
-          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
-          <figure class="tile" style="--c: #70c1ff"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>StrongHER TogetHER</span></figcaption></figure>
-          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
-          <figure class="tile" style="--c: #ffc847"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>BCA Filipino Club</span></figcaption></figure>
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="Event designs"> -->
+          <figure class="tile" style="--c: #ed6a5a"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b>Event designs</b><span>AYLUS Bergen Branch</span></figcaption></figure>
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="Design variations"> -->
+          <figure class="tile" style="--c: #70c1ff"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b>Design variations</b><span>StrongHER TogetHER</span></figcaption></figure>
+          <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="Club designs"> -->
+          <figure class="tile" style="--c: #ffc847"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b>Club designs</b><span>BCA Filipino Club</span></figcaption></figure>
           <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
           <figure class="tile" style="--c: #2f326b"><div class="ph" aria-hidden="true"><span class="ph-shape"></span><span class="ph-label">Add image</span></div><figcaption><b><span class="fill">[Project name]</span></b><span>[Client]</span></figcaption></figure>
           <!-- Replace the <div class="ph">...</div> with <img src="assets/work/FILE.jpg" alt="[Project name]"> -->
@@ -166,8 +171,8 @@
             <p class="case-no">CASE STUDY 01 &middot; COMMUNITY SERVICE</p>
             <h3>AYLUS Bergen Branch</h3>
             <dl class="fields">
-              <dt>We made</dt><dd><span class="fill">[e.g. event flyers and Instagram posts]</span></dd>
-              <dt>Result</dt><dd><span class="fill">[e.g. used at an event with 150 attendees]</span></dd>
+              <dt>We made</dt><dd>Designs for an AYLUS Bergen Branch event</dd>
+              <dt>Result</dt><dd>Helped elevate their outreach and brought real value to the event</dd>
             </dl>
           </div>
         </article>
@@ -178,8 +183,8 @@
             <p class="case-no">CASE STUDY 02 &middot; NONPROFIT</p>
             <h3>StrongHER TogetHER</h3>
             <dl class="fields">
-              <dt>We made</dt><dd><span class="fill">[e.g. event flyers and Instagram posts]</span></dd>
-              <dt>Result</dt><dd><span class="fill">[e.g. used at an event with 150 attendees]</span></dd>
+              <dt>We made</dt><dd>Multiple variations of the requested design</dd>
+              <dt>Result</dt><dd>Highly well-received; the design will be used going forward</dd>
             </dl>
           </div>
         </article>
@@ -190,8 +195,8 @@
             <p class="case-no">CASE STUDY 03 &middot; STUDENT CLUB</p>
             <h3>BCA Filipino Club</h3>
             <dl class="fields">
-              <dt>We made</dt><dd><span class="fill">[e.g. event flyers and Instagram posts]</span></dd>
-              <dt>Result</dt><dd><span class="fill">[e.g. used at an event with 150 attendees]</span></dd>
+              <dt>We made</dt><dd>Custom designs for the club, delivered on time</dd>
+              <dt>Result</dt><dd>A 5-star review for communication and design</dd>
             </dl>
           </div>
         </article>
@@ -226,11 +231,11 @@
           <h2>In their words</h2>
         </div>
 
-        <!-- Replace the [brackets] with real quotes from members and clients -->
+        <!-- Real reviews from clients. Add more by copying a <figure>. -->
         <div class="comments">
-          <figure class="comment"><div class="who"><div class="pin">?</div><div><p class="name"><span class="fill">[Name]</span></p><p class="role">client &middot; <span class="fill">[organization]</span></p></div></div><blockquote><span class="fill">[Quote from an organization we designed for]</span></blockquote></figure>
-          <figure class="comment"><div class="who"><div class="pin">?</div><div><p class="name"><span class="fill">[Member name]</span></p><p class="role">member</p></div></div><blockquote><span class="fill">[Quote: what has AIA meant to you?]</span></blockquote></figure>
-          <figure class="comment"><div class="who"><div class="pin">?</div><div><p class="name"><span class="fill">[Name]</span></p><p class="role">client &middot; <span class="fill">[organization]</span></p></div></div><blockquote><span class="fill">[Quote from another client]</span></blockquote></figure>
+          <figure class="comment"><div class="who"><div class="pin">A</div><div><p class="name">AYLUS Bergen Branch</p><p class="role">client</p></div></div><blockquote>&ldquo;Partnering with A.I.A. was a great experience. Their team was creative, professional, and clearly passionate about their mission. The designs they delivered helped elevate our outreach and brought real value to our event.&rdquo;</blockquote></figure>
+          <figure class="comment"><div class="who"><div class="pin">S</div><div><p class="name">StrongHER TogetHER</p><p class="role">client</p></div></div><blockquote>&ldquo;Our experience with AIA was amazing; they displayed outstanding creativity and thoroughness and provided multiple variations of the requested design. The design was highly well-received and will be used in future direction.&rdquo;</blockquote></figure>
+          <figure class="comment"><div class="who"><div class="pin">B</div><div><p class="name">BCA Filipino Club</p><p class="role">client &middot; &#9733;&#9733;&#9733;&#9733;&#9733;</p></div></div><blockquote>&ldquo;Very good communication with on time delivery. Super awesome club with great design capabilities. 5 star review!&rdquo;</blockquote></figure>
         </div>
 
       </div>
@@ -243,7 +248,7 @@
           <p class="eyebrow">Join us</p>
           <h2>Make real work for real clients.</h2>
           <p class="lead">Open to students who love art, design or business. No experience needed.</p>
-          <div class="btn-row"><a href="join.html" class="btn btn-yellow">Join AIA</a><a href="programs.html" class="btn btn-light">See our programs</a></div>
+          <div class="btn-row"><a href="join.html" class="btn btn-yellow">Join AIA</a><a href="https://gofund.me/b8e71615" class="btn btn-light" target="_blank" rel="noopener">Donate</a></div>
         </div>
         <ul class="perk-list">
           <li><span class="mark mark-circle" aria-hidden="true"></span><div><b>Build a portfolio</b><span>Design for actual businesses and organizations.</span></div></li>
@@ -279,6 +284,7 @@
             <li><a href="request.html">Request a design</a></li>
             <li><a href="join.html">Join AIA</a></li>
             <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
+            <li><a href="https://gofund.me/b8e71615" target="_blank" rel="noopener">Donate</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -287,13 +293,14 @@
           <ul>
             <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.tiktok.com/@artrepreneurship.aia" target="_blank" rel="noopener">TikTok</a></li>
             <li><a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a></li>
           </ul>
         </div>
       </div>
       <div class="legal">
         <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc.</p>
-        <p>501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+        <p>501(c)(3) nonprofit &middot; EIN 99-3876732 &middot; Candid Bronze Seal of Transparency 2024</p>
       </div>
     </div>
   </footer>

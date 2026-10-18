@@ -18,7 +18,10 @@
     (function () {
       var d = document.documentElement; d.classList.add("js");
       var seen = false; try { seen = sessionStorage.getItem("aia-loaded") === "1"; } catch (e) {}
-      if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("is-loading");
+      var calm = matchMedia("(prefers-reduced-motion: reduce)").matches, nav = false;
+      try { nav = sessionStorage.getItem("aia-nav") === "1"; sessionStorage.removeItem("aia-nav"); } catch (e) {}
+      if (!seen && !calm) d.classList.add("is-loading");
+      else if (nav && !calm) d.classList.add("is-arriving");
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
@@ -34,6 +37,8 @@
     </svg>
     <p class="loader-word">art<b>.</b> business<b>.</b> youth<b>.</b></p>
   </div>
+  <!-- ===== PAGE TRANSITION (color panels sweep between pages) ===== -->
+  <div class="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><img src="assets/logo.svg" alt=""></div>
 
   <!-- ===== NAV (same on every page) ===== -->
   <header class="nav">
@@ -93,7 +98,7 @@
             <p class="eyebrow">Email us directly</p>
             <a class="email-big" href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a>
             <p class="muted">Based in Bergen County, New Jersey</p>
-            <div class="slash-links"><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a><span>/</span><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></div>
+            <div class="slash-links"><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a><span>/</span><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a><span>/</span><a href="https://www.tiktok.com/@artrepreneurship.aia" target="_blank" rel="noopener">TikTok</a></div>
           </div>
           <div class="grid-2">
             <article class="card"><div class="mark mark-circle" aria-hidden="true"></div><h3>Need a design?</h3><p>Use our request form so we get everything up front.</p><a class="more" href="request.html">Request a design &rarr;</a></article>
@@ -140,6 +145,7 @@
             <li><a href="request.html">Request a design</a></li>
             <li><a href="join.html">Join AIA</a></li>
             <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
+            <li><a href="https://gofund.me/b8e71615" target="_blank" rel="noopener">Donate</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -148,13 +154,14 @@
           <ul>
             <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.tiktok.com/@artrepreneurship.aia" target="_blank" rel="noopener">TikTok</a></li>
             <li><a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a></li>
           </ul>
         </div>
       </div>
       <div class="legal">
         <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc.</p>
-        <p>501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+        <p>501(c)(3) nonprofit &middot; EIN 99-3876732 &middot; Candid Bronze Seal of Transparency 2024</p>
       </div>
     </div>
   </footer>

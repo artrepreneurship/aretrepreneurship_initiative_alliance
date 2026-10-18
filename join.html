@@ -18,7 +18,10 @@
     (function () {
       var d = document.documentElement; d.classList.add("js");
       var seen = false; try { seen = sessionStorage.getItem("aia-loaded") === "1"; } catch (e) {}
-      if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("is-loading");
+      var calm = matchMedia("(prefers-reduced-motion: reduce)").matches, nav = false;
+      try { nav = sessionStorage.getItem("aia-nav") === "1"; sessionStorage.removeItem("aia-nav"); } catch (e) {}
+      if (!seen && !calm) d.classList.add("is-loading");
+      else if (nav && !calm) d.classList.add("is-arriving");
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
@@ -34,6 +37,8 @@
     </svg>
     <p class="loader-word">art<b>.</b> business<b>.</b> youth<b>.</b></p>
   </div>
+  <!-- ===== PAGE TRANSITION (color panels sweep between pages) ===== -->
+  <div class="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><img src="assets/logo.svg" alt=""></div>
 
   <!-- ===== NAV (same on every page) ===== -->
   <header class="nav">
@@ -76,7 +81,7 @@
           <article class="benefit" style="--c:#ed6a5a"><h3>A real portfolio</h3><p>Design logos, flyers and posts for actual businesses and organizations.</p></article>
           <article class="benefit" style="--c:#70c1ff"><h3>Leadership</h3><p>Run a team, plan an event, or start an AIA chapter at your school.</p></article>
           <article class="benefit" style="--c:#ffc847"><h3>Business skills</h3><p>Work with clients, meet deadlines and learn how creative work gets paid.</p></article>
-          <article class="benefit" style="--c:#2f326b"><h3>Community service</h3><p>Card-making, pop-ups and fundraisers that support people nearby.</p></article>
+          <article class="benefit" style="--c:#2f326b"><h3>Volunteer hours</h3><p>Earn service hours through card-making, pop-ups and fundraisers. <a href="https://docs.google.com/document/d/1QO8K-maoHtUpAYj-TQd4DZ3lWGI0eGWlIigLx0HG6uw/edit" target="_blank" rel="noopener">How hours work</a></p></article>
           <article class="benefit" style="--c:#f4a08f"><h3>Creative friends</h3><p>Meet students who love art, design and business as much as you do.</p></article>
           <article class="benefit" style="--c:#a9d9ff"><h3>Room to grow</h3><p>Start as a member and move into exec roles as AIA grows.</p></article>
         </div>
@@ -89,7 +94,7 @@
         <div class="stack">
           <p class="eyebrow">Member application</p>
           <h2>Join in two minutes</h2>
-          <p class="muted">Fill this out and we'll reach out about next steps. Prefer Google Forms? <a href="https://forms.gle/B6iSh6M284dFq9mu7" target="_blank" rel="noopener">Use our volunteer form</a>.</p>
+          <p class="muted">Fill this out and we'll reach out about next steps. Prefer Google Forms? <a href="https://forms.gle/uBV5kZrQXnqow6yK9" target="_blank" rel="noopener">Use our member form</a>.</p>
           <div class="postit small-postit"><p class="postit-title">teams</p><ul><li>Design</li><li>Social media</li><li>Operations &amp; events</li></ul></div>
         </div>
         <form class="form" id="join-form">
@@ -164,6 +169,7 @@
             <li><a href="request.html">Request a design</a></li>
             <li><a href="join.html">Join AIA</a></li>
             <li><a href="https://forms.gle/LL3oockq1as284dW6" target="_blank" rel="noopener">Start a chapter</a></li>
+            <li><a href="https://gofund.me/b8e71615" target="_blank" rel="noopener">Donate</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -172,13 +178,14 @@
           <ul>
             <li><a href="https://www.instagram.com/artrepreneurship_initiative" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/artrepreneurship-initiative-alliance-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.tiktok.com/@artrepreneurship.aia" target="_blank" rel="noopener">TikTok</a></li>
             <li><a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a></li>
           </ul>
         </div>
       </div>
       <div class="legal">
         <p>&copy; 2026 Artrepreneurship Initiative Alliance Inc.</p>
-        <p>501(c)(3) nonprofit &middot; EIN 99-3876732</p>
+        <p>501(c)(3) nonprofit &middot; EIN 99-3876732 &middot; Candid Bronze Seal of Transparency 2024</p>
       </div>
     </div>
   </footer>

@@ -11,10 +11,9 @@ var EVENTS = [
   {
     title: "AIA Youth Workshop",
     date: "2025-06-17",
-    time: "[Add time]",
     place: "Hackensack, NJ",
     type: "Workshop",
-    desc: "[Add a one or two sentence description of the workshop]"
+    desc: "A hands-on workshop for youth on entrepreneurship, financial literacy and creative skills."
   }
   /* Add past events like this (remove the slash-star marks around it):
   ,{
