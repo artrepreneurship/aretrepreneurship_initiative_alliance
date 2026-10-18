@@ -471,20 +471,18 @@
 /* ---- request steps: light up as you scroll ---- */
 (function () {
   var sec = document.getElementById("how"); if (!sec || !sec.classList.contains("steps-scroll")) return;
-  var steps = sec.querySelectorAll(".ss-step"), sticky = sec.querySelector(".ss-sticky"), n = steps.length, ticking = false;
+  var list = sec.querySelector(".ss-steps"), steps = sec.querySelectorAll(".ss-step"), nav = sec.querySelectorAll(".ss-nav li"), n = steps.length, ticking = false;
   function update() {
     ticking = false;
-    var r = sec.getBoundingClientRect(), vh = window.innerHeight, p, pinned = getComputedStyle(sticky).position === "sticky";
-    if (pinned) p = (-r.top) / Math.max(1, r.height - vh);
-    else p = (vh * 0.65 - r.top) / Math.max(1, r.height);
-    p = Math.max(0, Math.min(1, p));
-    sec.style.setProperty("--p", p.toFixed(4));
-    var cur = -1;
+    var vh = window.innerHeight, line = vh * 0.55, cur = -1;
     steps.forEach(function (s, i) {
-      var on = pinned ? p >= i / (n - 1) * 0.94 - 0.01 : s.getBoundingClientRect().top < vh * 0.8;
-      s.classList.toggle("on", on); if (on) cur = i;
+      var r = s.getBoundingClientRect(), on = r.top + r.height * 0.4 < line;
+      s.classList.toggle("on", on); if (nav[i]) nav[i].classList.toggle("on", on); if (on) cur = i;
     });
-    steps.forEach(function (s, i) { s.classList.toggle("now", i === cur); });
+    steps.forEach(function (s, i) { s.classList.toggle("now", i === cur); if (nav[i]) nav[i].classList.toggle("now", i === cur); });
+    var first = steps[0].getBoundingClientRect(), last = steps[n - 1].getBoundingClientRect();
+    var a = first.top + first.height * 0.4, b = last.top + last.height * 0.4;
+    sec.style.setProperty("--p", Math.max(0, Math.min(1, (line - a) / Math.max(1, b - a))).toFixed(4));
     sec.classList.toggle("is-done", cur === n - 1);
   }
   function req() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }

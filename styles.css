@@ -1241,27 +1241,33 @@ html.lenis, html.lenis body { height: auto; }
 .lb-prev { left: -64px; } .lb-next { right: -64px; }
 @media (max-width: 860px) { .lb-prev { left: 8px; } .lb-next { right: 8px; } .lb-close { right: 6px; top: -54px; } }
 
-/* ---- request: scroll-driven steps ---- */
-.steps-scroll { --p: 0; position: relative; height: 320vh; background: var(--sand); background-image: radial-gradient(rgba(47,50,107,.12) 1.2px, transparent 1.4px); background-size: 22px 22px; }
-.ss-sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 60px; }
-.ss-sticky .wrap { width: 100%; }
+/* ---- request: steps (line on the left, cards on the right) ---- */
+.steps-scroll { --p: 0; position: relative; padding: clamp(64px, 9vw, 120px) 0; background: var(--sand); background-image: radial-gradient(rgba(47,50,107,.12) 1.2px, transparent 1.4px); background-size: 22px 22px; }
+.ss-grid { display: grid; grid-template-columns: minmax(260px, .85fr) 1.15fr; gap: clamp(32px, 6vw, 90px); align-items: start; }
+.ss-side { position: sticky; top: 110px; }
+.ss-side h2 { margin-bottom: 6px; }
 .ss-hint { font-family: var(--mono); font-size: 13px; letter-spacing: .06em; transition: opacity .4s; }
 .steps-scroll.is-done .ss-hint { opacity: 0; }
-.ss-track { position: relative; margin-top: 10px; }
-.ss-line { position: absolute; left: 10%; right: 10%; top: 0; height: 4px; border-radius: 4px; background: rgba(47,50,107,.15); }
-.ss-fill { position: absolute; inset: 0; transform-origin: left; transform: scaleX(var(--p)); background: linear-gradient(90deg, var(--coral), var(--yellow), var(--blue)); border-radius: inherit; }
-.ss-dot { position: absolute; top: 50%; left: calc(var(--p) * 100%); width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 5px rgba(237,106,90,.25); }
-.ss-steps { list-style: none; margin: 0; padding: 34px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
-.ss-step { position: relative; background: #fff; border-radius: 16px; padding: 16px 16px 18px; box-shadow: 0 16px 30px -22px rgba(45,42,69,.6); border: 2px solid transparent;
-  opacity: .28; transform: translateY(46px) rotate(var(--r, 0deg)) scale(.96); transition: opacity .5s, transform .6s cubic-bezier(.2,.9,.25,1.2), border-color .3s, box-shadow .3s; }
-.ss-step::before { content: ""; position: absolute; left: 50%; top: -30px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--paper); border: 3px solid rgba(47,50,107,.25); transition: background .3s, border-color .3s; }
-.ss-step:nth-child(odd) { --r: -1.2deg; } .ss-step:nth-child(even) { --r: 1.2deg; }
-.ss-step.on { opacity: 1; transform: translateY(0) rotate(var(--r)) scale(1); }
-.ss-step.on::before { background: var(--yellow); border-color: var(--navy); }
-.ss-step.now { border-color: var(--coral); box-shadow: 0 26px 40px -24px rgba(237,106,90,.7); transform: translateY(-8px) rotate(0deg) scale(1.03); }
-.ss-num { font-family: var(--mono); color: var(--coral-text); font-size: 13px; margin: 12px 0 2px; }
-.ss-step h3 { font-size: 1.12rem; margin: 0 0 6px; }
-.ss-step p:last-child { font-size: .92rem; line-height: 1.45; color: var(--muted); margin: 0; }
+.ss-navwrap { position: relative; margin-top: 28px; padding-left: 4px; }
+.ss-line { position: absolute; left: 21px; top: 20px; bottom: 20px; width: 4px; border-radius: 4px; background: rgba(47,50,107,.14); }
+.ss-fill { position: absolute; inset: 0; transform-origin: top; transform: scaleY(var(--p)); border-radius: inherit; background: linear-gradient(180deg, var(--coral), var(--yellow), var(--blue)); }
+.ss-nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; position: relative; }
+.ss-nav a { display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--muted); font-weight: 700; font-size: 1.05rem; transition: color .3s, transform .3s; }
+.ss-node { flex: none; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-family: var(--mono); font-size: 14px; background: var(--paper); border: 3px solid rgba(47,50,107,.2); color: var(--muted); transition: background .3s, border-color .3s, color .3s, transform .4s cubic-bezier(.3,1.6,.5,1); }
+.ss-nav li.on a { color: var(--navy); }
+.ss-nav li.on .ss-node { background: var(--yellow); border-color: var(--navy); color: var(--navy); }
+.ss-nav li.now a { transform: translateX(6px); }
+.ss-nav li.now .ss-node { background: var(--coral); border-color: var(--coral); color: #fff; transform: scale(1.18); box-shadow: 0 0 0 6px rgba(237,106,90,.2); }
+.ss-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22vh; padding-bottom: 6vh; }
+.ss-step { position: relative; display: grid; grid-template-columns: 170px 1fr; gap: 24px; align-items: center; background: #fff; border-radius: 20px; padding: 20px; border: 2px solid transparent; box-shadow: 0 16px 30px -22px rgba(45,42,69,.6); scroll-margin-top: 30vh;
+  opacity: .3; transform: translateX(40px) rotate(var(--r, 0deg)) scale(.97); transition: opacity .5s, transform .6s cubic-bezier(.2,.9,.25,1.2), border-color .3s, box-shadow .3s; }
+.ss-step:nth-child(odd) { --r: -1deg; } .ss-step:nth-child(even) { --r: 1deg; }
+.ss-step.on { opacity: 1; transform: rotate(var(--r)); }
+.ss-step.now { border-color: var(--coral); box-shadow: 0 26px 44px -24px rgba(237,106,90,.7); transform: rotate(0deg) scale(1.02); }
+.ss-step .ss-art { height: 130px; }
+.ss-num { font-family: var(--mono); color: var(--coral-text); font-size: 13px; margin: 0 0 4px; }
+.ss-txt h3 { font-size: 1.35rem; margin: 0 0 8px; }
+.ss-txt p:last-child { line-height: 1.5; color: var(--muted); margin: 0; }
 /* little drawings */
 .ss-art { height: 96px; border-radius: 10px; background: var(--paper); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .ss-art-form { flex-direction: column; align-items: stretch; justify-content: center; gap: 8px; padding: 0 22px; }
@@ -1286,17 +1292,16 @@ html.lenis, html.lenis body { height: auto; }
 .ss-step.on .ss-art-files span { transform: none; }
 .ss-art-star { font-size: 54px; color: var(--yellow); text-shadow: 0 3px 0 var(--navy); transform: scale(.3) rotate(-60deg); transition: transform .7s cubic-bezier(.3,1.6,.5,1); }
 .ss-step.on .ss-art-star { transform: none; }
-/* short screens + phones: plain vertical list, each step pops in as you reach it */
-@media (max-width: 900px), (max-height: 640px) {
-  .steps-scroll { height: auto; padding: 64px 0; }
-  .ss-sticky { position: static; height: auto; display: block; padding: 0; }
-  .ss-hint { display: none; }
-  .ss-line { left: 13px; right: auto; top: 30px; bottom: 30px; width: 4px; height: auto; }
-  .ss-fill { transform-origin: top; transform: scaleY(var(--p)); }
-  .ss-dot { left: 50%; top: calc(var(--p) * 100%); }
-  .ss-steps { grid-template-columns: 1fr; padding: 0 0 0 40px; gap: 22px; }
-  .ss-step::before { left: -33px; top: 50%; margin: -7px 0 0; }
-  .ss-step.now { transform: rotate(0deg) scale(1.02); }
+@media (max-width: 860px) {
+  .ss-grid { grid-template-columns: 1fr; gap: 24px; }
+  .ss-side { position: static; }
+  .ss-navwrap, .ss-hint { display: none; }
+  .ss-steps { gap: 22px; padding: 0 0 0 30px; position: relative; }
+  .ss-steps::before { content: ""; position: absolute; left: 8px; top: 20px; bottom: 20px; width: 4px; border-radius: 4px; background: linear-gradient(180deg, var(--coral), var(--yellow), var(--blue)); opacity: .5; }
+  .ss-step { grid-template-columns: 1fr; gap: 14px; transform: translateY(30px); }
+  .ss-step::before { content: ""; position: absolute; left: -29px; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; background: var(--paper); border: 3px solid var(--navy); }
+  .ss-step.on::before { background: var(--yellow); }
+  .ss-step .ss-art { height: 100px; }
 }
 @media (prefers-reduced-motion: reduce) { .ss-step, .ss-step * { transition: none !important; } }
 .req-cta { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
