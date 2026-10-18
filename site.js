@@ -467,3 +467,28 @@
   dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
 })();
+
+/* ---- request steps: light up as you scroll ---- */
+(function () {
+  var sec = document.getElementById("how"); if (!sec || !sec.classList.contains("steps-scroll")) return;
+  var steps = sec.querySelectorAll(".ss-step"), sticky = sec.querySelector(".ss-sticky"), n = steps.length, ticking = false;
+  function update() {
+    ticking = false;
+    var r = sec.getBoundingClientRect(), vh = window.innerHeight, p, pinned = getComputedStyle(sticky).position === "sticky";
+    if (pinned) p = (-r.top) / Math.max(1, r.height - vh);
+    else p = (vh * 0.65 - r.top) / Math.max(1, r.height);
+    p = Math.max(0, Math.min(1, p));
+    sec.style.setProperty("--p", p.toFixed(4));
+    var cur = -1;
+    steps.forEach(function (s, i) {
+      var on = pinned ? p >= i / (n - 1) * 0.94 - 0.01 : s.getBoundingClientRect().top < vh * 0.8;
+      s.classList.toggle("on", on); if (on) cur = i;
+    });
+    steps.forEach(function (s, i) { s.classList.toggle("now", i === cur); });
+    sec.classList.toggle("is-done", cur === n - 1);
+  }
+  function req() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener("scroll", req, { passive: true });
+  window.addEventListener("resize", req);
+  update();
+})();

@@ -70,72 +70,65 @@
       </div>
     </section>
 
-    <section class="section section-sand">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">How it works</p>
-          <h2>From request to finished design</h2>
+    <section class="steps-scroll" id="how">
+      <div class="ss-sticky">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">How it works</p>
+            <h2>From request to finished design</h2>
+            <p class="muted ss-hint">Keep scrolling &darr;</p>
+          </div>
+          <div class="ss-track">
+            <div class="ss-line" aria-hidden="true"><span class="ss-fill"></span><span class="ss-dot"></span></div>
+            <ol class="ss-steps">
+              <li class="ss-step">
+                <div class="ss-art ss-art-form" aria-hidden="true"><i></i><i></i><i class="short"></i><b>&#10003;</b></div>
+                <p class="ss-num">01</p><h3>Sign up</h3><p>Fill out our business sign-up form: who you are, what you need, when you need it.</p>
+              </li>
+              <li class="ss-step">
+                <div class="ss-art ss-art-match" aria-hidden="true"><span class="a">You</span><span class="link"></span><span class="b">AIA</span></div>
+                <p class="ss-num">02</p><h3>We match a designer</h3><p>Our team reviews your request and pairs you with a member designer.</p>
+              </li>
+              <li class="ss-step">
+                <div class="ss-art ss-art-chat" aria-hidden="true"><span>love the colors!</span><span class="me">maybe bolder font?</span></div>
+                <p class="ss-num">03</p><h3>Drafts + feedback</h3><p>You see first drafts and tell us what to change, as many rounds as it takes.</p>
+              </li>
+              <li class="ss-step">
+                <div class="ss-art ss-art-files" aria-hidden="true"><span>PNG</span><span>PDF</span><span>SVG</span></div>
+                <p class="ss-num">04</p><h3>Get your files</h3><p>Final files arrive ready to print or post. Most projects take 1&ndash;3 weeks.</p>
+              </li>
+              <li class="ss-step">
+                <div class="ss-art ss-art-star" aria-hidden="true">&#9733;</div>
+                <p class="ss-num">05</p><h3>Join the sketchbook</h3><p>Your project goes in our portfolio, alongside Essentia, AYLUS and more.</p>
+              </li>
+            </ol>
+          </div>
         </div>
-        <ol class="steps">
-          <li><h3>Send a request</h3><p>Fill out the form below with what you need and when you need it.</p></li>
-          <li><h3>We match a designer</h3><p>Our team reviews it and pairs you with a member designer.</p></li>
-          <li><h3>Review drafts</h3><p>You see a first draft and tell us what to change.</p></li>
-          <li><h3>Get your files</h3><p>We send the final files, ready to print or post.</p></li>
-        </ol>
       </div>
     </section>
 
-    <!-- ===== FORM: opens the visitor's email app with everything filled in.
-         To collect requests in a spreadsheet instead, make a free form at formspree.io,
-         set action="https://formspree.io/f/YOUR_ID" method="POST" on the form,
-         and delete the <script> below. ===== -->
-    <section class="section">
-      <div class="wrap two-col">
+    <section class="section section-navy req-cta-sec">
+      <div class="wrap req-cta">
         <div class="stack">
-          <p class="eyebrow">Design request</p>
-          <h2>What can we make for you?</h2>
-          <p class="muted">We work with small businesses, nonprofits and student-led organizations. Most projects take 1&ndash;3 weeks depending on size.</p>
-          <p class="muted">Questions first? Email <a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a>.</p>
-          <p class="muted">Prefer Google Forms? <a href="https://forms.gle/tAv5Q9USYbYPGUPt8" target="_blank" rel="noopener">Use our services request form</a>.</p>
+          <p class="eyebrow">Ready?</p>
+          <h2>Sign up for a free design</h2>
+          <p>Small businesses, nonprofits and student organizations sign up through our business design form. It takes about five minutes.</p>
+          <ul class="req-have">
+            <li>Your logo or brand colors, if you have them</li>
+            <li>What you need: logo, flyer, social posts, banner, packaging&hellip;</li>
+            <li>A rough deadline</li>
+            <li>A few designs you like, for inspiration</li>
+          </ul>
         </div>
-        <form class="form" id="request-form">
-          <div class="field"><label for="r-name">Your name</label><input id="r-name" name="name" required autocomplete="name"></div>
-          <div class="field"><label for="r-email">Email</label><input id="r-email" name="email" type="email" required autocomplete="email"></div>
-          <div class="field"><label for="r-org">Business or organization</label><input id="r-org" name="organization" required autocomplete="organization"></div>
-          <div class="field"><label for="r-type">Type of organization</label>
-            <select id="r-type" name="org_type"><option>Small business</option><option>Nonprofit</option><option>Student club or organization</option><option>Other</option></select></div>
-          <fieldset class="field full"><legend>What do you need?</legend>
-            <div class="chips">
-              <label><input type="checkbox" name="needs" value="Logo"> Logo</label>
-              <label><input type="checkbox" name="needs" value="Flyer or poster"> Flyer or poster</label>
-              <label><input type="checkbox" name="needs" value="Social media graphics"> Social media graphics</label>
-              <label><input type="checkbox" name="needs" value="Branding kit"> Branding kit</label>
-              <label><input type="checkbox" name="needs" value="Menu or signage"> Menu or signage</label>
-              <label><input type="checkbox" name="needs" value="Other"> Other</label>
-            </div>
-          </fieldset>
-          <div class="field full"><label for="r-details">Tell us about the project</label><textarea id="r-details" name="details" required placeholder="What is it for, who is it for, and any colors or styles you like?"></textarea></div>
-          <div class="field"><label for="r-date">Ideal deadline</label><input id="r-date" name="deadline" type="date"><span class="hint">Optional</span></div>
-          <div class="field"><label for="r-link">Website or Instagram</label><input id="r-link" name="link" placeholder="@yourbusiness"><span class="hint">Optional</span></div>
-          <div class="full btn-row"><button class="btn" type="submit">Send request</button></div>
-          <p class="form-note">Sending opens your email app with your request filled in, addressed to artrepreneurship.initiative@gmail.com.</p>
-          <div class="form-result" id="r-result" hidden></div>
-        </form>
+        <div class="req-card">
+          <p class="req-free">100% free</p>
+          <p class="req-card-title">Business design sign-up</p>
+          <p class="muted">Opens our Google Form in a new tab.</p>
+          <a class="btn btn-big" href="https://forms.gle/tAv5Q9USYbYPGUPt8" target="_blank" rel="noopener">Open the sign-up form &nearr;</a>
+          <p class="muted small">Questions first? Email <a href="mailto:artrepreneurship.initiative@gmail.com">artrepreneurship.initiative@gmail.com</a>.</p>
+        </div>
       </div>
     </section>
-
-    <script>
-      document.getElementById("request-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        var f = e.target, v = function (n) { return (f.elements[n] && f.elements[n].value || "").trim(); };
-        var needs = Array.prototype.slice.call(f.querySelectorAll('input[name="needs"]:checked')).map(function (c) { return c.value; }).join(", ") || "Not specified";
-        var body = ["Name: " + v("name"), "Email: " + v("email"), "Organization: " + v("organization") + " (" + v("org_type") + ")",
-          "Needs: " + needs, "Deadline: " + (v("deadline") || "Flexible"), "Link: " + (v("link") || "-"), "", v("details")].join("\n");
-        window.location.href = "mailto:artrepreneurship.initiative@gmail.com?subject=" + encodeURIComponent("Design request: " + v("organization")) + "&body=" + encodeURIComponent(body);
-        var r = document.getElementById("r-result"); r.hidden = false;
-        r.textContent = "Your email app should open with the request ready to send. If it didn't, email the details to artrepreneurship.initiative@gmail.com.";
-      });
-    </script>
 
   </main>
 
