@@ -474,14 +474,14 @@
   var list = sec.querySelector(".ss-steps"), steps = sec.querySelectorAll(".ss-step"), nav = sec.querySelectorAll(".ss-nav li"), n = steps.length, ticking = false;
   function update() {
     ticking = false;
-    var vh = window.innerHeight, line = vh * 0.55, cur = -1;
+    var vh = window.innerHeight, line = vh * 0.6, cur = -1;
     steps.forEach(function (s, i) {
-      var r = s.getBoundingClientRect(), on = r.top + r.height * 0.4 < line;
+      var r = s.getBoundingClientRect(), on = r.top + r.height * 0.5 < line;
       s.classList.toggle("on", on); if (nav[i]) nav[i].classList.toggle("on", on); if (on) cur = i;
     });
     steps.forEach(function (s, i) { s.classList.toggle("now", i === cur); if (nav[i]) nav[i].classList.toggle("now", i === cur); });
     var first = steps[0].getBoundingClientRect(), last = steps[n - 1].getBoundingClientRect();
-    var a = first.top + first.height * 0.4, b = last.top + last.height * 0.4;
+    var a = first.top + first.height * 0.5, b = last.top + last.height * 0.5;
     sec.style.setProperty("--p", Math.max(0, Math.min(1, (line - a) / Math.max(1, b - a))).toFixed(4));
     sec.classList.toggle("is-done", cur === n - 1);
   }
