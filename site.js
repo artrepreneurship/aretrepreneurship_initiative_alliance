@@ -39,48 +39,63 @@
     var cards = Array.prototype.slice.call(stage.querySelectorAll(".pcard"));
     var inners = cards.map(function (c) { return c.querySelector(".pcard-inner"); });
     var hint = document.getElementById("team-hint");
-    var wide = window.matchMedia("(min-width: 760px) and (min-height: 620px)");
-    var offs = [], flipIO = null, n = cards.length;
-    var START = 0.03, SPAN = 0.76, SEG = SPAN / n, SPREAD = 0.82;
+    var wide = window.matchMedia("(min-width: 1100px) and (min-height: 560px), (min-width: 760px) and (min-height: 780px)");
+    var flipIO = null, n = cards.length;
+    // timeline (0-1 through the section): shuffle each card out and back onto the deck, then deal them into the grid
+    var START = 0.03, SPREAD_LEN = 0.14, LEAD = 0.32, HOLD_END = 0.78;
+    var SEG = (0.98 - SPREAD_LEN - START) / (n - 1 + HOLD_END + LEAD);
+    var SPREAD = START + (n - 1 + HOLD_END + LEAD) * SEG;
+    var JR = [-3, 2.5, -1.5, 3, -2.5, 1.5, -0.5, 2, -2], JX = [-6, 5, -3, 7, -5, 3, 0, 4, -4];
     var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
     var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
     var mix = function (a, b, t) { var o = {}; for (var k in a) o[k] = a[k] + (b[k] - a[k]) * t; return o; };
 
-    function clearT() { cards.forEach(function (c, i) { c.style.transform = ""; c.style.zIndex = ""; c.style.opacity = ""; inners[i].style.transform = ""; }); }
-    function measure() {
-      clearT();
-      var g = stage.querySelector(".pgrid").getBoundingClientRect();
-      var gx = g.left + g.width / 2, gy = g.top + g.height / 2;
-      offs = cards.map(function (c) { var r = c.getBoundingClientRect(); return [gx - (r.left + r.width / 2), gy - (r.top + r.height / 2)]; });
+    function clearT() { cards.forEach(function (c, i) { c.style.transform = ""; c.style.zIndex = ""; inners[i].style.transform = ""; }); }
+    // offsets from each card's home slot to the middle of the grid, read from layout (never affected by transforms)
+    function offsets() {
+      var g = stage.querySelector(".pgrid"), gx = g.offsetWidth / 2, gy = g.offsetHeight / 2;
+      return cards.map(function (c) { return [gx - (c.offsetLeft + c.offsetWidth / 2), gy - (c.offsetTop + c.offsetHeight / 2)]; });
     }
     function tick() {
       if (!stage.classList.contains("scrolly")) return;
       var r = stage.getBoundingClientRect(), total = stage.offsetHeight - window.innerHeight;
+      if (r.bottom < -50 || r.top > window.innerHeight + 50) return;   // off screen: nothing to do
       var p = clamp(-r.top / Math.max(1, total));
-      var pileX = -Math.min(360, window.innerWidth * 0.27), spotX = Math.min(90, window.innerWidth * 0.06);
-      var spread = ease(clamp((p - SPREAD) / 0.15));
+      var offs = offsets(), vw = window.innerWidth, vh = window.innerHeight;
+      var cw = cards[0].offsetWidth;
+      var head = stage.querySelector(".section-head").getBoundingClientRect();
+      var box = stage.querySelector(".team-sticky").getBoundingClientRect();
+      var gr = stage.querySelector(".pgrid").getBoundingClientRect();
+      var cw = cards[0].offsetWidth, ch = cards[0].offsetHeight;
+      var room = box.bottom - head.bottom - 24;
+      var S = Math.max(1, Math.min(1.45, room / ch));
+      var lift = (head.bottom + 12 + room / 2) - (gr.top + gr.height / 2);
+      var spread = ease(clamp((p - SPREAD) / SPREAD_LEN));
       var current = -1;
       cards.forEach(function (c, i) {
-        var ox = offs[i][0], oy = offs[i][1];
-        var waiting = { x: ox + spotX + 40, y: oy + window.innerHeight * 0.65, s: 1.25, r: 10, f: 180, o: 0 };
-        var spot = { x: ox + spotX, y: oy, s: 1.45, r: 0, f: 0, o: 1 };
-        var pile = { x: ox + pileX + i * 6, y: oy + 8 - i * 4, s: 0.78, r: (i - (n - 1) / 2) * 4, f: 0, o: 1 };
-        var home = { x: 0, y: 0, s: 1, r: 0, f: 0, o: 1 };
-        var t = (p - (START + i * SEG)) / SEG, st;
-        if (t < 0) st = waiting;
-        else if (t < 0.32) st = mix(waiting, spot, ease(t / 0.32));
-        else if (t < 0.7) st = spot;
-        else if (t < 1) st = mix(spot, pile, ease((t - 0.7) / 0.3));
-        else st = pile;
-        if (t >= 0 && t < 1) current = i;
+        var ox = offs[i][0], oy = offs[i][1] + lift;
+        var side = i % 2 === 0 ? 1 : -1;
+        var deck = { x: ox + (n - i) * 0.8, y: oy - (n - i) * 1.6, s: S, r: (i % 3 - 1) * 1.2, f: 180 };
+        var out = { x: ox + side * cw * S * 0.95, y: oy - 22, s: S * 1.02, r: side * 10, f: 0 };
+        var top = { x: ox + JX[i % JX.length], y: oy, s: S, r: JR[i % JR.length], f: 0 };
+        var home = { x: 0, y: 0, s: 1, r: 0, f: 0 };
+        var t = (p - START) / SEG - LEAD - i, st, z, last = i === n - 1;
+        if (t < -LEAD) { st = deck; z = 10 + i; }
+        else if (t < -0.08) {                         // slide out of the deck and flip face-up
+          var k = (t + LEAD) / (LEAD - 0.08);
+          st = mix(deck, out, ease(k)); st.f = 180 * (1 - ease(clamp(k * 1.15))); z = 9;
+        }
+        else if (t < 0.12) { st = mix(out, top, ease((t + 0.08) / 0.2)); z = 100 + i; }   // tuck back on top
+        else { st = top; z = 100 + i; }
+        if (t >= -0.08) current = Math.max(current, i);
+        home.f = 0;
         if (spread > 0) st = mix(st, home, spread);
-        c.style.transform = "translate(" + st.x + "px," + st.y + "px) rotate(" + st.r + "deg) scale(" + st.s + ")";
-        c.style.opacity = st.o;
-        inners[i].style.transform = "rotateY(" + st.f + "deg)";
-        c.style.zIndex = spread >= 1 ? "" : (t >= 0 && t < 1 ? 50 : i + 1);
+        c.style.transform = "translate3d(" + st.x.toFixed(1) + "px," + st.y.toFixed(1) + "px,0) rotate(" + st.r.toFixed(2) + "deg) scale(" + st.s.toFixed(3) + ")";
+        inners[i].style.transform = "rotateY(" + st.f.toFixed(1) + "deg)";
+        c.style.zIndex = spread > 0.6 ? "" : String(z);
       });
       if (hint) {
-        var txt = p >= SPREAD ? "The whole crew." : current >= 0 ? "Meet the team · " + String(current + 1).padStart(2, "0") + " / " + String(n).padStart(2, "0") : "Scroll to meet everyone, one by one.";
+        var txt = p >= SPREAD ? "The whole crew." : current >= 0 || p > START ? "Meet the team · " + String(Math.max(current, 0) + 1).padStart(2, "0") + " / " + String(n).padStart(2, "0") : "Scroll to meet everyone, one by one.";
         if (hint.textContent !== txt) hint.textContent = txt;
       }
     }
@@ -93,7 +108,7 @@
       if (wide.matches) {
         stage.classList.add("scrolly");
         stage.style.height = (100 + n * 75 + 90) + "vh";
-        measure(); tick();
+        tick();
       } else if ("IntersectionObserver" in window) {
         stage.classList.add("flippy");
         flipIO = new IntersectionObserver(function (es) {
@@ -103,9 +118,19 @@
       }
     }
     setup();
-    window.addEventListener("scroll", function () { requestAnimationFrame(tick); }, { passive: true });
-    var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(setup, 150); });
+    var queued = false;
+    function queue() { if (!queued) { queued = true; requestAnimationFrame(function () { queued = false; tick(); }); } }
+    window.addEventListener("scroll", queue, { passive: true });
+    if (lenis) lenis.on("scroll", queue);
+    var lastW = window.innerWidth, rt;
+    window.addEventListener("resize", function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () {
+        if (window.innerWidth !== lastW) { lastW = window.innerWidth; setup(); } else queue();
+      }, 150);
+    });
     if (wide.addEventListener) wide.addEventListener("change", setup);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(queue);
   }
 
   /* ---------- page transitions: color panels sweep in before leaving, then off the next page ---------- */

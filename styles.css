@@ -609,6 +609,13 @@ html.lenis, html.lenis body { height: auto; }
 .team-stage { position: relative; padding-block: 72px; background: linear-gradient(180deg, var(--cream), var(--sand)); }
 .pgrid { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; max-width: 830px; margin-inline: auto; }
 .pcard { width: 190px; }
+.team-stage.scrolly { --pw: min(190px, 19vh); --pg: clamp(12px, 2.4vh, 22px); }
+@media (min-width: 1100px) { .team-stage.scrolly .wrap { max-width: 1440px; } .team-stage.scrolly { --pw: min(185px, calc((min(100vw, 1440px) - 64px - 6 * var(--pg)) / 7), 24vh); } .team-stage.scrolly .pgrid { max-width: none !important; flex-wrap: nowrap; } }
+.team-stage.scrolly .pcard { width: var(--pw); }
+.team-stage.scrolly .pgrid { max-width: calc(var(--pw) * 4 + var(--pg) * 3 + 2px); }
+.team-stage.scrolly .team-sticky { overflow: clip; }
+.team-stage.scrolly .section-head { margin-bottom: clamp(1rem, 4vh, 2.6rem); }
+.team-stage.scrolly .pgrid { gap: var(--pg); position: relative; }
 .pcard { perspective: 1200px; }
 .pcard-inner { position: relative; display: grid; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
 .pface { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 8px; overflow: hidden; background: var(--paper); box-shadow: 0 20px 36px -24px rgba(0,0,0,.55); border: 1px solid var(--line); }
@@ -629,8 +636,10 @@ html.lenis, html.lenis body { height: auto; }
 .team-stage.scrolly .pcard { transform-origin: center; }
 .team-stage.scrolly .team-hint { font-family: var(--mono); font-size: .85rem; color: var(--coral-text); }
 .team-stage.scrolly .team-sticky { position: sticky; top: 72px; height: calc(100vh - 72px); display: flex; align-items: center; }
+.team-stage .pgrid { position: relative; }
 .team-stage.scrolly .team-sticky > .wrap { width: 100%; }
 .team-stage.scrolly .pcard { will-change: transform; }
+.team-stage.scrolly .pcard-inner { transition: none; }
 /* simple version (phones): each card flips as it scrolls in */
 .team-stage.flippy .pcard .pcard-inner { transform: rotateY(180deg); }
 .team-stage.flippy .pcard.shown .pcard-inner { transform: none; }
