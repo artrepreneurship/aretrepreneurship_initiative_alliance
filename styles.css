@@ -722,18 +722,18 @@ html.lenis, html.lenis body { height: auto; }
 .wipe i:nth-child(4) { background: var(--navy); }
 .wipe img { position: absolute; left: 50%; top: 50%; width: 64px; margin: -42px 0 0 -32px; opacity: 0; filter: drop-shadow(0 6px 18px rgba(0,0,0,.25)); }
 .is-leaving .wipe, .is-arriving .wipe { visibility: visible; pointer-events: auto; }
-.is-leaving .wipe i { animation: wipeUp .5s cubic-bezier(.7,0,.3,1) forwards; }
-.is-leaving .wipe i:nth-child(2) { animation-delay: .05s; }
-.is-leaving .wipe i:nth-child(3) { animation-delay: .1s; }
-.is-leaving .wipe i:nth-child(4) { animation-delay: .15s; }
-.is-leaving .wipe img { animation: fadeLogo .3s .35s forwards; }
+.is-leaving .wipe i { animation: wipeUp .34s cubic-bezier(.65,0,.35,1) forwards; }
+.is-leaving .wipe i:nth-child(2) { animation-delay: .04s; }
+.is-leaving .wipe i:nth-child(3) { animation-delay: .08s; }
+.is-leaving .wipe i:nth-child(4) { animation-delay: .12s; }
+.is-leaving .wipe img { animation: fadeLogo .2s .26s forwards; }
 .is-arriving .wipe i { transform: scaleY(1); transform-origin: top; }
 .is-arriving .wipe img { opacity: 1; }
-.is-arriving.wipe-out .wipe i { animation: wipeOff .55s cubic-bezier(.7,0,.3,1) forwards; }
-.is-arriving.wipe-out .wipe i:nth-child(2) { animation-delay: .05s; }
-.is-arriving.wipe-out .wipe i:nth-child(3) { animation-delay: .1s; }
-.is-arriving.wipe-out .wipe i:nth-child(4) { animation-delay: .15s; }
-.is-arriving.wipe-out .wipe img { transition: opacity .2s; opacity: 0; }
+.is-arriving.wipe-out .wipe i { animation: wipeOff .38s cubic-bezier(.65,0,.35,1) forwards; }
+.is-arriving.wipe-out .wipe i:nth-child(2) { animation-delay: .04s; }
+.is-arriving.wipe-out .wipe i:nth-child(3) { animation-delay: .08s; }
+.is-arriving.wipe-out .wipe i:nth-child(4) { animation-delay: .12s; }
+.is-arriving.wipe-out .wipe img { transition: opacity .15s; opacity: 0; }
 @keyframes wipeUp { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @keyframes wipeOff { from { transform: scaleY(1); } to { transform: scaleY(0); } }
 @keyframes fadeLogo { to { opacity: 1; } }

@@ -107,7 +107,7 @@
       if (reduce) return;
       if (wide.matches) {
         stage.classList.add("scrolly");
-        stage.style.height = (100 + n * 75 + 90) + "vh";
+        stage.style.height = (100 + n * 55 + 70) + "vh";
         tick();
       } else if ("IntersectionObserver" in window) {
         stage.classList.add("flippy");
@@ -139,8 +139,8 @@
       requestAnimationFrame(function () {
         setTimeout(function () {
           root.classList.add("wipe-out");
-          setTimeout(function () { root.classList.remove("is-arriving", "wipe-out"); }, 800);
-        }, 120);
+          setTimeout(function () { root.classList.remove("is-arriving", "wipe-out"); }, 560);
+        }, 60);
       });
     }
     document.addEventListener("click", function (e) {
@@ -153,7 +153,7 @@
       e.preventDefault();
       try { sessionStorage.setItem("aia-nav", "1"); } catch (err) {}
       root.classList.add("is-leaving");
-      setTimeout(function () { location.href = url.href; }, 620);
+      setTimeout(function () { location.href = url.href; }, 500);   // bars finish at 0.46s
     });
     window.addEventListener("pageshow", function (e) { if (e.persisted) root.classList.remove("is-leaving", "is-arriving", "wipe-out"); });
   }
