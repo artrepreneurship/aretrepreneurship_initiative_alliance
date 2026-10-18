@@ -227,6 +227,14 @@
     document.addEventListener("mouseover", function (e) {
       ring.classList.toggle("hover", !!e.target.closest("a, button, label, .card, .marquee"));
     });
+    /* pop-ups (lightbox, partner cards) sit in the browser's top layer, above everything;
+       move the cursor inside the open one so it stays visible */
+    function home() {
+      var open = document.querySelector("dialog[open]");
+      var host = open || document.body;
+      if (dot.parentNode !== host) { host.appendChild(dot); host.appendChild(ring); }
+    }
+    new MutationObserver(home).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["open"] });
   }
 })();
 
