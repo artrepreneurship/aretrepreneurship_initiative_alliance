@@ -1192,3 +1192,20 @@ html.lenis, html.lenis body { height: auto; }
 @media (max-width: 700px) { .ws-stats { grid-template-columns: 1fr 1fr; } .ws-speakers { grid-template-columns: 1fr; } .ws-recap img { width: 220px; } }
 .nb-section:has(.flipbook.is-full), .nb-section.has-full { z-index: 300; overflow: visible; isolation: auto; }
 .nb-section:has(.flipbook.is-full)::before, .nb-section.has-full::before { display: none; }
+
+/* ---- sketchbook v5: wide, tall + mini photos ---- */
+.nb-photo.nb-wide { width: 372px; margin: 120px auto 0; }
+.nb-photo.nb-wide img, .nb-photo.nb-tall img, .nb-photo.nb-mini img { aspect-ratio: auto; height: auto; object-fit: contain; }
+.nb-photo.nb-tall { width: 300px; margin: 4px auto 0; }
+.nb-photo.nb-mini { width: 250px; margin: 14px 0 10px 14px; padding: 7px; }
+.nb-tag { position: absolute; left: 22px; bottom: 6px; }
+
+/* ---- YPL: program facts + promos ---- */
+.ypl-promos { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.ypl-facts { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; margin: 6px 0 4px; }
+.ypl-facts li { padding-left: 22px; position: relative; line-height: 1.5; }
+.ypl-facts li::before { content: ""; position: absolute; left: 0; top: .55em; width: 10px; height: 10px; border-radius: 50%; background: var(--coral); }
+.ypl-posters { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.ypl-posters .snap img { aspect-ratio: auto; height: auto; }
+.ypl-posters .snap:last-child { margin-top: 48px; }
+@media (max-width: 860px) { .ypl-promos { grid-template-columns: 1fr; } }
