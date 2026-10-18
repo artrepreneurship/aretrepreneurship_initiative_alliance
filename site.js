@@ -160,7 +160,7 @@
 
   /* ---------- reveal sections as they scroll in ---------- */
   if (!reduce && "IntersectionObserver" in window) {
-    var items = document.querySelectorAll("main > section:not(.team-stage) .section-head, .split-head, .card, .case-card, .tile, .benefit, .partner-wall li, .comment, .brief, .mini-event, .steps li, .res-list li, .two-col > *, .form, .postcard, .cta, .notebook, .ypl-teaser");
+    var items = document.querySelectorAll("main > section:not(.team-stage) .section-head, .split-head, .card, .case-card, .tile, .benefit, .partner-wall li, .comment, .brief, .mini-event, .steps li, .res-list li, .two-col > *, .form, .postcard, .cta, .ypl-teaser, .tl-card, .snap, .pol-wall li, .values li");
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) {
@@ -200,5 +200,115 @@
     document.addEventListener("mouseover", function (e) {
       ring.classList.toggle("hover", !!e.target.closest("a, button, label, .card, .marquee"));
     });
+  }
+})();
+
+/* ---------- sketchbook flip-book + partner cards ---------- */
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll(".flipbook").forEach(function (fb) {
+    var book = fb.querySelector(".book"), leaves = Array.prototype.slice.call(fb.querySelectorAll(".leaf"));
+    var mbook = fb.querySelector(".mbook"), mpages = Array.prototype.slice.call(fb.querySelectorAll(".mpage"));
+    var prev = fb.querySelector('[data-dir="-1"]'), next = fb.querySelector('[data-dir="1"]'), count = fb.querySelector(".book-count");
+    var n = leaves.length, cur = 0, mobile = false;
+
+    function size() {
+      var w = fb.clientWidth;
+      mobile = window.matchMedia("(max-width: 760px)").matches;
+      var pw = mobile ? Math.min(w * 0.82, 360) : Math.min(470, Math.floor((w - 8) / 2));
+      fb.style.setProperty("--pw", pw + "px");
+      fb.style.setProperty("--k", (pw / 460).toFixed(4));
+      update(true);
+    }
+    function label(i) {
+      if (i === 0) return "Cover";
+      if (i === n) return "Back cover";
+      return "Pages " + (i * 2 - 1) + "–" + (i * 2) + " of " + ((n - 1) * 2);
+    }
+    function update(instant) {
+      if (mobile) {
+        var mi = Math.round(mbook.scrollLeft / Math.max(1, mpages[0].offsetWidth + 16));
+        count.textContent = mi === 0 ? "Cover" : "Page " + mi + " of " + (mpages.length - 1);
+        prev.disabled = mi <= 0; next.disabled = mi >= mpages.length - 1;
+        return;
+      }
+      leaves.forEach(function (lf, i) {
+        var flipped = i < cur;
+        lf.classList.toggle("flipped", flipped);
+        lf.style.zIndex = flipped ? i + 1 : n - i + 1;
+      });
+      book.classList.toggle("is-open", cur > 0 && cur < n);
+      book.classList.toggle("is-end", cur === n);
+      count.textContent = label(cur);
+      prev.disabled = cur === 0; next.disabled = cur === n;
+    }
+    function go(d) {
+      if (mobile) {
+        var step = mpages[0].offsetWidth + 16;
+        mbook.scrollBy({ left: d * step, behavior: reduce ? "auto" : "smooth" });
+        return;
+      }
+      var to = Math.max(0, Math.min(n, cur + d));
+      if (to === cur) return;
+      var lf = leaves[d > 0 ? cur : cur - 1];
+      lf.style.zIndex = 100; lf.classList.add("turning");
+      setTimeout(function () { lf.classList.remove("turning"); }, 1000);
+      cur = to;
+      leaves.forEach(function (l, i) { if (l !== lf) l.style.zIndex = i < cur ? i + 1 : n - i + 1; });
+      lf.classList.toggle("flipped", d > 0);
+      book.classList.toggle("is-open", cur > 0 && cur < n);
+      book.classList.toggle("is-end", cur === n);
+      count.textContent = label(cur);
+      prev.disabled = cur === 0; next.disabled = cur === n;
+      setTimeout(function () { lf.style.zIndex = d > 0 ? leaves.indexOf(lf) + 1 : n - leaves.indexOf(lf) + 1; }, 950);
+    }
+    prev.addEventListener("click", function () { go(-1); });
+    next.addEventListener("click", function () { go(1); });
+    // click a page: right side goes forward, left side goes back (links inside pages still work)
+    leaves.forEach(function (lf, i) {
+      lf.addEventListener("click", function (e) {
+        if (e.target.closest("a")) return;
+        go(i < cur ? -1 : 1);
+      });
+    });
+    // swipe / drag
+    var sx = null;
+    book.addEventListener("pointerdown", function (e) { sx = e.clientX; });
+    book.addEventListener("pointerup", function (e) {
+      if (sx === null) return;
+      var dx = e.clientX - sx; sx = null;
+      if (Math.abs(dx) > 40) { go(dx < 0 ? 1 : -1); e.preventDefault(); }
+    });
+    fb.setAttribute("tabindex", "0");
+    fb.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { go(1); e.preventDefault(); }
+      if (e.key === "ArrowLeft") { go(-1); e.preventDefault(); }
+    });
+    mbook.addEventListener("scroll", function () { requestAnimationFrame(function () { update(); }); }, { passive: true });
+    var lastW = 0;
+    window.addEventListener("resize", function () { if (fb.clientWidth !== lastW) { lastW = fb.clientWidth; size(); } });
+    size(); lastW = fb.clientWidth;
+  });
+
+  /* partner polaroids -> detail card */
+  var dataEl = document.getElementById("partner-data"), dlg = document.querySelector(".pol-dialog");
+  if (dataEl && dlg) {
+    var data = JSON.parse(dataEl.textContent);
+    var q = function (s) { return dlg.querySelector(s); };
+    document.querySelectorAll("[data-partner]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var d = data[+btn.dataset.partner];
+        q(".pd-pic").innerHTML = d.img ? '<img src="' + d.img + '" alt="' + d.name + '">' : '<span class="pol-initials">' + d.name.split(" ").slice(0, 2).map(function (w) { return w[0]; }).join("") + "</span>";
+        q(".pd-kind").textContent = d.kind;
+        q("#pd-name").textContent = d.name;
+        q(".pd-made").innerHTML = "<b>What we made:</b> " + d.made;
+        q(".pd-quote").innerHTML = d.quote; q(".pd-quote").hidden = !d.quote;
+        q(".pd-link").href = d.link || "#"; q(".pd-link").hidden = !d.link;
+        if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+      });
+    });
+    q(".pd-close").addEventListener("click", function () { dlg.close ? dlg.close() : dlg.removeAttribute("open"); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
   }
 })();

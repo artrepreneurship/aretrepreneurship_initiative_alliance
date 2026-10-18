@@ -14,17 +14,17 @@ var EVENTS = [
     place: "Hackensack, NJ",
     type: "Workshop",
     desc: "A hands-on workshop for youth on entrepreneurship, financial literacy and creative skills."
-  }
-  /* Add past events like this (remove the slash-star marks around it):
-  ,{
-    title: "Holiday Card-Making",
-    date: "2025-12-06",
-    time: "2:00 PM",
+  },
+  {
+    title: "PPO Picnic Booth",
+    date: "2025-05-18",
     place: "Bergen County, NJ",
-    type: "Volunteering",
-    desc: "Members made cards for local seniors."
+    type: "Community event",
+    desc: "Spin-the-wheel, a gachapon machine and a table of keychains handmade by members.",
+    img: "assets/events/ppo-picnic-booth.webp"
   }
-  */
+  /* To add an event, copy a { ... } block above, put a comma between blocks, and change it.
+     img is optional: put a photo in assets/events/ and write its path. */
 ];
 
 (function () {
@@ -57,13 +57,15 @@ var EVENTS = [
         '<p class="muted">' + fill(feature.desc) + "</p>" +
         (feature.link ? '<div class="btn-row"><a class="btn" href="' + esc(feature.link) + '" target="_blank" rel="noopener">Sign up</a></div>' : "") +
       "</div>" +
-      '<div class="brief-art" aria-hidden="true"><div class="s1"></div><div class="s2"></div><p class="big-date"><span>' +
-        MONTHS[feature.d.getMonth()].toUpperCase() + "</span><strong>" + feature.d.getDate() + "</strong></p></div>";
+      (feature.img
+        ? '<div class="brief-art brief-photo"><img src="' + esc(feature.img) + '" alt="' + esc(feature.title) + '"><p class="date-chip"><b>' + feature.d.getDate() + "</b>" + MONTHS[feature.d.getMonth()].slice(0, 3) + "</p></div>"
+        : '<div class="brief-art" aria-hidden="true"><div class="s1"></div><div class="s2"></div><p class="big-date"><span>' +
+          MONTHS[feature.d.getMonth()].toUpperCase() + "</span><strong>" + feature.d.getDate() + "</strong></p></div>");
   }
   var more = document.getElementById("event-more");
   if (more) {
     more.innerHTML = others.length ? others.map(function (e) {
-      return '<article class="mini-event"><p class="cal-chip"><b>' + e.d.getDate() + "</b>" + MONTHS[e.d.getMonth()].slice(0, 3) + " " + e.d.getFullYear() +
+      return '<article class="mini-event' + (e.img ? " has-img" : "") + '">' + (e.img ? '<img class="mini-img" src="' + esc(e.img) + '" alt="" loading="lazy">' : "") + '<p class="cal-chip"><b>' + e.d.getDate() + "</b>" + MONTHS[e.d.getMonth()].slice(0, 3) + " " + e.d.getFullYear() +
         '</p><div><span class="cat">' + esc(e.type) + "</span><h4>" + esc(e.title) + '</h4><p class="muted">' + fill(e.place) + "</p></div></article>";
     }).join("") : '<p class="muted small">More past events will show up here as they are added.</p>';
   }
