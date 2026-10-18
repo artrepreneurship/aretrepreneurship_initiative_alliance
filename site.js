@@ -81,7 +81,7 @@
       // during the shuffle each card shows as a horizontal postcard (the .pcard-inner); size it to fit
       var pw = inners[0].offsetWidth, ph = inners[0].offsetHeight;
       var room = box.bottom - head.bottom - 28;
-      var S = Math.max(.8, Math.min(1.35, room / ph, (vw * 0.62) / pw));
+      var S = Math.max(.8, Math.min(2.4, room / ph, (vw * 0.7) / pw));
       var lift = (head.bottom + 14 + room / 2) - (gr.top + gr.height / 2);
       var spread = ease(clamp((p - SPREAD) / SPREAD_LEN));
       var current = -1;
@@ -118,12 +118,20 @@
     }
     function setup() {
       if (latched) return;
+      stage.style.removeProperty("--gw"); stage.style.removeProperty("--g");
       stage.classList.remove("scrolly", "flippy");
       stage.style.height = "";
       if (flipIO) { flipIO.disconnect(); flipIO = null; }
       clearT();
       if (reduce) return;
       if (wide.matches) {
+        var wrap = stage.querySelector(".wrap"), head = stage.querySelector(".section-head");
+        var g = 22, cs = getComputedStyle(wrap);
+        var innerW = wrap.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        var headH = head.offsetHeight + 28;
+        var gw = Math.floor(Math.min(290, (innerW - 3 * g) / 4, ((window.innerHeight - 72) - headH - g - 56) / 2 / 1.25));
+        stage.style.setProperty("--gw", gw + "px");
+        stage.style.setProperty("--g", g + "px");
         stage.classList.add("scrolly");
         stage.style.height = (100 + n * 60 + 70) + "vh";
         tick();
@@ -237,7 +245,10 @@
       mobile = window.matchMedia("(max-width: 760px)").matches;
       // desktop: leave room for the side arrows, and keep the whole book on screen
       var byWidth = Math.floor((w - 2 * (54 + 18) - 8) / 2);
-      var byHeight = Math.floor((window.innerHeight - 190) / 1.3);
+      var sec = fb.closest("section"), head = sec && sec.querySelector(".section-head, .split-head");
+      var headH = head ? head.offsetHeight + parseFloat(getComputedStyle(head).marginBottom || 0) : 0;
+      // nav bar + heading + counter + breathing room must all fit on one screen
+      var byHeight = Math.floor((window.innerHeight - 72 - headH - 30 - 64) / 1.3);
       var pw = mobile ? Math.min(w * 0.82, 360) : Math.max(220, Math.min(470, byWidth, byHeight));
       fb.style.setProperty("--pw", pw + "px");
       fb.style.setProperty("--k", (pw / 460).toFixed(4));
@@ -361,5 +372,52 @@
       })(performance.now());
     }, { threshold: 0.6 });
     io.observe(el);
+  });
+})();
+
+/* ---------- slide deck viewer ---------- */
+(function () {
+  document.querySelectorAll(".deck").forEach(function (deck) {
+    var titles = JSON.parse(deck.dataset.titles), n = titles.length, cur = 0;
+    var img = deck.querySelector(".deck-img"), cap = deck.querySelector(".deck-caption");
+    var thumbs = Array.prototype.slice.call(deck.querySelectorAll(".deck-thumb"));
+    var pad = function (i) { return (i < 9 ? "0" : "") + (i + 1); };
+    // preload neighbours so flipping feels instant
+    function preload(i) { if (i >= 0 && i < n) { var im = new Image(); im.src = "assets/deck/slide-" + pad(i) + ".webp"; } }
+    function show(i, dir) {
+      cur = (i + n) % n;
+      img.classList.remove("in-l", "in-r"); void img.offsetWidth;
+      img.src = "assets/deck/slide-" + pad(cur) + ".webp";
+      img.alt = "Slide " + (cur + 1) + ": " + titles[cur].replace(/&[a-z]+;/g, " ");
+      if (dir) img.classList.add(dir > 0 ? "in-r" : "in-l");
+      cap.innerHTML = "<b>" + (cur + 1) + " / " + n + "</b> <span>" + titles[cur] + "</span>";
+      thumbs.forEach(function (t, k) { t.classList.toggle("on", k === cur); t.setAttribute("aria-current", k === cur ? "true" : "false"); });
+      var t = thumbs[cur], strip = t.parentElement;
+      strip.scrollTo({ left: t.offsetLeft - strip.clientWidth / 2 + t.offsetWidth / 2, behavior: "smooth" });
+      preload(cur + 1); preload(cur - 1);
+    }
+    deck.querySelectorAll(".deck-arrow").forEach(function (b) { b.addEventListener("click", function () { show(cur + +b.dataset.dir, +b.dataset.dir); }); });
+    thumbs.forEach(function (t) { t.addEventListener("click", function () { var i = +t.dataset.i; show(i, i > cur ? 1 : -1); }); });
+    document.querySelectorAll(".deck-jump").forEach(function (b) { b.addEventListener("click", function () { show(+b.dataset.i, 1); deck.scrollIntoView({ behavior: "smooth", block: "center" }); }); });
+    deck.setAttribute("tabindex", "0");
+    deck.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { show(cur + 1, 1); e.preventDefault(); }
+      if (e.key === "ArrowLeft") { show(cur - 1, -1); e.preventDefault(); }
+    });
+    var frame = deck.querySelector(".deck-frame"), sx = null;
+    frame.addEventListener("pointerdown", function (e) { sx = e.clientX; });
+    frame.addEventListener("pointerup", function (e) {
+      if (sx === null) return; var dx = e.clientX - sx; sx = null;
+      if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+      else if (!e.target.closest(".deck-full")) show(cur + 1, 1);    // tap the slide to go forward
+    });
+    var full = deck.querySelector(".deck-full");
+    full.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var el = deck.querySelector(".deck-stage");
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (el.requestFullscreen) el.requestFullscreen().catch(function () {});
+    });
+    show(0);
   });
 })();

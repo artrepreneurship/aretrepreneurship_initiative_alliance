@@ -1092,3 +1092,47 @@ html.lenis, html.lenis body { height: auto; }
 .post-about { font-size: calc(var(--gw) * .056); }
 .post-info .pcode { font-size: calc(var(--gw) * .042); }
 @media (max-width: 760px) { .g-about { font-size: calc(var(--gw) * .07); } }
+
+/* ---------- slide deck viewer ---------- */
+.deck { display: flex; flex-direction: column; gap: 16px; outline: none; }
+.deck-stage { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 18px; }
+.deck-stage:fullscreen { background: var(--ink); padding: 24px; }
+.deck-frame { position: relative; aspect-ratio: 16 / 9; background: var(--cream); border-radius: 14px; overflow: hidden; cursor: pointer;
+  box-shadow: 0 0 0 6px rgba(255,255,255,.08), 0 40px 70px -40px rgba(0,0,0,.7); }
+.deck-img { width: 100%; height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+.deck-img.in-r { animation: slideInR .45s cubic-bezier(.2,.8,.2,1); }
+.deck-img.in-l { animation: slideInL .45s cubic-bezier(.2,.8,.2,1); }
+@keyframes slideInR { from { transform: translateX(6%); opacity: 0; } }
+@keyframes slideInL { from { transform: translateX(-6%); opacity: 0; } }
+.deck-arrow { width: 54px; height: 54px; border-radius: 50%; border: 2px solid var(--cream); background: rgba(255,255,255,.08); color: var(--cream); font: inherit; font-weight: 800; font-size: 1.2rem; cursor: pointer; transition: background .15s, color .15s, transform .15s; }
+.deck-arrow:hover { background: var(--yellow); border-color: var(--yellow); color: var(--ink); transform: translateY(-2px); }
+.deck-full { position: absolute; right: 12px; bottom: 12px; width: 40px; height: 40px; border-radius: 10px; border: 0; background: rgba(45,42,69,.75); color: #fff; font-size: 1.1rem; cursor: pointer; opacity: 0; transition: opacity .2s; }
+.deck-frame:hover .deck-full, .deck-full:focus-visible { opacity: 1; }
+.deck-caption { text-align: center; font-family: var(--mono); font-size: .88rem; color: rgba(255,249,241,.85); max-width: none; }
+.deck-caption b { color: var(--yellow); font-weight: 500; margin-right: .5rem; }
+.deck-thumbs { display: flex; gap: 10px; overflow-x: auto; padding: 6px 4px 10px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.3) transparent; }
+.deck-thumb { position: relative; flex: none; width: 128px; border: 0; padding: 0; border-radius: 8px; overflow: hidden; cursor: pointer; background: var(--cream); opacity: .55; outline: 2px solid transparent; outline-offset: 2px; transition: opacity .2s, outline-color .2s, transform .2s; }
+.deck-thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.deck-thumb span { position: absolute; left: 6px; bottom: 5px; font-family: var(--mono); font-size: .68rem; background: rgba(45,42,69,.8); color: #fff; border-radius: 4px; padding: 0 .35rem; }
+.deck-thumb:hover { opacity: .9; transform: translateY(-2px); }
+.deck-thumb.on { opacity: 1; outline-color: var(--yellow); }
+@media (max-width: 700px) {
+  .deck-stage { grid-template-columns: 1fr 1fr; }
+  .deck-frame { grid-column: 1 / -1; grid-row: 1; }
+  .deck-arrow { grid-row: 2; justify-self: center; }
+  .deck-thumb { width: 96px; }
+}
+
+/* one-screen rules: card shape, compact headings for the big interactive sections */
+.team-stage .pcard, .team-stage.scrolly .pcard { height: calc(var(--gw) * 1.25); }
+.team-stage .pgrid, .team-stage.scrolly .pgrid { max-width: calc(var(--gw) * 4 + var(--g) * 3 + 2px); }
+.team-stage.scrolly .section-head, .team-stage.dealt .section-head { margin-bottom: 28px; }
+.team-stage.dealt { padding-block: 56px 72px; }
+@media (min-width: 761px) {
+  .nb-section { padding-block: 48px; }
+  .nb-section .section-head, .nb-section .split-head { margin-bottom: 18px; }
+  #deck { padding-block: 48px; }
+  #deck .split-head { margin-bottom: 20px; }
+  /* slide + caption + thumbnails + heading fit on one screen */
+  .deck-frame { width: min(100%, calc((100vh - 72px - 330px) * 16 / 9)); justify-self: center; }
+}
