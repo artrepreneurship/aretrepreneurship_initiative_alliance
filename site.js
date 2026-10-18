@@ -39,7 +39,7 @@
     var cards = Array.prototype.slice.call(stage.querySelectorAll(".pcard"));
     var inners = cards.map(function (c) { return c.querySelector(".pcard-inner"); });
     var hint = document.getElementById("team-hint");
-    var wide = window.matchMedia("(min-width: 1100px) and (min-height: 560px), (min-width: 760px) and (min-height: 780px)");
+    var wide = window.matchMedia("(min-width: 760px) and (min-height: 740px)");
     var flipIO = null, n = cards.length;
     // timeline (0-1 through the section): shuffle each card out and back onto the deck, then deal them into the grid
     var START = 0.03, SPREAD_LEN = 0.14, LEAD = 0.32, HOLD_END = 0.78;

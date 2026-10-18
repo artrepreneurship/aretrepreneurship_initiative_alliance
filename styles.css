@@ -607,10 +607,9 @@ html.lenis, html.lenis body { height: auto; }
 
 /* team color guide (paint chips) */
 .team-stage { position: relative; padding-block: 72px; background: linear-gradient(180deg, var(--cream), var(--sand)); }
-.pgrid { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; max-width: 830px; margin-inline: auto; }
-.pcard { width: 190px; }
-.team-stage.scrolly { --pw: min(190px, 19vh); --pg: clamp(12px, 2.4vh, 22px); }
-@media (min-width: 1100px) { .team-stage.scrolly .wrap { max-width: 1440px; } .team-stage.scrolly { --pw: min(185px, calc((min(100vw, 1440px) - 64px - 6 * var(--pg)) / 7), 24vh); } .team-stage.scrolly .pgrid { max-width: none !important; flex-wrap: nowrap; } }
+.pgrid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1000px; margin-inline: auto; }
+.pcard { width: 226px; }
+.team-stage.scrolly { --pg: clamp(14px, 2.4vh, 24px); --pw: min(250px, calc((100vh - 515px) / 1.6), calc((min(100vw, 1180px) - 64px - 3 * var(--pg)) / 4)); }
 .team-stage.scrolly .pcard { width: var(--pw); }
 .team-stage.scrolly .pgrid { max-width: calc(var(--pw) * 4 + var(--pg) * 3 + 2px); }
 .team-stage.scrolly .team-sticky { overflow: clip; }
