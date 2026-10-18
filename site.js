@@ -39,7 +39,7 @@
     var cards = Array.prototype.slice.call(stage.querySelectorAll(".pcard"));
     var inners = cards.map(function (c) { return c.querySelector(".pcard-inner"); });
     var hint = document.getElementById("team-hint");
-    var wide = window.matchMedia("(min-width: 760px) and (min-height: 740px)");
+    var wide = window.matchMedia("(min-width: 900px) and (min-height: 640px)");
     var flipIO = null, n = cards.length;
     // timeline (0-1 through the section): shuffle each card out and back onto the deck, then deal them into the grid
     var START = 0.03, SPREAD_LEN = 0.14, LEAD = 0.32, HOLD_END = 0.78;
@@ -50,7 +50,7 @@
     var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
     var mix = function (a, b, t) { var o = {}; for (var k in a) o[k] = a[k] + (b[k] - a[k]) * t; return o; };
 
-    function clearT() { cards.forEach(function (c, i) { c.style.transform = ""; c.style.zIndex = ""; inners[i].style.transform = ""; }); }
+    function clearT() { cards.forEach(function (c, i) { c.style.transform = ""; c.style.zIndex = ""; c.style.removeProperty("--post"); inners[i].style.transform = ""; }); }
     // offsets from each card's home slot to the middle of the grid, read from layout (never affected by transforms)
     function offsets() {
       var g = stage.querySelector(".pgrid"), gx = g.offsetWidth / 2, gy = g.offsetHeight / 2;
@@ -61,25 +61,25 @@
       var r = stage.getBoundingClientRect(), total = stage.offsetHeight - window.innerHeight;
       if (r.bottom < -50 || r.top > window.innerHeight + 50) return;   // off screen: nothing to do
       var p = clamp(-r.top / Math.max(1, total));
-      var offs = offsets(), vw = window.innerWidth, vh = window.innerHeight;
-      var cw = cards[0].offsetWidth;
+      var offs = offsets(), vw = window.innerWidth;
       var head = stage.querySelector(".section-head").getBoundingClientRect();
       var box = stage.querySelector(".team-sticky").getBoundingClientRect();
       var gr = stage.querySelector(".pgrid").getBoundingClientRect();
-      var cw = cards[0].offsetWidth, ch = cards[0].offsetHeight;
-      var room = box.bottom - head.bottom - 24;
-      var S = Math.max(1, Math.min(1.45, room / ch));
-      var lift = (head.bottom + 12 + room / 2) - (gr.top + gr.height / 2);
+      // during the shuffle each card shows as a horizontal postcard (the .pcard-inner); size it to fit
+      var pw = inners[0].offsetWidth, ph = inners[0].offsetHeight;
+      var room = box.bottom - head.bottom - 28;
+      var S = Math.max(.8, Math.min(1.35, room / ph, (vw * 0.62) / pw));
+      var lift = (head.bottom + 14 + room / 2) - (gr.top + gr.height / 2);
       var spread = ease(clamp((p - SPREAD) / SPREAD_LEN));
       var current = -1;
       cards.forEach(function (c, i) {
         var ox = offs[i][0], oy = offs[i][1] + lift;
         var side = i % 2 === 0 ? 1 : -1;
         var deck = { x: ox + (n - i) * 0.8, y: oy - (n - i) * 1.6, s: S, r: (i % 3 - 1) * 1.2, f: 180 };
-        var out = { x: ox + side * cw * S * 0.95, y: oy - 22, s: S * 1.02, r: side * 10, f: 0 };
+        var out = { x: ox + side * pw * S * 0.62, y: oy - 26, s: S * 1.02, r: side * 9, f: 0 };
         var top = { x: ox + JX[i % JX.length], y: oy, s: S, r: JR[i % JR.length], f: 0 };
         var home = { x: 0, y: 0, s: 1, r: 0, f: 0 };
-        var t = (p - START) / SEG - LEAD - i, st, z, last = i === n - 1;
+        var t = (p - START) / SEG - LEAD - i, st, z;
         if (t < -LEAD) { st = deck; z = 10 + i; }
         else if (t < -0.08) {                         // slide out of the deck and flip face-up
           var k = (t + LEAD) / (LEAD - 0.08);
@@ -88,14 +88,17 @@
         else if (t < 0.12) { st = mix(out, top, ease((t + 0.08) / 0.2)); z = 100 + i; }   // tuck back on top
         else { st = top; z = 100 + i; }
         if (t >= -0.08) current = Math.max(current, i);
-        home.f = 0;
         if (spread > 0) st = mix(st, home, spread);
-        c.style.transform = "translate3d(" + st.x.toFixed(1) + "px," + st.y.toFixed(1) + "px,0) rotate(" + st.r.toFixed(2) + "deg) scale(" + st.s.toFixed(3) + ")";
+        // postcard -> vertical card as the deck deals out
+        var post = 1 - clamp(spread * 1.6);
+        c.style.setProperty("--post", post.toFixed(3));
+        c.style.transform = "translate3d(" + st.x.toFixed(1) + "px," + st.y.toFixed(1) + "px,0) rotate(" + st.r.toFixed(2) + "deg) scale(" + (st.s + (1 - st.s) * (1 - post)).toFixed(3) + ")";
         inners[i].style.transform = "rotateY(" + st.f.toFixed(1) + "deg)";
         c.style.zIndex = spread > 0.6 ? "" : String(z);
       });
+      stage.classList.toggle("dealt", spread >= 1);
       if (hint) {
-        var txt = p >= SPREAD ? "The whole crew." : current >= 0 || p > START ? "Meet the team · " + String(Math.max(current, 0) + 1).padStart(2, "0") + " / " + String(n).padStart(2, "0") : "Scroll to meet everyone, one by one.";
+        var txt = p >= SPREAD ? "The whole crew. Hover a card to flip it." : current >= 0 || p > START ? "Meet the team · " + String(Math.max(current, 0) + 1).padStart(2, "0") + " / " + String(n).padStart(2, "0") : "Scroll to meet everyone, one by one.";
         if (hint.textContent !== txt) hint.textContent = txt;
       }
     }
@@ -107,17 +110,18 @@
       if (reduce) return;
       if (wide.matches) {
         stage.classList.add("scrolly");
-        stage.style.height = (100 + n * 55 + 70) + "vh";
+        stage.style.height = (100 + n * 60 + 70) + "vh";
         tick();
-      } else if ("IntersectionObserver" in window) {
-        stage.classList.add("flippy");
-        flipIO = new IntersectionObserver(function (es) {
-          es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("shown"); flipIO.unobserve(e.target); } });
-        }, { threshold: 0.5 });
-        cards.forEach(function (c) { c.classList.remove("shown"); flipIO.observe(c); });
       }
     }
     setup();
+    // tap to flip on touch screens (hover does it on desktop)
+    stage.querySelectorAll(".gcard").forEach(function (g) {
+      g.addEventListener("click", function () {
+        var on = g.classList.toggle("tapped");
+        g.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    });
     var queued = false;
     function queue() { if (!queued) { queued = true; requestAnimationFrame(function () { queued = false; tick(); }); } }
     window.addEventListener("scroll", queue, { passive: true });

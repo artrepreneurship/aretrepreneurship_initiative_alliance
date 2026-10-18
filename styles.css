@@ -1012,3 +1012,67 @@ html.lenis, html.lenis body { height: auto; }
   background-image: linear-gradient(90deg, transparent 0 calc(var(--gutter) + 18px), rgba(237,106,90,.35) calc(var(--gutter) + 18px) calc(var(--gutter) + 20px), transparent 0),
                     repeating-linear-gradient(transparent 0 31px, rgba(112,193,255,.22) 31px 32px) !important;
   background-size: auto !important; }
+
+/* =========================================================
+   Team v3: postcards while shuffling, vertical flip cards in the grid
+   ========================================================= */
+.team-stage { --g: 22px; --gw: min(250px, calc((min(100vw, 1180px) - 64px - 3 * var(--g)) / 4)); }
+.team-stage.scrolly { --g: clamp(14px, 2.2vh, 22px); --gw: min(250px, calc((100vh - 72px - 205px - var(--g)) / 2 / 1.3), calc((min(100vw, 1180px) - 64px - 3 * var(--g)) / 4)); }
+.team-stage .pgrid, .team-stage.scrolly .pgrid { gap: var(--g); max-width: calc(var(--gw) * 4 + var(--g) * 3 + 2px); position: relative; }
+.team-stage .pcard, .team-stage.scrolly .pcard { width: var(--gw); height: calc(var(--gw) * 1.3); position: relative; perspective: none; }
+
+/* --- postcard (only exists during the scroll shuffle) --- */
+.team-stage .pcard-inner { display: none; }
+.team-stage.scrolly .pcard-inner { display: block; position: absolute; width: calc(var(--gw) * 1.78); height: calc(var(--gw) * 1.12);
+  left: calc((100% - var(--gw) * 1.78) / 2); top: calc((100% - var(--gw) * 1.12) / 2);
+  transform-style: preserve-3d; opacity: var(--post, 1); transition: none; perspective: none; }
+.team-stage .pcard-inner .pface { position: absolute; inset: 0; grid-area: auto; border-radius: 10px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 24px 40px -26px rgba(45,42,69,.6); border: 1px solid var(--line); }
+.team-stage .pfront { display: grid; grid-template-columns: 42% 1fr; background: #fffdf8; }
+.post-pic { background: var(--c); display: grid; place-items: center; overflow: hidden; }
+.post-pic img { width: 100%; height: 100%; object-fit: cover; }
+.post-pic .pinit { font-size: calc(var(--gw) * .2); }
+.post-info { position: relative; padding: calc(var(--gw) * .07) calc(var(--gw) * .075); display: flex; flex-direction: column; gap: calc(var(--gw) * .02); min-width: 0;
+  background-image: repeating-linear-gradient(transparent 0 calc(var(--gw) * .1 - 1px), rgba(112,193,255,.25) calc(var(--gw) * .1 - 1px) calc(var(--gw) * .1)); }
+.post-info .pcode { font-family: var(--mono); font-size: calc(var(--gw) * .038); color: var(--muted); letter-spacing: .06em; }
+.post-info h3 { font-size: calc(var(--gw) * .095); line-height: 1.1; margin-top: calc(var(--gw) * .02); }
+.post-role { font-family: "Caveat", cursive; font-weight: 700; font-size: calc(var(--gw) * .08); color: var(--coral-text); line-height: 1.1; }
+.post-about { font-size: calc(var(--gw) * .048); line-height: 1.45; color: var(--ink); max-width: none; }
+.post-stamp { position: absolute; top: calc(var(--gw) * .05); right: calc(var(--gw) * .05); width: calc(var(--gw) * .16); height: calc(var(--gw) * .19); background: var(--cream); border: 2px dotted rgba(47,50,107,.35); display: grid; place-items: center; transform: rotate(4deg); }
+.post-stamp img { width: 55%; }
+.team-stage .pback { transform: rotateY(180deg); background: var(--cream); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--gw) * .04);
+  background-image: radial-gradient(rgba(47,50,107,.12) 1px, transparent 1.2px); background-size: 14px 14px; }
+.team-stage .pback img { width: calc(var(--gw) * .22); }
+.team-stage .pback .post-label { font-family: var(--mono); font-size: calc(var(--gw) * .045); color: var(--navy); letter-spacing: .16em; }
+.team-stage .pback .post-line { position: absolute; top: 14%; bottom: 14%; left: 50%; border-left: 1.5px solid rgba(47,50,107,.15); }
+.team-stage .pback img, .team-stage .pback .post-label { position: relative; background: var(--cream); padding: 4px 8px; }
+
+/* --- vertical grid card: picture + name, flips on hover / tap --- */
+.gcard { position: absolute; inset: 0; display: block; border: 0; padding: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; perspective: 1200px; }
+.team-stage.scrolly .gcard { opacity: calc(1 - var(--post, 1)); pointer-events: none; }
+.team-stage.scrolly.dealt .gcard { pointer-events: auto; }
+.g-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+.gcard:hover .g-inner, .gcard:focus-visible .g-inner, .gcard.tapped .g-inner { transform: rotateY(180deg); }
+.team-stage.scrolly:not(.dealt) .gcard .g-inner { transform: none; }
+.g-face { position: absolute; inset: 0; border-radius: 10px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 22px 36px -24px rgba(45,42,69,.6); border: 1px solid var(--line); background: #fffdf8; }
+.g-pic { flex: 1; background: var(--c); display: grid; place-items: center; overflow: hidden; }
+.g-pic img { width: 100%; height: 100%; object-fit: cover; }
+.g-pic .pinit { font-size: calc(var(--gw) * .24); }
+.g-name { padding: calc(var(--gw) * .06) calc(var(--gw) * .07); display: flex; flex-direction: column; gap: 2px; }
+.g-name b { font-family: var(--display); font-size: calc(var(--gw) * .085); color: var(--navy); line-height: 1.15; }
+.g-name .pcode { font-family: var(--mono); font-size: calc(var(--gw) * .042); color: var(--muted); margin: 0; }
+.g-back { transform: rotateY(180deg); background: var(--c); color: var(--t); padding: calc(var(--gw) * .09); gap: calc(var(--gw) * .035); }
+.g-back::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.25) 1px, transparent 1.2px); background-size: 14px 14px; pointer-events: none; }
+.g-role { font-family: "Caveat", cursive; font-weight: 700; font-size: calc(var(--gw) * .1); line-height: 1.05; position: relative; }
+.g-name-sm { font-family: var(--mono); font-size: calc(var(--gw) * .045); letter-spacing: .08em; text-transform: uppercase; opacity: .8; position: relative; }
+.g-about { font-size: calc(var(--gw) * .058); line-height: 1.45; position: relative; }
+.g-about small { display: block; margin-top: .5em; font-size: .82em; opacity: .8; font-style: italic; }
+.g-logo { position: absolute; right: calc(var(--gw) * .07); bottom: calc(var(--gw) * .07); width: calc(var(--gw) * .11); padding: 4px; background: rgba(255,255,255,.85); border-radius: 50%; }
+.g-back .g-about, .g-back .g-role { padding-right: 0; }
+
+@media (max-width: 760px) {
+  .team-stage { --gw: calc((100vw - 60px - 16px) / 2); --g: 16px; }
+  .team-stage .pcard { width: var(--gw); }
+  .g-about { font-size: calc(var(--gw) * .066); }
+}
