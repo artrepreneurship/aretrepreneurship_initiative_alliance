@@ -81,7 +81,7 @@
       // during the shuffle each card shows as a horizontal postcard (the .pcard-inner); size it to fit
       var pw = inners[0].offsetWidth, ph = inners[0].offsetHeight;
       var room = box.bottom - head.bottom - 28;
-      var S = Math.max(.8, Math.min(2.4, room / ph, (vw * 0.7) / pw));
+      var S = Math.max(.8, Math.min(2.1, room / ph * 0.86, (vw * 0.58) / pw));
       var lift = (head.bottom + 14 + room / 2) - (gr.top + gr.height / 2);
       var spread = ease(clamp((p - SPREAD) / SPREAD_LEN));
       var current = -1;
@@ -249,7 +249,11 @@
       var headH = head ? head.offsetHeight + parseFloat(getComputedStyle(head).marginBottom || 0) : 0;
       // nav bar + heading + counter + breathing room must all fit on one screen
       var byHeight = Math.floor((window.innerHeight - 72 - headH - 30 - 64) / 1.3);
-      var pw = mobile ? Math.min(w * 0.82, 360) : Math.max(220, Math.min(470, byWidth, byHeight));
+      if (fb.classList.contains("is-full")) {           // full-screen mode: as big as the window allows
+        byWidth = Math.floor((window.innerWidth - 2 * (54 + 18) - 64) / 2);
+        byHeight = Math.floor((window.innerHeight - 120) / 1.3);
+      }
+      var pw = mobile ? Math.min(w * 0.82, fb.classList.contains("is-full") ? 420 : 360) : Math.max(220, Math.min(fb.classList.contains("is-full") ? 720 : 470, byWidth, byHeight));
       fb.style.setProperty("--pw", pw + "px");
       fb.style.setProperty("--k", (pw / 460).toFixed(4));
       update(true);
@@ -296,6 +300,19 @@
       prev.disabled = cur === 0; next.disabled = cur === n;
       setTimeout(function () { lf.style.zIndex = d > 0 ? leaves.indexOf(lf) + 1 : n - leaves.indexOf(lf) + 1; }, 950);
     }
+    // full-screen toggle
+    var fsBtn = fb.querySelector(".book-fs"), fsClose = fb.querySelector(".book-close");
+    function setFull(on) {
+      fb.classList.toggle("is-full", on);
+      var secEl = fb.closest("section"); if (secEl) secEl.classList.toggle("has-full", on);
+      document.documentElement.classList.toggle("book-open-full", on);
+      fsBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      if (on) fb.focus();
+      size();
+    }
+    fsBtn.addEventListener("click", function () { setFull(!fb.classList.contains("is-full")); });
+    fsClose.addEventListener("click", function () { setFull(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && fb.classList.contains("is-full")) setFull(false); });
     prev.addEventListener("click", function () { go(-1); });
     next.addEventListener("click", function () { go(1); });
     // click a page: right side goes forward, left side goes back (links inside pages still work)
@@ -352,7 +369,7 @@
 /* ---------- numbers count up from 0 when they scroll into view ---------- */
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-  var nums = document.querySelectorAll(".swatch-card .num, .stat .num");
+  var nums = document.querySelectorAll(".swatch-card .num, .stat .num, .ws-stat .num");
   nums.forEach(function (el) {
     var m = el.textContent.trim().match(/^([^0-9]*)([0-9][0-9,]*)(.*)$/);
     if (!m) return;

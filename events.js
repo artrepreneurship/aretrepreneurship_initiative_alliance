@@ -9,11 +9,23 @@
    ========================================================= */
 var EVENTS = [
   {
-    title: "AIA Youth Workshop",
-    date: "2025-06-17",
-    place: "Hackensack, NJ",
+    title: "Design 101 Workshop",
+    date: "2025-10-19",
+    time: "3:00\u20134:00 PM",
+    place: "Bergenfield Public Library",
     type: "Workshop",
-    desc: "A hands-on workshop for youth on entrepreneurship, financial literacy and creative skills."
+    desc: "A free, hands-on workshop for middle and upper elementary students: what makes a post eye-catching, how color, font and layout shape a brand, and designing your own on-brand Instagram post."
+  },
+  {
+    title: "AIA Youth Innovation Workshop",
+    date: "2025-06-17",
+    time: "4:00\u20136:00 PM",
+    place: "Bergen County Academies, Hackensack",
+    type: "Workshop",
+    desc: "70+ students heard from David Lin (Linvest21, ex-JPMorgan), Michael Bryzek (Flow Commerce, Gilt) and Jessica Wang (L\u2019Or\u00e9al), then split into breakout rooms. Sushi, a keychain stand and a raffle too.",
+    img: "assets/workshop/jessica-wang.webp",
+    link: "impact#workshop",
+    linkText: "See the recap"
   },
   {
     title: "PPO Picnic Booth",
@@ -24,7 +36,8 @@ var EVENTS = [
     img: "assets/events/ppo-picnic-booth.webp"
   }
   /* To add an event, copy a { ... } block above, put a comma between blocks, and change it.
-     img is optional: put a photo in assets/events/ and write its path. */
+     img is optional: put a photo in assets/events/ and write its path.
+     link + linkText are optional: a button on the featured event. */
 ];
 
 (function () {
@@ -55,7 +68,7 @@ var EVENTS = [
         '<dl class="fields"><dt>Type</dt><dd>' + fill(feature.type) + "</dd><dt>Date</dt><dd>" + longDate(feature.d) + (feature.time ? ", " + fill(feature.time) : "") +
         "</dd><dt>Where</dt><dd>" + fill(feature.place) + "</dd></dl>" +
         '<p class="muted">' + fill(feature.desc) + "</p>" +
-        (feature.link ? '<div class="btn-row"><a class="btn" href="' + esc(feature.link) + '" target="_blank" rel="noopener">Sign up</a></div>' : "") +
+        (feature.link ? '<div class="btn-row"><a class="btn" href="' + esc(feature.link) + '"' + (/^https?:/.test(feature.link) ? ' target="_blank" rel="noopener"' : "") + ">" + esc(feature.linkText || "Sign up") + "</a></div>" : "") +
       "</div>" +
       (feature.img
         ? '<div class="brief-art brief-photo"><img src="' + esc(feature.img) + '" alt="' + esc(feature.title) + '"><p class="date-chip"><b>' + feature.d.getDate() + "</b>" + MONTHS[feature.d.getMonth()].slice(0, 3) + "</p></div>"
