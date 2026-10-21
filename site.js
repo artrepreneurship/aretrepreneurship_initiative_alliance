@@ -129,7 +129,9 @@
         var g = 22, cs = getComputedStyle(wrap);
         var innerW = wrap.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
         var headH = head.offsetHeight + 28;
-        var gw = Math.floor(Math.min(290, (innerW - 3 * g) / 4, ((window.innerHeight - 72) - headH - g - 56) / 2 / 1.25));
+        var cols = Math.max(4, Math.ceil(n / 2));
+        stage.style.setProperty("--cols", cols);
+        var gw = Math.floor(Math.min(290, (innerW - (cols - 1) * g) / cols, ((window.innerHeight - 72) - headH - g - 56) / 2 / 1.25));
         stage.style.setProperty("--gw", gw + "px");
         stage.style.setProperty("--g", g + "px");
         stage.classList.add("scrolly");

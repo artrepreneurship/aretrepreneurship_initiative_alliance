@@ -1351,3 +1351,9 @@ html.lenis, html.lenis body { height: auto; }
 .ws-snaps .snap figcaption { font-size: 1.12rem; }
 @media (max-width: 1000px) { .ws-snaps { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 700px) { .ws-snaps { grid-template-columns: 1fr 1fr; gap: 18px 12px; } }
+
+/* team: columns follow team size (2 rows on desktop) */
+@media (min-width: 761px) {
+  .team-stage { --cols: 5; --gw: min(290px, calc((min(100vw, 1240px) - 64px - (var(--cols) - 1) * var(--g)) / var(--cols))); }
+  .team-stage .pgrid, .team-stage.scrolly .pgrid { max-width: calc(var(--gw) * var(--cols) + var(--g) * (var(--cols) - 1) + 2px); }
+}
